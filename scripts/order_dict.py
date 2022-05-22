@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-DICT_PATH = '.github/workflows/allowed_words.txt'
+DICT_PATH = '.github/actions/check-spelling/allowed_words.txt'
 
 with open(DICT_PATH, mode='r') as f:
     file = f.read().split()
