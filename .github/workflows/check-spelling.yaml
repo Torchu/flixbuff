@@ -14,4 +14,4 @@ jobs:
     - name: Add allowed words
       run: python ./scripts/order_dict.py
     - name: Spell check
-      run: ./scripts/spellcheck.sh
+      run: sudo ./scripts/spellcheck.sh
