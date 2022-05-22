@@ -1,6 +1,6 @@
 DOC := proyecto.tex
 
-all: doc
+all: clean doc
 
 doc: $(DOC:.tex=.pdf)
 

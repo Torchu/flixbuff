@@ -302,6 +302,9 @@ typings/
 #vscode file
 .vscode/*
 
+#DS_Store
+.DS_Store
+
 #vagrant stuff
 
 .vagrant/*
