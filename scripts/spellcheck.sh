@@ -25,8 +25,22 @@ exitValue=0
 SpellingError README.md
 let "exitValue += $?"
 
-# Check docs
-for file in $(find ./doc -name "*.tex")
+# Check portada
+for file in $(find ./doc/portada -name "*.tex")
+do
+    SpellingError $file
+    let "exitValue += $?"
+done
+
+# Check prefacios
+for file in $(find ./doc/prefacios -name "*.tex")
+do
+    SpellingError $file
+    let "exitValue += $?"
+done
+
+# Check secciones
+for file in $(find ./doc/secciones -name "*.tex")
 do
     SpellingError $file
     let "exitValue += $?"
