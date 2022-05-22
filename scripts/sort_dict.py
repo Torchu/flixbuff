@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Orders the allowed words dictionary
 DICT_PATH = '.github/actions/check-spelling/allowed_words.txt'
 
 with open(DICT_PATH, mode='r') as f:

@@ -1,8 +1,8 @@
-personal_ws-1.1 es 0 utf-8
-README
-md
-LaTeX
-TeXLive
-pdflatex
-bibtex
+personal_ws-1.1 es 0 utf-8 
 Github
+LaTeX
+README
+TeXLive
+bibtex
+md
+pdflatex
