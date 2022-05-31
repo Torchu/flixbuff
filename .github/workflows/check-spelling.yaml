@@ -1,0 +1,15 @@
+
+name: Spell checking
+
+on: push
+
+jobs:
+  check-spelling:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install tools
+      run: sudo apt install aspell aspell-es aspell-en
+    - name: Spell check
+      run: make spell-check

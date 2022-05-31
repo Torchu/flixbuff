@@ -8,6 +8,3 @@ all: proyecto.pdf
 
 %.pdf: %.tex
 	pdflatex $< && bibtex $* && pdflatex $< && pdflatex $<
-
-
-
