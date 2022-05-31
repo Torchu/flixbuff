@@ -4,7 +4,7 @@
 SpellingError () {
     error=0;
     echo "";
-    echo "Analizando si hay fallos en fichero" $1":";
+    echo "Checking file" $1":";
     n_line=1;
     while IFS= read -r line
     do
