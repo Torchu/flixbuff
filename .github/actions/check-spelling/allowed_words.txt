@@ -13,4 +13,8 @@ TeXLive
 bibtex
 md
 pdflatex
+<<<<<<< HEAD
 seriéfilos
+=======
+Kanban
+>>>>>>> ee1e73b (avanza con la metodología)
