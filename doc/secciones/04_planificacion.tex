@@ -9,14 +9,7 @@ Las metodologías ágiles más utilizadas son Kanban y Scrum. Scrum se basa en c
 Aunque la metodología SCRUM resulta muy útil cuando hay un cliente al que satisfacer con tiempos de entrega y para planificar de acuerdo a unas prioridades las tareas a realizar por un equipo de trabajo. En este proyecto en el que no hay un cliente, por lo que es flexible en cuanto a tiempos de entrega, y solo hay un desarrollador, no le estaría sacando el máximo partido a la metodología SCRUM.\\
 
 Por tanto, para el desarrollo del proyecto, se optado por seguir la metodología Kanban. Que permite un seguimiento visual del proyecto en el que se puede ver en todo momento qué tareas se deben hacer, cuáles están en desarrollo y cuáles se han terminado ya. Apoyándonos en una tabla Kanban los usuarios pueden ver en todo momento el estado del proyecto y las nuevas funcionalidades en las que se está trabajando. \\
-% Introducir tabla %
-
-Estas tareas que se muestran en la tabla Kanban, pueden ser:
-\begin{itemize}
-    \item \textbf{Historias de Usuario}. Requerimientos propuestos por los usuarios de la aplicación.
-    \item \textbf{Issues}. Fallos en la aplicación que han de ser resueltos.
-    \item \textbf{Tareas para el desarrollador}. Pequeñas tareas que no representan una funcionalidad como tal.
-\end{itemize}
+% Introducir tabla cuando avances con la HU
 
 \subsection{Seguimiento del desarrollo}
 Para la transparencia y visualización del proyecto a lo largo de sus diferentes fases, debemos de poder acceder a estados anteriores en su desarrollo. Para ello, utilizaremos Git, un sistema de control de versiones, en el que fácilmente podemos ver versiones anteriores del proyecto e incluso volver a ellas revirtiendo algunos cambios, aumentando la adaptabilidad del proyecto a cambios en los requerimientos de los usuarios.\\
@@ -24,15 +17,23 @@ Para la transparencia y visualización del proyecto a lo largo de sus diferentes
 Para alojar el código y registrar las tareas a realizar se ha optado por GitHub, ya que con una cuenta de estudiante nos da acceso a la creación de tableros Kanban, como el mostrado anteriormente, para la organización de las tareas y a la integración continua, de la que hablaremos más adelante, a través de las GitHub Actions.
 
 \subsection{Milestones}
-Las milestones son los productos mínimamente viables del proyecto. Están formadas principalmente por las historias de usuario, pero también recogen las issues que se vayan encontrando en el desarrollo y las tareas para el programador.\\
+Las milestones son los productos mínimamente viables del proyecto. Están formadas por tareas más pequeñas que completan el PMV.\\
+
+Éstas tareas son:
+\begin{itemize}
+    \item \textbf{Historias de Usuario}. Requerimientos propuestos por los usuarios de la aplicación.
+    \item \textbf{Issues}. Fallos en la aplicación que han de ser resueltos.
+    \item \textbf{Tareas para el desarrollador}. Pequeñas tareas que no representan una funcionalidad como tal.
+\end{itemize}
 
 Los milestones creados son visibles desde el repositorio de GitHub:
-%Listarlos, poner links, etc, etc, pero son la infraestructura, el modelo de datos, el servicio de back y ambos front-end%
-% Estaría de puta madre organizar esto un poco mejor. Quizá en las milestones hablar de los distintos tipos de tareas y luego desarrollarlos cada uno en su subsección %
+% Listarlos, poner links, etc, etc, pero son la infraestructura, el modelo de datos, el servicio de back y ambos front-end
 
 \subsection{Historias de usuario}
-% Aquí hablas también de los perfiles de usuario.%
+Una historia de usuario es una funcionalidad que el usuario espera en la solución del problema. Es decir, un requerimiento del usuario.\\
 
-\subsection{Issues}
+% Introducir imagen cuando avances con alguna HU
 
-\subsection{Tareas para el desarrollador}
+Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y serán ellos quienes protagonicen las historias de usuario. Ver apéndice A.
+
+% Link apendix
