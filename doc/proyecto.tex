@@ -21,6 +21,7 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage[titletoc]{appendix}
 
 \usepackage[table,xcdraw]{xcolor}
 \hypersetup{
@@ -109,6 +110,12 @@
 	\newpage
 	\bibliography{bibliografia}
 	\bibliographystyle{plain}
+
+	% Apéndices
+	\newpage
+	\begin{appendices}
+		\input{apendices/A_personas}
+	\end{appendices}
 	
 \end{document}
 
