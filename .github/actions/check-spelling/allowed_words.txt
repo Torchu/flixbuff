@@ -16,3 +16,5 @@ pdflatex
 seriéfilos
 Kanban
 PMV
+linters
+yaml
