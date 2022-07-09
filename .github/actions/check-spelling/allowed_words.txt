@@ -13,17 +13,6 @@ TeXLive
 bibtex
 md
 pdflatex
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 seriéfilos
-=======
-Kanban
->>>>>>> ee1e73b (avanza con la metodología)
-=======
 Kanban
 PMV
->>>>>>> 4afe659 (completes section)
-=======
-Kanban
->>>>>>> ee1e73b841c1cc1730ae73e74ff4e8165790b2a5
