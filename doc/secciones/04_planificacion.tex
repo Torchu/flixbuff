@@ -42,9 +42,16 @@ el PMV.\\
 Éstas tareas son:
 \begin{itemize}
     \item \textbf{Historias de Usuario}. Requerimientos propuestos por los usuarios de la aplicación.
-    \item \textbf{Issues}. Fallos en la aplicación que han de ser resueltos.
+    \item \textbf{Issues}. Fallos o problemas en la aplicación que han de ser resueltos.
     \item \textbf{Tareas para el desarrollador}. Pequeñas tareas que no representan una funcionalidad como tal.
 \end{itemize}
+
+Todas las tareas estarán asociadas a una issue diferente y tendrán una etiqueta acorde a su tipo.
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.25]{img/issues.png}
+	\caption{\href{https://github.com/Torchu/flixbuff/issues}{Issues} del proyecto}\label{fig:github_issues}
+\end{figure}
 
 Los milestones creados son visibles desde el repositorio de GitHub:
 % Listarlos, poner links, etc, etc, pero son la infraestructura, el modelo de datos, el servicio de back y ambos front-end
@@ -59,16 +66,31 @@ Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se 
 \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y
 serán ellos quienes protagonicen las historias de usuario. Ver \autoref{chap:personas}.\\
 
-\section{Control de calidad}
-Para asegurar la calidad del proyecto, se ha utilizado integración continua a través de las ya mencionadas antes GitHub
-Actions.\\
+\section{Control de calidad}\label{sec:control_de_calidad}
+Para asegurar la calidad del proyecto se ha seguido desde el comienzo del proyecto el desarrollo guiado por pruebas o
+TDD\cite{TDD}.\\
 
-Cada vez que se sube nuevo código a una rama del repositorio, se realiza un análisis estático del código por medio de
-\textit{linters} y se lanzan unos tests que aseguran que la funcionalidad del código es correcta.\\
+Basándonos en esta metodología de desarrollo, trasladaremos los requisitos a una serie de pruebas dentro de nuestro
+código. De esta forma, se convierten tanto en una documentación fiable, como en una herramienta de seguridad, que
+nos asegura que el código permanezca siempre correcto cada vez que se produzca algún cambio en el mismo.\\
 
-La configuración de las GitHub Actions se realiza de forma sencilla a través de ficheros yaml ubicados en el directorio
-\textit{.github/workflows/}.\\
+Además del desarrollo guiado por pruebas, se han configurado una serie de \textit{linters}, unas herramientas que
+comprueban que el código cumplimenta la guía de estilo del lenguaje de programación en el que está desarrollado.\\
 
-% Incluir fotos aquí también
+Finalmente, se ha incluido un \textit{script} que comprueba la ortografía de toda la documentación del proyecto.\\
 
+\subsection{Integración continua}
 
+La integración continua es una metodología de trabajo que se basa en realizar integraciones frecuentes del código y
+asegurarnos que superen los distintos controles de calidad.\\
+
+Estos controles de calidad se comprueban mediante las \textit{pipelines}, o acciones que se ejecutan al subir código
+al repositorio de GitHub. En nuestro caso incluiremos todo lo mencionado en el apartado
+\hyperref{sec:control_de_calidad}{anterior}: pruebas de funcionalidad, \textit{linters} y revisión ortográfica.\\
+
+Para este proyecto, se han configurado las \textit{pipelines} con la herramienta GitHub Actions. Se ha escogido esta
+herramienta, ya que es propia de GitHub, la plataforma en la que se aloja el código del proyecto. Además, es muy fácil
+de configurar. Simplemente incluyendo un fichero yaml en el directorio \textit{.github/workflows/} la propia plataforma
+ya es capaz de reconocer y ejecutar las \textit{pipelines} que se han configurado.\\
+
+% Incluir fotos aquí también cuando se hayan configurado el resto de GitHub Actions
