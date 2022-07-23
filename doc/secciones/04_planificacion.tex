@@ -1,23 +1,43 @@
 \chapter{Planificación}
-Para empezar a desarrollar la solución al problema, primero hay que establecer la metodología de su desarrollo y control de calidad.
+Para empezar a desarrollar la solución al problema, primero hay que establecer la metodología de su desarrollo y
+control de calidad.\\
 
 \section{Metodología utilizada}
-Para el desarrollo del proyecto, tenía claro que quería utilizar una metodología ágil. Las metodologías ágiles se basan en la aportación frecuente de código que tenga valor para el usuario. Esto permite una rápida retroalimentación por parte de los usuarios y hace que el desarrollo sea muy flexible a posibles cambios en alguna funcionalidad.\\
+Para el desarrollo del proyecto, tenía claro que quería utilizar una metodología ágil. Las metodologías ágiles se basan
+en la aportación frecuente de código que tenga valor para el usuario. Esto permite una rápida retroalimentación por
+parte de los usuarios y hace que el desarrollo sea muy flexible a posibles cambios en alguna funcionalidad.\\
 
-Las metodologías ágiles más utilizadas son Kanban y Scrum. Scrum se basa en ciclos cortos de trabajo en los que cada X semanas, el cliente recibe un avance en el código de acuerdo a una previa planificación de los desarrolladores. Esta metodología es perfecta para empresas, ya que facilita las reuniones con los clientes al fijar la duración de los ciclos y les permite saber de antemano en qué están trabajando los desarrolladores en cada ciclo, sabiendo qué se van a encontrar en la siguiente versión del proyecto y permitiéndoles influir en la planificación de los ciclos en base a las funcionalidad más prioritarias para ellos. \\
+Las metodologías ágiles más utilizadas son Kanban y Scrum. Scrum se basa en ciclos cortos de trabajo en los que cada X
+semanas, el cliente recibe un avance en el código de acuerdo a una previa planificación de los desarrolladores. Esta
+metodología es perfecta para empresas, ya que facilita las reuniones con los clientes al fijar la duración de los
+ciclos y les permite saber de antemano en qué están trabajando los desarrolladores en cada ciclo, sabiendo qué se van
+a encontrar en la siguiente versión del proyecto y permitiéndoles influir en la planificación de los ciclos en base a
+las funcionalidad más prioritarias para ellos. \\
 
-Aunque la metodología SCRUM resulta muy útil cuando hay un cliente al que satisfacer con tiempos de entrega y para planificar de acuerdo a unas prioridades las tareas a realizar por un equipo de trabajo. En este proyecto en el que no hay un cliente, por lo que es flexible en cuanto a tiempos de entrega, y solo hay un desarrollador, no le estaría sacando el máximo partido a la metodología SCRUM.\\
+Aunque la metodología SCRUM resulta muy útil cuando hay un cliente al que satisfacer con tiempos de entrega y para
+planificar de acuerdo a unas prioridades las tareas a realizar por un equipo de trabajo. En este proyecto en el que no
+hay un cliente, por lo que es flexible en cuanto a tiempos de entrega, y solo hay un desarrollador, no le estaría
+sacando el máximo partido a la metodología SCRUM.\\
 
-Por tanto, para el desarrollo del proyecto, se optado por seguir la metodología Kanban. Que permite un seguimiento visual del proyecto en el que se puede ver en todo momento qué tareas se deben hacer, cuáles están en desarrollo y cuáles se han terminado ya. Apoyándonos en una tabla Kanban los usuarios pueden ver en todo momento el estado del proyecto y las nuevas funcionalidades en las que se está trabajando. \\
+Por tanto, para el desarrollo del proyecto, se optado por seguir la metodología Kanban. Que permite un seguimiento
+visual del proyecto en el que se puede ver en todo momento qué tareas se deben hacer, cuáles están en desarrollo y
+cuáles se han terminado ya. Apoyándonos en una tabla Kanban los usuarios pueden ver en todo momento el estado del
+proyecto y las nuevas funcionalidades en las que se está trabajando. \\
 % Introducir tabla cuando avances con la HU
 
 \subsection{Seguimiento del desarrollo}
-Para la transparencia y visualización del proyecto a lo largo de sus diferentes fases, debemos de poder acceder a estados anteriores en su desarrollo. Para ello, utilizaremos Git, un sistema de control de versiones, en el que fácilmente podemos ver versiones anteriores del proyecto e incluso volver a ellas revirtiendo algunos cambios, aumentando la adaptabilidad del proyecto a cambios en los requerimientos de los usuarios.\\
+Para la transparencia y visualización del proyecto a lo largo de sus diferentes fases, debemos de poder acceder a
+estados anteriores en su desarrollo. Para ello, utilizaremos Git, un sistema de control de versiones, en el que
+fácilmente podemos ver versiones anteriores del proyecto e incluso volver a ellas revirtiendo algunos cambios,
+aumentando la adaptabilidad del proyecto a cambios en los requerimientos de los usuarios.\\
 
-Para alojar el código y registrar las tareas a realizar se ha optado por GitHub, ya que con una cuenta de estudiante nos da acceso a la creación de tableros Kanban, como el mostrado anteriormente, para la organización de las tareas y a la integración continua, de la que hablaremos más adelante, a través de las GitHub Actions.
+Para alojar el código y registrar las tareas a realizar se ha optado por GitHub, ya que con una cuenta de estudiante
+nos da acceso a la creación de tableros Kanban, como el mostrado anteriormente, para la organización de las tareas y a
+la integración continua, de la que hablaremos más adelante, a través de las GitHub Actions.
 
 \subsection{Milestones}
-Las milestones son los productos mínimamente viables del proyecto. Están formadas por tareas más pequeñas que completan el PMV.\\
+Las milestones son los productos mínimamente viables del proyecto. Están formadas por tareas más pequeñas que completan
+el PMV.\\
 
 Éstas tareas son:
 \begin{itemize}
@@ -30,18 +50,24 @@ Los milestones creados son visibles desde el repositorio de GitHub:
 % Listarlos, poner links, etc, etc, pero son la infraestructura, el modelo de datos, el servicio de back y ambos front-end
 
 \subsection{Historias de usuario}
-Una historia de usuario es una funcionalidad que el usuario espera en la solución del problema. Es decir, un requerimiento del usuario.\\
+Una historia de usuario es una funcionalidad que el usuario espera en la solución del problema. Es decir, un
+requerimiento del usuario.\\
 
 % Introducir imagen cuando avances con alguna HU
 
-Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y serán ellos quienes protagonicen las historias de usuario. Ver \autoref{chap:personas}.
+Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de
+\textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y
+serán ellos quienes protagonicen las historias de usuario. Ver \autoref{chap:personas}.\\
 
 \section{Control de calidad}
-Para asegurar la calidad del proyecto, se ha utilizado integración continua a través de las ya mencionadas antes GitHub Actions.\\
+Para asegurar la calidad del proyecto, se ha utilizado integración continua a través de las ya mencionadas antes GitHub
+Actions.\\
 
-Cada vez que se sube nuevo código a una rama del repositorio, se realiza un análisis estático del código por medio de \textit{linters} y se lanzan unos tests que aseguran que la funcionalidad del código es correcta.\\
+Cada vez que se sube nuevo código a una rama del repositorio, se realiza un análisis estático del código por medio de
+\textit{linters} y se lanzan unos tests que aseguran que la funcionalidad del código es correcta.\\
 
-La configuración de las GitHub Actions se realiza de forma sencilla a través de ficheros yaml ubicados en el directorio \textit{.github/workflows/}.\\
+La configuración de las GitHub Actions se realiza de forma sencilla a través de ficheros yaml ubicados en el directorio
+\textit{.github/workflows/}.\\
 
 % Incluir fotos aquí también
 
