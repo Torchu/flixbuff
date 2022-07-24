@@ -107,9 +107,16 @@ Estos controles de calidad se comprueban mediante las \textit{pipelines}, o acci
 al repositorio de GitHub. En nuestro caso incluiremos todo lo mencionado en el apartado
 \hyperref[sec:control_de_calidad]{anterior}: pruebas de funcionalidad, \textit{linters} y revisión ortográfica.\\
 
-Para este proyecto, se han configurado las \textit{pipelines} con la herramienta GitHub Actions. Se ha escogido esta
-herramienta, ya que es propia de GitHub, la plataforma en la que se aloja el código del proyecto. Además, es muy fácil
-de configurar. Simplemente incluyendo un fichero yaml en el directorio \textit{.github/workflows/} la propia plataforma
-ya es capaz de reconocer y ejecutar las \textit{pipelines} que se han configurado.\\
+Para este proyecto,se han configurado las \textit{pipelines} con la herramienta GitHub Actions. Se ha escogido esta
+herramienta, ya que es propia de GitHub, la plataforma en la que se aloja el código del proyecto, por lo que no
+necesitaremos configurar una herramienta externa. Además, es muy fácil de configurar. Simplemente incluyendo un fichero
+yaml en el directorio \textit{.github/workflows/} la propia plataforma ya es capaz de reconocer y ejecutar las
+\textit{pipelines} que se han configurado.\\
+
+Se ha optado por una única herramienta para las \textit{pipelines}, ya que al tener solo una reduce el mantenimiento de
+la infraestructura y aumenta la velocidad de los despliegues. Quizá en otros proyectos sea interesante mantener dos
+herramientas, ya que si hay algún problema en una, no se detiene la integración de código. En este caso, al ser la
+herramienta propia de la plataforma en la que se aloja el código, si se cae la plataforma, tampoco podríamos integrar
+nuevo código al proyecto, por lo que no es necesaria una segunda herramienta.
 
 % TODO: Incluir fotos aquí también cuando se hayan configurado el resto de GitHub Actions
