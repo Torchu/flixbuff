@@ -17,5 +17,6 @@ seriéfilos
 Kanban
 PMV
 linters
+linter
 yaml
 github
