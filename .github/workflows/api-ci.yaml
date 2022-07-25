@@ -1,8 +1,10 @@
 on:
   push:
-    paths:
-      - 'api/**'
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
   
 jobs:
   lint:

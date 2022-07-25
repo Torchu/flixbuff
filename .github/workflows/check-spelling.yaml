@@ -2,8 +2,8 @@ name: Spell checking
 
 on:
   push:
-    paths:
-      - 'doc/**'
+    branches:
+      - master
   pull_request: 
     branches:
       - master
