@@ -1,6 +1,9 @@
 name: Spell checking
 
-on: push
+on:
+  push:
+    paths:
+      - 'doc/**'
 
 jobs:
   check-spelling:
