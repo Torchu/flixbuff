@@ -22,3 +22,8 @@ yaml
 github
 IMDB
 Letterboxd
+colorlinks
+linkcolor
+urlcolor
+Sánchez
+Reinosa
