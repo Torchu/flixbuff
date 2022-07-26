@@ -14,3 +14,9 @@ bibtex
 md
 pdflatex
 seriéfilos
+Kanban
+PMV
+linters
+linter
+yaml
+github
