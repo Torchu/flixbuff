@@ -20,3 +20,5 @@ linters
 linter
 yaml
 github
+IMDB
+Letterboxd
