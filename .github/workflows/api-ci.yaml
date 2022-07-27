@@ -17,11 +17,11 @@ jobs:
     - name: Install poetry
       run: pip install poetry
     - name: Install dependencies
-      working-directory: ./code
+      working-directory: api
       run: poetry install
     - name: Lint
-      working-directory: ./code
+      working-directory: api
       run: poetry run task lint
     - name: Tests
-      working-directory: ./code
+      working-directory: api
       run: poetry run task test
