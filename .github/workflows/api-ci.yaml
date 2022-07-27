@@ -22,6 +22,7 @@ jobs:
       run: pylint --rcfile=api/.pylintrc api
   
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
