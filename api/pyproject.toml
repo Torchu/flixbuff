@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "flixbuff-api"
+version = "0.1.0"
+description = "A social network for tv series enjoyers"
+license = "GPL-3.0-only"
+authors = ["torchu <victor.cabritag@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.14.5"
+pytest = "^7.1.2"
+taskipy = "^1.10.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+lint = "pylint ."
+test = "pytest"
