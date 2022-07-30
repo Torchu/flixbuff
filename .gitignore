@@ -301,6 +301,7 @@ typings/
 
 #vscode file
 .vscode/*
+*/.vscode/*
 
 #DS_Store
 .DS_Store
@@ -312,7 +313,5 @@ typings/
 # emacs
 *~
 
-package-lock.json
-.DS_Store
 venv
 __pycache__
