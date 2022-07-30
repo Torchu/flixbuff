@@ -300,8 +300,8 @@ typings/
 .next
 
 #vscode file
-.vscode/*
-*/.vscode/*
+.vscode
+*/.vscode
 
 #DS_Store
 .DS_Store
@@ -315,3 +315,5 @@ typings/
 
 venv
 __pycache__
+*/.angular
+.pytest_cache
