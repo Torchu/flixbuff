@@ -15,27 +15,32 @@ module.exports = {
     project: 'tsconfig.eslint.json',
     extraFileExtensions: '.html'
   },
-  plugins: [
-    '@typescript-eslint'
-  ],
+  plugins: ['@typescript-eslint'],
   rules: {},
   overrides: [
     {
       files: '*.ts',
       rules: {
         curly: ['error', 'all'],
+        'comma-dangle': ['error', 'never'],
         'lines-between-class-members': 'off',
         'max-len': ['error', { code: 120, ignorePattern: '^import .*' }],
-        'no-restricted-imports': ['error', { paths: ['rxjs/Rx'] }],
-        quotes: ['error', 'single', {allowTemplateLiterals: true}],
+        'no-restricted-imports': ['error', { paths: ['rxjs/Rx'] }],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }],
         'sort-imports': 'error',
         '@typescript-eslint/camelcase': 'off',
-        '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          { allowExpressions: true }
+        ],
         '@typescript-eslint/explicit-member-accessibility': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-parameter-properties': 'off',
-        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^ignored?$' }],
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          { argsIgnorePattern: '^_', varsIgnorePattern: '^ignored?$' }
+        ],
         '@typescript-eslint/naming-convention': [
           'error',
           {
@@ -60,7 +65,7 @@ module.exports = {
           },
           {
             selector: 'variable',
-            format: ['camelCase', 'UPPER_CASE'],
+            format: ['camelCase', 'UPPER_CASE']
           },
           {
             selector: 'typeLike',
@@ -93,7 +98,9 @@ module.exports = {
     {
       files: '*.js',
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
+        '@typescript-eslint/no-var-requires': 'off',
+        'comma-dangle': ['error', 'never'],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }]
       }
     },
     {
@@ -102,7 +109,9 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
-        'sort-imports': 'off'
+        'sort-imports': 'off',
+        'comma-dangle': ['error', 'never'],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }]
       }
     },
     {
@@ -114,4 +123,4 @@ module.exports = {
       }
     }
   ]
-}
+};

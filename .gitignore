@@ -317,3 +317,4 @@ venv
 __pycache__
 */.angular
 .pytest_cache
+.prettierrc
