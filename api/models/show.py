@@ -1,5 +1,14 @@
-"""This module is used for the shows model."""
+"""This module is used for the shows model and its connection to TheMovieDB API."""
+import requests
+import json
 from datetime import date
+from config.general_config import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
+
+
+class RequestException(Exception):
+    def __init__(self, code: int, message: str) -> None:
+        self.code = code
+        self.message = message
 
 
 class Season:
@@ -42,3 +51,12 @@ class Show:
         self.finished_airing = finished_airing
         self.poster_path = poster_path
         self.seasons = seasons
+
+    @classmethod
+    def __get_url(self, uri: str) -> str:
+        """Returns the URL to the API given an uri"""
+        return f"{SHOWS_DB_API}{uri}?api_key={SHOWS_DB_API_KEY}&language={SHOWS_DB_LANGUAGE}"
+
+    def to_json(self) -> dict:
+        """Returns a JSON representation of the show"""
+        return self.__dict__
