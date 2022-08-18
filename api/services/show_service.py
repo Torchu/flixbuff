@@ -1,6 +1,5 @@
 from flask_rest_api import Blueprint
-from schemas.show_schema import ShowSchema
-from schemas.show_schema import ShowListSchema
+from schemas.show_schema import ShowDetailsSchema, ShowListSchema
 from models.show import Show
 
 blp = Blueprint('Show', 'Show', url_prefix='/show')
@@ -17,7 +16,7 @@ def list_shows() -> dict:
 
 
 @blp.route('/<int:id>', methods=['GET'])
-@blp.response(ShowSchema, code=200)
+@blp.response(ShowDetailsSchema, code=200)
 def get_show(id: int) -> dict:
     """Returns the details of a shows"""
     return Show.get_show(id)

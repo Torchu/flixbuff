@@ -15,10 +15,13 @@ class SeasonSchema(ma.Schema):
 class ShowSchema(ma.Schema):
     id = ma.fields.Int(description='Id of the show.')
     name = ma.fields.Str(description='Name of the show.')
-    genres = ma.fields.List(ma.fields.Str(), description='Genres of the show.')
     overview = ma.fields.Str(description='Short summary of the show.')
     poster_path = ma.fields.Str(
         description='Path to the poster image of the show.')
+
+
+class ShowDetailsSchema(ShowSchema):
+    genres = ma.fields.List(ma.fields.Str(), description='Genres of the show.')
     seasons = ma.fields.List(ma.fields.Nested(
         SeasonSchema), description='Seasons of the show.')
 
