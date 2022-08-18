@@ -6,6 +6,9 @@ from flask_pymongo import PyMongo
 from services import test_service, show_service
 
 app = Flask(__name__)
+app.config['OPENAPI_VERSION'] = '3.0.2'
+
+api = Api(app)
 app.config.update(OPENAPI_CONFIG)
 app.config["MONGO_URI"] = f"{DB_URI}/{DB_NAME}"
 

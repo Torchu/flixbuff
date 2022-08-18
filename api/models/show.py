@@ -44,10 +44,6 @@ class Season:
             season_number=json_data.get('season_number')
         )
 
-    def to_json(self) -> dict:
-        """Returns a json dict with the season data."""
-        return self.__dict__
-
 
 class Show:
     """Class that represents a TV show."""
@@ -112,9 +108,3 @@ class Show:
         else:
             raise RequestException(
                 api_response.status_code, api_response.status_message)
-
-    def to_json(self) -> dict:
-        """Returns a JSON representation of the show."""
-        json = self.__dict__
-        json['seasons'] = [season.to_json() for season in self.seasons]
-        return json

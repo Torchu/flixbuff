@@ -1,16 +1,23 @@
-from flask import Blueprint
+from flask_rest_api import Blueprint
+from schemas.show_schema import ShowSchema
+from schemas.show_schema import ShowListSchema
 from models.show import Show
 
-blp = Blueprint('Show', __name__, url_prefix='/show')
+blp = Blueprint('Show', 'Show', url_prefix='/show')
 
 
-@blp.route('/', methods=['GET'])
+@blp.route('', methods=['GET'])
+@blp.response(ShowListSchema, code=200)
 def list_shows() -> dict:
     """Returns the list of shows"""
-    return [show.to_json() for show in Show.list_shows()]
+    return {
+        "items": [show for show in Show.list_shows()],
+        "total": len(Show.list_shows())
+    }
 
 
 @blp.route('/<int:id>', methods=['GET'])
+@blp.response(ShowSchema, code=200)
 def get_show(id: int) -> dict:
     """Returns the details of a shows"""
-    return Show.get_show(id).to_json()
+    return Show.get_show(id)

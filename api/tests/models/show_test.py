@@ -24,19 +24,6 @@ class TestSeason():
         assert season.poster_path == '/path/to/poster.jpg'
         assert season.season_number == 1
 
-    def test_to_json(self):
-        """Tests the to_json method of the Season class."""
-        season = Season('2019-01-01', 1, 'Season 1',
-                        'Lorem ipsum', '/path/to/poster.jpg', 1)
-        assert season.to_json() == {
-            'air_date': '2019-01-01',
-            'id': 1,
-            'name': 'Season 1',
-            'overview': 'Lorem ipsum',
-            'poster_path': '/path/to/poster.jpg',
-            'season_number': 1
-        }
-
 
 class TestShow():
     """Test class for the Show model."""
@@ -69,32 +56,6 @@ class TestShow():
         """Tests the list_shows method."""
         assert [show.name for show in Show.list_shows()] == [
             "The Simpsons", "Futurama"]
-
-    def test_to_json(self):
-        """Tests the to_json method."""
-        show = Show(1399,
-                    "The Simpsons",
-                    ['action'],
-                    "Loren Ipsum",
-                    "/eKACS8xQjvkGz2QEkE80fPmO0y.jpg",
-                    [Season("19-02-2012", 1, "Season 1", "Loren Ipsum",
-                            "/eKACS8xQjvkGz2QEkE80fPmO0y.jpg", 1)]
-                    )
-        assert show.to_json() == {
-            "id": 1399,
-            "name": "The Simpsons",
-            "genres": ['action'],
-            "overview": "Loren Ipsum",
-            "poster_path": "/eKACS8xQjvkGz2QEkE80fPmO0y.jpg",
-            "seasons": [{
-                "air_date": "19-02-2012",
-                "id": 1,
-                "name": "Season 1",
-                "overview": "Loren Ipsum",
-                "poster_path": "/eKACS8xQjvkGz2QEkE80fPmO0y.jpg",
-                "season_number": 1
-            }]
-        }
 
     def test_get_show(self, mock_get_show_request):
         """Tests the get_show method."""
