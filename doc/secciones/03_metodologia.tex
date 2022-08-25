@@ -25,7 +25,11 @@ Por tanto, para el desarrollo del proyecto, se optado por seguir la metodología
 visual del proyecto en el que se puede ver en todo momento qué tareas se deben hacer, cuáles están en desarrollo y
 cuáles se han terminado ya. Apoyándonos en una tabla Kanban los usuarios pueden ver en todo momento el estado del
 proyecto y las nuevas funcionalidades en las que se está trabajando. \\
-% TODO: Introducir tabla cuando avances con las HU
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.25]{img/kanban.png}
+	\caption{\href{https://github.com/users/Torchu/projects/2}{Kanban} del proyecto}\label{fig:kanban_table}
+\end{figure}
 
 \subsection{Seguimiento del desarrollo}
 Para la transparencia y visualización del proyecto a lo largo de sus diferentes fases, debemos de poder acceder a
@@ -58,19 +62,27 @@ Todas las tareas estarán asociadas a una issue diferente y tendrán una etiquet
 proyecto debe realizarse cumpliendo una tarea.
 \begin{figure}[H]
 	\centering	
-	\includegraphics[scale=0.25]{img/issues.png}
+	\includegraphics[scale=0.3]{img/issues.png}
 	\caption{\href{https://github.com/Torchu/flixbuff/issues}{Issues} del proyecto}\label{fig:github_issues}
 \end{figure}
 
 Los milestones creados son visibles desde el repositorio de GitHub:
-% TODO: Listarlos, poner links, etc.
-% Son la infraestructura, el modelo de datos, el servicio de back y ambos front-end
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.3]{img/milestones.png}
+	\caption{\href{https://github.com/Torchu/flixbuff/milestones}{Milestones} del proyecto}\label{fig:github_milestones}
+\end{figure}
 
 \subsection{Historias de usuario}
 Una historia de usuario es una funcionalidad que el usuario espera en la solución del problema. Es decir, un
 requerimiento del usuario.\\
 
-% TODO: Introducir imagen cuando avances con alguna HU
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.3]{img/user-stories.png}
+	\caption{\href{https://github.com/Torchu/flixbuff/issues?q=is%3Aissue+is%3Aopen+label%3A%22user+story%22}{Historias 
+    de usuario} del proyecto}\label{fig:user_stories}
+\end{figure}
 
 Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de
 \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y
@@ -123,4 +135,8 @@ herramientas, ya que si hay algún problema en una, no se detiene la integració
 herramienta propia de la plataforma en la que se aloja el código, si se cae la plataforma, tampoco podríamos integrar
 nuevo código al proyecto, por lo que no es necesaria una segunda herramienta.
 
-% TODO: Incluir fotos aquí también cuando se hayan configurado el resto de GitHub Actions
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.4]{img/pipeline.png}
+	\caption{Pipeline de aprobado de un PR}\label{fig:pipeline_succeded}
+\end{figure}
