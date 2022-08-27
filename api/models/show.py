@@ -1,4 +1,4 @@
-"""This module is used to connect to the movie db API and get the TV shows from it."""
+"""This module is used for the shows model."""
 from datetime import date
 
 
