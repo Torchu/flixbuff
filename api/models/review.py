@@ -2,31 +2,21 @@
 from typing import Any
 
 
-class ReviewerInfo:
-    """Class that represents the reviewer info in the review class."""
-
-    def __init__(self, id: int, username: str) -> None:
-        self.id = id
-        self.username = username
-
-
 class ShowInfo:
     """Class that represents the show info in the review class."""
 
-    def __init__(self, show_id: int, show_name: str, season_id: int, season_name: str) -> None:
-        self.show_id = show_id
+    def __init__(self, show_name: str, season_number: int, season_name: str) -> None:
         self.show_name = show_name
-        self.season_id = season_id
+        self.season_number = season_number
         self.season_name = season_name
 
 
 class Review:
     """Class that represents a review."""
 
-    def __init__(self, id: int, reviewer: ReviewerInfo, show: ShowInfo, review: str, rating: int) -> None:
-        self.id = id
+    def __init__(self, reviewer: str, show_info: ShowInfo, review: str, rating: int) -> None:
         self.reviewer = reviewer
-        self.show = show
+        self.show_info = show_info
         self.review = review
         self.rating = rating
 
