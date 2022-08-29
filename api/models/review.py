@@ -2,8 +2,8 @@
 from typing import Any
 
 
-class ShowInfo:
-    """Class that represents the show info in the review class."""
+class SeasonInfo:
+    """Class that represents the season info in the review class."""
 
     def __init__(self, show_name: str, season_number: int, season_name: str) -> None:
         self.show_name = show_name
@@ -14,9 +14,9 @@ class ShowInfo:
 class Review:
     """Class that represents a review."""
 
-    def __init__(self, reviewer: str, show_info: ShowInfo, review: str, rating: int) -> None:
+    def __init__(self, reviewer: str, season_info: SeasonInfo, review: str, rating: int) -> None:
         self.reviewer = reviewer
-        self.show_info = show_info
+        self.season_info = season_info
         self.review = review
         self.rating = rating
 
