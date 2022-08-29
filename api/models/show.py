@@ -7,7 +7,6 @@ class Season:
 
     def __init__(
         self,
-        id: int,
         season_number: int,
         name: str,
         overview: str,
@@ -15,7 +14,6 @@ class Season:
         number_of_episodes: int,
         poster_path: str
     ) -> None:
-        self.id = id
         self.name = name
         self.overview = overview
         self.air_date = air_date
@@ -29,7 +27,6 @@ class Show:
 
     def __init__(
         self,
-        id: int,
         name: str,
         genres: list[str],
         overview: str,
@@ -38,7 +35,6 @@ class Show:
         poster_path: str,
         seasons: list[Season]
     ) -> None:
-        self.id = id
         self.name = name
         self.genres = genres
         self.overview = overview
