@@ -27,3 +27,8 @@ linkcolor
 urlcolor
 Sánchez
 Reinosa
+tipar
+tipado
+NPM
+IDEs
+pytest

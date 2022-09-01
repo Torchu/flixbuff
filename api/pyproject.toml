@@ -20,3 +20,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.taskipy.tasks]
 lint = "pylint ."
 test = "pytest"
+
+[tool.pytest.ini_options]
+pythonpath = "."
