@@ -1,7 +1,7 @@
 from flask_rest_api import Blueprint
 from models.test import Test
 
-blp = Blueprint('Test', 'Test', url_prefix='/test')
+blp = Blueprint('Test', description='Test', url_prefix='/test', import_name=__name__)
 
 
 @blp.route('', methods=['GET'])
