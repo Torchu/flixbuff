@@ -32,3 +32,6 @@ tipado
 NPM
 IDEs
 pytest
+config
+dotenv
+env
