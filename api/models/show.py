@@ -90,7 +90,7 @@ class Show:
         return f"{SHOWS_DB_API}{uri}?api_key={SHOWS_DB_API_KEY}&language={SHOWS_DB_LANGUAGE}"
 
     @classmethod
-    def list_shows(cls, query: str) -> Tuple[list['Show'], int]:
+    def list_shows(cls, query: str = None) -> Tuple[list['Show'], int]:
         """
         Returns a list of TV shows filtered by the query.
         The shows only have the following attributes:
@@ -107,6 +107,7 @@ class Show:
         :rtype: int
         """
         uri = '/search/tv'
+        query = query or ''
         api_response = requests.get(f"{cls.__get_url(uri)}&query='{query}'")
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)

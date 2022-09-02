@@ -12,7 +12,7 @@ blp = Blueprint('Show', 'Show', url_prefix='/show')
 def list_shows(params: dict) -> dict:
     """Returns the list of shows"""
     try:
-        show_list, total = Show.list_shows(params.get('query', ''))
+        show_list, total = Show.list_shows(params.get('query'))
         return {
             "items": [show for show in show_list],
             "total": total

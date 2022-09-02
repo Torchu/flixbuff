@@ -8,7 +8,7 @@ class TestShow():
 
     def test_list_shows(self, mock_list_shows_request):
         """Tests the list_shows method."""
-        show_list = Show.list_shows()
+        show_list, total = Show.list_shows()
         assert len(show_list) == 2, "The number of shows does not match."
         assert show_list[0].id == 1399, "The show id does not match."
         assert show_list[0].name == 'The Simpsons', "The show name does not match."
@@ -20,6 +20,7 @@ class TestShow():
         assert show_list[1].overview == 'Loren Ipsum', "The show overview does not match."
         assert show_list[1].first_air_date == date(1999, 3, 28), "The show first air date does not match."
         assert show_list[1].poster_path == '/a1MlbLBZWzqU5XaxvzCYKU1FJck.jpg', "The show poster path does not match."
+        assert total == 2, "The total number of shows does not match."
 
     def test_get_show(self, mock_get_show_request):
         """Tests the get_show method."""
