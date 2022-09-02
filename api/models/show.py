@@ -1,7 +1,7 @@
 """This module is used for the shows model and its connection to TheMovieDB API."""
 import requests
 import json
-from datetime import date, datetime
+from datetime import datetime
 from config.themoviedb_config import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
 
 
@@ -105,7 +105,7 @@ class Show:
             api_response = json.loads(api_response.text)
             return [Show(show) for show in api_response.get('results')]
         else:
-            raise RequestException(api_response.status_code, api_response.status_message)
+            raise RequestException(api_response.status_code, json.loads(api_response.text).get('errors')[0])
 
     @classmethod
     def get_show(cls, id: int) -> 'Show':
