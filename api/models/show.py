@@ -88,7 +88,7 @@ class Show:
     @classmethod
     def list_shows(cls) -> list['Show']:
         """Returns a list of TV shows."""
-        uri = '/popular'
+        uri = '/search/tv'
         api_response = requests.get(cls.__get_url(uri))
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)
@@ -100,7 +100,7 @@ class Show:
     @classmethod
     def get_show(cls, id: int) -> 'Show':
         """Returns the details of TV show."""
-        uri = f"/{id}"
+        uri = f"/tv/{id}"
         api_response = requests.get(cls.__get_url(uri))
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)
