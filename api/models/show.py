@@ -2,7 +2,7 @@
 import requests
 import json
 from datetime import date
-from config.shows_api import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
+from config.themoviedb_config import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
 
 
 class RequestException(Exception):
