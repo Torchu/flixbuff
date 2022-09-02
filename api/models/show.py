@@ -1,7 +1,7 @@
 """This module is used for the shows model and its connection to TheMovieDB API."""
 import requests
 import json
-from datetime import date
+from datetime import date, datetime
 from config.themoviedb_config import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
 
 
@@ -13,58 +13,75 @@ class RequestException(Exception):
         self.message = message
 
 
+class Episode:
+    """Class that represents a season episode"""
+
+    def __init__(self, data: dict) -> None:
+        """
+        Constructor of the Episode class.
+        Uses a JSON dictionary to initialize the attributes of the class.
+        JSON dictionary must have the following keys:
+            - episode_number: int
+            - name: str
+            - overview: str
+            - air_date: str in the format YYYY-MM-DD
+            - still_path: str
+
+        """
+        self.number = int(data.get('episode_number'))
+        self.name = str(data.get('name'))
+        self.overview = str(data.get('overview'))
+        self.air_date = datetime.strptime(data.get('air_date'), '%Y-%m-%d').date()
+        self.thumbnail_path = str(data.get('still_path'))
+
+
 class Season:
-    """Class that represents a TV show season."""
+    """
+    Class that represents a TV show season.
+    Uses a JSON dictionary to initialize the attributes of the class.
+        JSON dictionary must have the following keys:
+            - season_number: int
+            - name: str
+            - overview: str
+            - air_date: str in the format YYYY-MM-DD
+            - poster_path: str
+            - episodes: list[Episode in JSON format]
+    """
 
-    def __init__(
-        self,
-        season_number: int,
-        name: str,
-        overview: str,
-        air_date: str,
-        number_of_episodes: int,
-        poster_path: str
-    ) -> None:
-        self.name = name
-        self.overview = overview
-        self.air_date = air_date
-        self.poster_path = poster_path
-        self.number_of_episodes = number_of_episodes
-        self.season_number = season_number
-
-    @classmethod
-    def from_json(cls, json_data: dict) -> 'Season':
-        """Creates a Season object from a json dict."""
-        return cls(
-            air_date=json_data.get('air_date'),
-            id=json_data.get('id'),
-            name=json_data.get('name'),
-            overview=json_data.get('overview'),
-            poster_path=json_data.get('poster_path'),
-            season_number=json_data.get('season_number')
-        )
+    def __init__(self, data: dict) -> None:
+        self.season_number = int(data.get('season_number'))
+        self.name = str(data.get('name'))
+        self.overview = str(data.get('overview'))
+        self.air_date = datetime.strptime(data.get('air_date'), '%Y-%m-%d').date() if data.get('air_date') else None
+        self.poster_path = str(data.get('poster_path'))
+        self.episodes = [Episode(episode) for episode in data.get('episodes', [])]
 
 
 class Show:
-    """Class that represents a TV show."""
+    """
+    Class that represents a TV show.
+    Uses a JSON dictionary to initialize the attributes of the class.
+        JSON dictionary must have the following keys:
+            - id: int
+            - name: str
+            - genres: list[{id: int, name: str}]
+            - overview: str
+            - first_air_date: str in the format YYYY-MM-DD
+            - in_production: bool
+            - poster_path: str
+            - seasons: list[Season in JSON format]
+    """
 
-    def __init__(
-        self,
-        name: str,
-        genres: list[str],
-        overview: str,
-        first_air_date: date,
-        finished_airing: bool,
-        poster_path: str,
-        seasons: list[Season]
-    ) -> None:
-        self.name = name
-        self.genres = genres
-        self.overview = overview
-        self.first_air_date = first_air_date
-        self.finished_airing = finished_airing
-        self.poster_path = poster_path
-        self.seasons = seasons
+    def __init__(self, data: json) -> None:
+        self.id = int(data.get('id'))
+        self.name = str(data.get('name'))
+        self.genres = [genre.get('name') for genre in data.get('genres', [])]
+        self.overview = str(data.get('overview'))
+        self.first_air_date = datetime.strptime(
+            data.get('first_air_date'), '%Y-%m-%d').date() if data.get('first_air_date') else None
+        self.finished_airing = not bool(data.get('in_production'))
+        self.poster_path = str(data.get('poster_path'))
+        self.seasons = [Season(season) for season in data.get('seasons', [])]
 
     @classmethod
     def __get_url(self, uri: str) -> str:
@@ -72,39 +89,44 @@ class Show:
         return f"{SHOWS_DB_API}{uri}?api_key={SHOWS_DB_API_KEY}&language={SHOWS_DB_LANGUAGE}"
 
     @classmethod
-    def from_json(cls, json_data: dict) -> 'Show':
-        """Returns a Show object from a JSON representation."""
-        return cls(
-            id=json_data.get('id'),
-            name=json_data.get('name'),
-            genres=[genre.get('name')
-                    for genre in json_data.get('genres', [])],
-            overview=json_data.get('overview'),
-            poster_path=json_data.get('poster_path'),
-            seasons=[Season.from_json(season)
-                     for season in json_data.get('seasons', [])]
-        )
-
-    @classmethod
     def list_shows(cls) -> list['Show']:
-        """Returns a list of TV shows."""
+        """
+        Returns a list of TV shows.
+        The shows only have the following attributes:
+            - id: int
+            - name: str
+            - overview: str
+            - first_air_date: date
+            - poster_path: str
+        """
         uri = '/search/tv'
         api_response = requests.get(cls.__get_url(uri))
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)
-            return [Show.from_json(show) for show in api_response.get('results')]
+            return [Show(show) for show in api_response.get('results')]
         else:
-            raise RequestException(
-                api_response.status_code, api_response.status_message)
+            raise RequestException(api_response.status_code, api_response.status_message)
 
     @classmethod
     def get_show(cls, id: int) -> 'Show':
-        """Returns the details of TV show."""
+        """
+        Returns the details of TV show.
+        The seasons of the show will have their episode lists empty.
+        """
         uri = f"/tv/{id}"
         api_response = requests.get(cls.__get_url(uri))
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)
-            return Show.from_json(api_response)
+            return Show(api_response)
         else:
-            raise RequestException(
-                api_response.status_code, api_response.status_message)
+            raise RequestException(api_response.status_code, api_response.status_message)
+
+    def get_season(self, season_number: int) -> Season:
+        """Returns the details of the selected season."""
+        uri = f"/tv/{self.id}/season/{season_number}"
+        api_response = requests.get(self.__get_url(uri))
+        if api_response.status_code == 200:
+            api_response = json.loads(api_response.text)
+            return Season(api_response)
+        else:
+            raise RequestException(api_response.status_code, api_response.status_message)
