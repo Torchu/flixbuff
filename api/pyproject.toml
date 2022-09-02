@@ -13,6 +13,7 @@ flask-rest-api = "^0.17.1"
 Werkzeug = "2.0.3"
 Flask-PyMongo = "^2.3.0"
 requests = "^2.28.1"
+webargs = "5.4.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.14.5"

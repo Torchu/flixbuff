@@ -1,4 +1,5 @@
 """This module is used for the shows model and its connection to TheMovieDB API."""
+from typing import Tuple
 import requests
 import json
 from datetime import datetime
@@ -89,21 +90,27 @@ class Show:
         return f"{SHOWS_DB_API}{uri}?api_key={SHOWS_DB_API_KEY}&language={SHOWS_DB_LANGUAGE}"
 
     @classmethod
-    def list_shows(cls) -> list['Show']:
+    def list_shows(cls, query: str) -> Tuple[list['Show'], int]:
         """
-        Returns a list of TV shows.
+        Returns a list of TV shows filtered by the query.
         The shows only have the following attributes:
             - id: int
             - name: str
             - overview: str
             - first_air_date: date
             - poster_path: str
+        :param query: The query to filter the shows.
+        :type query: str
+        :return: A list of TV shows.
+        :rtype: list[Show]
+        :return: The total number of results.
+        :rtype: int
         """
         uri = '/search/tv'
-        api_response = requests.get(cls.__get_url(uri))
+        api_response = requests.get(f"{cls.__get_url(uri)}&query='{query}'")
         if api_response.status_code == 200:
             api_response = json.loads(api_response.text)
-            return [Show(show) for show in api_response.get('results')]
+            return [Show(show) for show in api_response.get('results')], api_response.get('total_results')
         else:
             raise RequestException(api_response.status_code, json.loads(api_response.text).get('errors')[0])
 

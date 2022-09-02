@@ -1,5 +1,5 @@
 import marshmallow as ma
-from schemas.generate_list import generate_list_schema
+from schemas.shared_schemas import generate_list_schema
 
 
 class EpisodeSchema(ma.Schema):

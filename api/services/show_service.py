@@ -1,4 +1,5 @@
 from flask_rest_api import Blueprint, abort
+from schemas.shared_schemas import QueryParametersSchema
 from schemas.show_schema import ShowDetailsSchema, ShowListSchema, SeasonSchema
 from models.show import Show, RequestException
 
@@ -6,13 +7,15 @@ blp = Blueprint('Show', 'Show', url_prefix='/show')
 
 
 @blp.route('', methods=['GET'])
+@blp.arguments(QueryParametersSchema, location='query')
 @blp.response(ShowListSchema, code=200)
-def list_shows() -> dict:
+def list_shows(params: dict) -> dict:
     """Returns the list of shows"""
     try:
+        show_list, total = Show.list_shows(params.get('query', ''))
         return {
-            "items": [show for show in Show.list_shows()],
-            "total": len(Show.list_shows())
+            "items": [show for show in show_list],
+            "total": total
         }
     except RequestException as e:
         abort(e.code, message=e.message)
