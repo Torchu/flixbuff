@@ -33,6 +33,18 @@ del proyecto de forma muy sencilla y similar a \textit{NPM}\cite{npm}.
 El framework utilizado para el servidor es \textit{Flask}\cite{flask}, un framework de Python que nos permite una 
 \textit{REST API}\cite{rest} minimalista, flexible y fácil de usar.
 
+\subsection{Operaciones}
+Recopilación y breve descripción de las peticiones que atiende el servidor.
+
+\subsubsection{Listado y detalles de series}
+El servidor provee de una lista de series o de los detalles de una serie en particular a través de su identificador. Sin
+embargo, la base de datos no incluye la información de estas series, si no que se obtienen a través de una API
+externa.\\
+
+La API utilizada es \textit{TheMovieDB}, una API abierta que provee de datos sobre series y películas. En este caso,
+haremos uso de las series. Gracias al diseño de nuestra aplicación, podríamos cambiar de API en cualquier momento, sin
+que suponga mucho tiempo de desarrollo.
+
 \subsection{Test}
 Como ya hablamos en la \hyperref[chap:metodología]{metodología}, necesitamos que el código cumpla con unos requisitos
 mínimos de calidad a través de \textit{tests}.\\
