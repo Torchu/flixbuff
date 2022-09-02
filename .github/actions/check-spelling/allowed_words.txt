@@ -35,3 +35,6 @@ pytest
 config
 dotenv
 env
+MongoAtlas
+JSON
+DataBase

@@ -45,6 +45,16 @@ los métodos de los modelos de la aplicación funcionan correctamente.
 \caption{ Test unitario de la clase Show en Python }\label{fig:pytest}
 \end{figure}
 
+\subsection{Base de datos}
+El número de reseñas irá en aumento con el tiempo y con el número de usuarios de la aplicación, por lo que necesito una
+base de datos que sea fácilmente escalable. Por ello, \textit{MongoDB}\cite{mongodb} es una muy buena opción, gracias a
+\textit{MongoAtlas}\cite{mongoatlas}, una herramienta \textit{DataBase as a Service}\cite{dbaas} que nos permite escalar
+la base de datos verticalmente, aumentando el poder de procesamiento de nuestro cluster, u horizontalmente, añadiendo
+más nodos para compartir la carga.\\
+
+Además, guarda los datos en formato \textit{JSON}\cite{json}, lo que nos permite acceder a ellos de forma muy sencilla y
+fácilmente interpretable por cualquier lenguaje de programación moderno.
+
 \subsection{Configuración}
 
 Las variables de configuración se encuentran en los ficheros del directorio \textit{config} y se definen mediante las
