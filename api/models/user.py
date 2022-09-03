@@ -22,8 +22,21 @@ class User:
         self.password = data.get('password')
         self.email = data.get('email')
 
+    def insert(self) -> 'User':
+        """
+        Inserts the user into the database.
+        :return: User object
+        """
+        # Inserts the new user into the database
+        data_to_insert = self.__dict__
+        del data_to_insert['_id']
+        user_id = mongo.db.users.insert_one(data_to_insert).inserted_id
+
+        # Returns the user object
+        return User.find({'_id': user_id})
+
     @classmethod
-    def find(self, criteria: dict, projection: dict = {}) -> ('User' | None):
+    def find(cls, criteria: dict, projection: dict = {}) -> ('User' | None):
         """
         Finds a user in the database.
         :param criteria: Dictionary with the search criteria

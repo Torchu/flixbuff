@@ -4,7 +4,7 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_rest_api import Api
 from flask_pymongo import PyMongo
-from services import auth_service, show_service
+from services import auth_service, show_service, user_service
 
 app = Flask(__name__)
 
@@ -21,6 +21,7 @@ api = Api(app)
 # Register routes
 api.register_blueprint(auth_service.blp)
 api.register_blueprint(show_service.blp)
+api.register_blueprint(user_service.blp)
 
 
 if __name__ == "__main__":
