@@ -1,6 +1,6 @@
 """This module is used for the user class."""
 from typing import Tuple, Union
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask import current_app
 
 
@@ -27,9 +27,17 @@ class User:
         Inserts the user into the database.
         :return: User object
         """
-        # Inserts the new user into the database
+        # Maps the user object to a dictionary
         data_to_insert = self.__dict__
-        del data_to_insert['_id']
+
+        # Erases the ID if it exists
+        if '_id' in data_to_insert:
+            del data_to_insert['_id']
+
+        # Hashes the password
+        if 'password' in data_to_insert:
+            data_to_insert['password'] = generate_password_hash(data_to_insert.get('password'))
+
         user_id = current_app.mongo.db.users.insert_one(data_to_insert).inserted_id
 
         # Returns the user object

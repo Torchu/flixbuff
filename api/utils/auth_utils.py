@@ -1,5 +1,6 @@
 """Module for authentication functions."""
 from flask_jwt_extended import create_access_token
+from flask_pymongo import json_util
 from models.user import User
 
 
