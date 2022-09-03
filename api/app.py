@@ -4,19 +4,23 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_rest_api import Api
 from flask_pymongo import PyMongo
+from models.json_encoder import CustomJSONEncoder
 from services import auth_service, show_service, user_service
 
 app = Flask(__name__)
 
-# Set up the configurations
+# Sets up the configurations
 app.config.update(OPENAPI_CONFIG)
 app.config["MONGO_URI"] = f"{DB_URI}/{DB_NAME}"
 app.config["JWT_SECRET_KEY"] = SECRET_KEY
 
-# Set up the extensions
+# Sets up the extensions
 app.mongo = PyMongo(app)
 jwt = JWTManager(app)
 api = Api(app)
+
+# Sets up JSON encoder
+app.json_encoder = CustomJSONEncoder
 
 # Register routes
 api.register_blueprint(auth_service.blp)
