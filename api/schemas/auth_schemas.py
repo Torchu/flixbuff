@@ -1,22 +1,22 @@
 """Module for the auth schemas."""
-import marshmallow as ma
+from marshmallow import Schema, fields
 
 
-class LoginParametersSchema(ma.Schema):
+class LoginParametersSchema(Schema):
     """Schema for the login parameters."""
-    email = ma.fields.Str(required=True, description='Email of the user')
-    password = ma.fields.Str(required=True, description='Password of the user')
+    email = fields.Str(required=True, description='Email of the user')
+    password = fields.Str(required=True, description='Password of the user')
 
     class Meta:
         strict = True
 
 
-class LoginResponseSchema(ma.Schema):
+class LoginResponseSchema(Schema):
     """Schema for the login response."""
-    class UserInfoSchema(ma.Schema):
+    class UserInfoSchema(Schema):
         """Info of the user given as a response."""
-        id = ma.fields.Str(description='User email')
+        id = fields.Str(description='User email')
 
-    login_ok = ma.fields.Boolean(description='If the login was successful')
-    access_token = ma.fields.Str(description='Access token for the user')
-    user = ma.fields.Nested(UserInfoSchema, description='Info of the user')
+    login_ok = fields.Boolean(description='If the login was successful')
+    access_token = fields.Str(description='Access token for the user')
+    user = fields.Nested(UserInfoSchema, description='Info of the user')

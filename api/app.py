@@ -14,7 +14,7 @@ app.config["MONGO_URI"] = f"{DB_URI}/{DB_NAME}"
 app.config["JWT_SECRET_KEY"] = SECRET_KEY
 
 # Set up the extensions
-mongo = PyMongo(app)
+app.mongo = PyMongo(app)
 jwt = JWTManager(app)
 api = Api(app)
 

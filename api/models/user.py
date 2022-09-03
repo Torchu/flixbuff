@@ -1,7 +1,7 @@
 """This module is used for the user class."""
-from typing import Tuple
+from typing import Tuple, Union
 from werkzeug.security import check_password_hash
-from app import mongo
+from flask import current_app
 
 
 class User:
@@ -30,13 +30,14 @@ class User:
         # Inserts the new user into the database
         data_to_insert = self.__dict__
         del data_to_insert['_id']
-        user_id = mongo.db.users.insert_one(data_to_insert).inserted_id
+        user_id = current_app.mongo.db.users.insert_one(data_to_insert).inserted_id
 
         # Returns the user object
-        return User.find({'_id': user_id})
+        new_user = User.find({'_id': user_id})
+        return new_user
 
     @classmethod
-    def find(cls, criteria: dict, projection: dict = {}) -> ('User' | None):
+    def find(cls, criteria: dict, projection: dict = {}) -> Union['User', None]:
         """
         Finds a user in the database.
         :param criteria: Dictionary with the search criteria
@@ -47,7 +48,7 @@ class User:
         if not projection.get('password'):
             projection['password'] = 0
 
-        user_data = mongo.db.users.find_one(criteria, projection)
+        user_data = current_app.mongo.db.users.find_one(criteria, projection)
         return User(user_data) if user_data else None
 
     def check_password(self, password: str) -> bool:
@@ -61,7 +62,7 @@ class User:
         return check_password_hash(user.data.get('password'), password)
 
     @classmethod
-    def login_user(cls, user_email: str, user_password: str) -> Tuple[('User' | None), bool]:
+    def login_user(cls, user_email: str, user_password: str) -> Tuple[Union['User', None], bool]:
         """
         This method return the user supposed to log in and the success of the process
         :param user_email: Email of the user
@@ -77,7 +78,7 @@ class User:
         return user, valid
 
     @classmethod
-    def validate_user(cls, user_email: str, password: str) -> ('User' | None):
+    def validate_user(cls, user_email: str, password: str) -> Union['User', None]:
         """
         Wrapper method to validate the user, manage the general actions after login and
         return it for Flask and Basic Login (id for Flask and email for email validation)
