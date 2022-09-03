@@ -1,6 +1,7 @@
 """Test module for the Review model."""
 import pytest
-from models.review import Review, SeasonInfo
+from datetime import date
+from models.review import Review
 
 
 class TestReview():
@@ -17,7 +18,7 @@ class TestReview():
             },
             'review': 'This is a review',
             'rating': 5,
-            'date': '2020-01-01'
+            'date': date.fromisoformat('2020-01-01')
         })
         assert isinstance(review, Review)
 
@@ -33,5 +34,5 @@ class TestReview():
                 },
                 'review': 'This is a review',
                 'rating': 11,
-                'date': '2020-01-01'
+                'date': date.fromisoformat('2020-01-01')
             })

@@ -5,7 +5,7 @@ from flask_jwt_extended import JWTManager
 from flask_rest_api import Api
 from flask_pymongo import PyMongo
 from models.json_encoder import CustomJSONEncoder
-from services import auth_service, show_service, user_service
+from services import auth_service, show_service, user_service, review_service
 
 app = Flask(__name__)
 
@@ -26,6 +26,7 @@ app.json_encoder = CustomJSONEncoder
 api.register_blueprint(auth_service.blp)
 api.register_blueprint(show_service.blp)
 api.register_blueprint(user_service.blp)
+api.register_blueprint(review_service.blp)
 
 
 if __name__ == "__main__":
