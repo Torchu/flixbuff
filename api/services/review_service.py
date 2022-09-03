@@ -16,7 +16,10 @@ blp = Blueprint('Review', 'Review', url_prefix='/review')
 def create_review(review_data: dict) -> dict:
     """Creates a new review."""
     review_data['reviewer_id'] = get_jwt_identity().get('_id')
-    review = Review(review_data)
+    try:
+        review = Review(review_data)
+    except ValueError as e:
+        abort(400, message=str(e))
     try:
         review.complete_season_info()
     except (RequestException, SeasonNotFoundError) as e:
