@@ -42,3 +42,4 @@ TheMovieDB
 JWT
 loguearse
 logueado
+logueados

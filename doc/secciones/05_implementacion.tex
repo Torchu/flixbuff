@@ -56,6 +56,11 @@ Para asegurarnos que el usuario está logueado, utilizamos un \textit{decorador}
 \textit{Flask-JWT-Extended}\cite{jwt} que comprueba que el token enviado en las cabeceras de la petición es válido. Si
 no lo es, se devuelve un error 401, o de desautorización.\\
 
+\subsubsection{Reseñas}
+Los usuarios logueados podrán crear reseñas de las series. Usando el token \textit{JWT} del que hablamos en la sección
+anterior, podemos obtener el identificador del usuario que está realizando la petición y añadirlo a los datos de la
+reseña.\\ 
+
 \subsection{Test}
 Como ya hablamos en la \hyperref[chap:metodología]{metodología}, necesitamos que el código cumpla con unos requisitos
 mínimos de calidad a través de \textit{tests}.\\
