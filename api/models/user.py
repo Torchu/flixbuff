@@ -58,8 +58,8 @@ class User:
         :return: If the given password hash matches the user password hash
         """
         # Searches agains to get the stored password
-        user = User.find({'_id': self.data.get('_id')}, {'password': 1})
-        return check_password_hash(user.data.get('password'), password)
+        user = User.find({'_id': self._id}, {'password': 1})
+        return check_password_hash(user.password, password)
 
     @classmethod
     def login_user(cls, user_email: str, user_password: str) -> Tuple[Union['User', None], bool]:
