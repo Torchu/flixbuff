@@ -32,7 +32,7 @@ class Episode:
         self.number = int(data.get('episode_number'))
         self.name = str(data.get('name'))
         self.overview = str(data.get('overview'))
-        self.air_date = date.fromisoformat(data.get('air_date'))
+        self.air_date = date.fromisoformat(data.get('air_date')) if data.get('air_date') else None
         self.thumbnail_path = str(data.get('still_path'))
 
 
