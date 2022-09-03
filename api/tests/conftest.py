@@ -20,8 +20,12 @@ class MockResponse(object):
 def app_context():
     from app import app
     with app.app_context():
+        # Connects to the test database
         app.config["MONGO_URI"] = f"{DB_URI}/{DB_TEST_NAME}"
         app.mongo = PyMongo(app)
+
+        # Drops the test database
+        app.mongo.db.drop_collection("users")
         yield
 
 
