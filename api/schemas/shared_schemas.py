@@ -15,4 +15,4 @@ def generate_list_schema(base_schema):
 
 
 class QueryParametersSchema(Schema):
-    query = fields.Str(description='Query to search')
+    query = fields.Str(metadata={'description': 'Query to search'})
