@@ -13,3 +13,4 @@ OPENAPI_CONFIG = {
     'OPENAPI_SWAGGER_UI_VERSION': '3.22.2',
     'OPENAPI_REDOC_PATH': 'redoc'
 }
+SECRET_KEY = os.environ.get('SECRET_KEY', '73f2f6b8ce414cdf900e5ab9b525380b')
