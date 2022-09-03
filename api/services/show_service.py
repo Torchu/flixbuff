@@ -1,3 +1,4 @@
+"""Module for show service."""
 from flask_rest_api import Blueprint, abort
 from schemas.shared_schemas import QueryParametersSchema
 from schemas.show_schema import ShowDetailsSchema, ShowListSchema, SeasonSchema

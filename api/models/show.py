@@ -2,7 +2,7 @@
 from typing import Tuple
 import requests
 import json
-from datetime import datetime
+from datetime import date
 from config.themoviedb_config import SHOWS_DB_API, SHOWS_DB_API_KEY, SHOWS_DB_LANGUAGE
 
 
@@ -32,7 +32,7 @@ class Episode:
         self.number = int(data.get('episode_number'))
         self.name = str(data.get('name'))
         self.overview = str(data.get('overview'))
-        self.air_date = datetime.strptime(data.get('air_date'), '%Y-%m-%d').date()
+        self.air_date = date.fromisoformat(data.get('air_date'))
         self.thumbnail_path = str(data.get('still_path'))
 
 
@@ -53,7 +53,7 @@ class Season:
         self.season_number = int(data.get('season_number'))
         self.name = str(data.get('name'))
         self.overview = str(data.get('overview'))
-        self.air_date = datetime.strptime(data.get('air_date'), '%Y-%m-%d').date() if data.get('air_date') else None
+        self.air_date = date.fromisoformat(data.get('air_date')) if data.get('air_date') else None
         self.poster_path = str(data.get('poster_path'))
         self.episodes = [Episode(episode) for episode in data.get('episodes', [])]
 
@@ -78,8 +78,7 @@ class Show:
         self.name = str(data.get('name'))
         self.genres = [genre.get('name') for genre in data.get('genres', [])]
         self.overview = str(data.get('overview'))
-        self.first_air_date = datetime.strptime(
-            data.get('first_air_date'), '%Y-%m-%d').date() if data.get('first_air_date') else None
+        self.first_air_date = date.fromisoformat(data.get('first_air_date')) if data.get('first_air_date') else None
         self.finished_airing = not bool(data.get('in_production'))
         self.poster_path = str(data.get('poster_path'))
         self.seasons = [Season(season) for season in data.get('seasons', [])]
