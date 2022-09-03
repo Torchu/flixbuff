@@ -36,14 +36,25 @@ El framework utilizado para el servidor es \textit{Flask}\cite{flask}, un framew
 \subsection{Operaciones}
 Recopilación y breve descripción de las peticiones que atiende el servidor.
 
-\subsubsection{Listado y detalles de series}
-El servidor provee de una lista de series o de los detalles de una serie en particular a través de su identificador. Sin
-embargo, la base de datos no incluye la información de estas series, si no que se obtienen a través de una API
-externa.\\
+\subsubsection{Series}
+El servidor provee de una lista de series o de los detalles de una serie en particular o alguna de sus temporadas a
+través de su identificador. Sin embargo, la base de datos no incluye la información de estas series, si no que se
+obtienen a través de una API externa.\\
 
-La API utilizada es \textit{TheMovieDB}, una API abierta que provee de datos sobre series y películas. En este caso,
-haremos uso de las series. Gracias al diseño de nuestra aplicación, podríamos cambiar de API en cualquier momento, sin
-que suponga mucho tiempo de desarrollo.
+La API utilizada es \href{https://www.themoviedb.org}{\textit{TheMovieDB}}, una API abierta que provee de datos sobre
+series y películas. En este caso, haremos uso de las series. Gracias al diseño de nuestra aplicación, podríamos cambiar
+de API en cualquier momento, sin que suponga mucho tiempo de desarrollo.
+
+\subsubsection{Usuarios}
+Cualquiera podrá crear un usuario, siempre y cuando el email introducido no esté en uso.\\
+
+Los usuarios podrán loguearse con su cuenta, lo que generará un token de acceso que deberá ser enviado en las cabeceras
+del resto de peticiones, para identificar qué usuario está realizando la petición. Las operaciones sobre las series no
+requieren de autenticación, pero sí las operaciones sobre las reseñas.\\
+
+Para asegurarnos que el usuario está logueado, utilizamos un \textit{decorador} de la librería
+\textit{Flask-JWT-Extended}\cite{jwt} que comprueba que el token enviado en las cabeceras de la petición es válido. Si
+no lo es, se devuelve un error 401, o de desautorización.\\
 
 \subsection{Test}
 Como ya hablamos en la \hyperref[chap:metodología]{metodología}, necesitamos que el código cumpla con unos requisitos
