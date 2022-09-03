@@ -21,6 +21,10 @@ jobs:
     - name: Install dependencies
       working-directory: api
       run: poetry install
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.8.0
+      with:
+        mongodb-version: 4.4.5
     - name: Lint
       working-directory: api
       run: poetry run task lint

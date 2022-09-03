@@ -3,6 +3,8 @@
 import json
 import pytest
 import requests
+from flask_pymongo import PyMongo
+from config.mongodb_config import DB_TEST_NAME, DB_URI
 
 
 class MockResponse(object):
@@ -12,6 +14,19 @@ class MockResponse(object):
         self.json_data = json_data
         self.status_code = status_code
         self.text = json.dumps(json_data)
+
+
+@pytest.fixture()
+def app_context():
+    from app import app
+    with app.app_context():
+        # Connects to the test database
+        app.config["MONGO_URI"] = f"{DB_URI}/{DB_TEST_NAME}"
+        app.mongo = PyMongo(app)
+
+        # Drops the test database
+        app.mongo.db.drop_collection("users")
+        yield
 
 
 @pytest.fixture()
