@@ -4,6 +4,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask import current_app
 
 
+class DuplicateEmailError(Exception):
+    """Class to define a duplicate email error."""
+
+    def __init__(self) -> None:
+        self.code = 400
+        self.message = 'Email already in use'
+
+
 class User:
     """Class that represents an user of the appication."""
 
@@ -27,6 +35,10 @@ class User:
         Inserts the user into the database.
         :return: User object
         """
+        # Checks if the email is already in use
+        if User.find({'email': self.email}) is not None:
+            raise DuplicateEmailError
+
         # Maps the user object to a dictionary
         data_to_insert = self.__dict__
 
