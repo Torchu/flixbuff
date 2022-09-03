@@ -9,8 +9,8 @@ permite una rápida retroalimentación por parte de los usuarios y hace que el d
 cambios en alguna funcionalidad.\\
 
 Las metodologías de desarrollo basadas en dichos principios más utilizadas son Kanban\cite{kanban} y Scrum\cite{scrum}.
-Scrum se basa en ciclos cortos de trabajo en los que cada periodo determinado de tiempo \(lo más corto posible,
-usualmente una o dos semanas\), el cliente recibe un avance en el código de acuerdo a una previa planificación de los
+Scrum se basa en ciclos cortos de trabajo en los que cada periodo determinado de tiempo lo más corto posible,
+usualmente una o dos semanas, el cliente recibe un avance en el código de acuerdo a una previa planificación de los
 desarrolladores. Esta metodología es perfecta para empresas, ya que facilita las reuniones con los clientes al fijar la
 duración de los ciclos y les permite saber de antemano en qué están trabajando los desarrolladores en cada ciclo,
 sabiendo qué se van a encontrar en la siguiente versión del proyecto y permitiéndoles influir en la planificación de
@@ -44,33 +44,12 @@ la integración continua, de la que hablaremos más adelante, a través de las G
 De esta forma, los \textit{stakeholders}, o personas interesadas en el desarrollo del proyecto, podrán ver en todo
 momento en qué fase del desarrollo se encuentra el mismo, y en qué estado está cada una de sus funcionalidades.\\
 
-\subsection{Milestones}
-Las milestones son los productos mínimamente viables del proyecto. Son incrementales, es decir, un \textit{milestone}
-incluye todo lo que tenía el anterior y se necesita terminar uno para pasar al siguiente. También sirven como
-\textit{checkpoints} para comprobar que el desarrollo va por buen camino.
+\subsection{Épicas}
+Las épicas son grandes grupos de funcionalidad, que sirven para desglosar y atacar el problema. No son una solución al
+mismo, pero el conjunto de todas ellas sí que contribuye a la solución.\\
 
-Están formadas por documentos para organización del
-trabajo que completan el PMV.\\
-
-Éstos documentos son:
-\begin{itemize}
-    \item \href{https://github.com/Torchu/flixbuff/labels/user story}{\textbf{Historias de Usuario}}. Requerimientos
-    propuestos por los usuarios de la aplicación, que definen una funcionalidad.
-    \item \href{https://github.com/Torchu/flixbuff/labels/issue}{\textbf{Issues}}. Fallos o problemas en la aplicación
-    que han de ser resueltos.
-    \item \href{https://github.com/Torchu/flixbuff/labels/dev task}{\textbf{Tareas para el desarrollador}}. Pequeñas
-    tareas que no representan una funcionalidad como tal.
-\end{itemize}
-
-Todas las tareas estarán asociadas a una issue diferente y tendrán una etiqueta acorde a su tipo y todo cambio en el
-proyecto debe realizarse cumpliendo una tarea.
-\begin{figure}[H]
-	\centering	
-	\includegraphics[scale=0.3]{img/issues.png}
-	\caption{\href{https://github.com/Torchu/flixbuff/issues}{Issues} del proyecto}\label{fig:github_issues}
-\end{figure}
-
-Los milestones creados son visibles desde el repositorio de GitHub:
+En \textit{GitHub} se reflejan como \href{https://github.com/Torchu/flixbuff/milestones}{\textit{milestones}} del
+proyecto. En este caso, son la metodología e infraestructura básica, el sistema de reseñas y el sistema de seguidores.\\
 \begin{figure}[H]
 	\centering	
 	\includegraphics[scale=0.3]{img/milestones.png}
@@ -78,20 +57,39 @@ Los milestones creados son visibles desde el repositorio de GitHub:
 \end{figure}
 
 \subsection{Historias de usuario}
-Una historia de usuario es una funcionalidad que el usuario espera en la solución del problema. Es decir, un
-requerimiento del usuario.\\
+Las épicas a su vez están formadas por historias de usuario. Una historia de usuario es una funcionalidad que el usuario
+espera en la solución del problema. Es decir, un requerimiento del usuario.\\
 
 \begin{figure}[H]
 	\centering	
-	\includegraphics[scale=0.3]{img/user-stories.png}
-	\caption{\href{https://github.com/Torchu/flixbuff/issues?q=label\%3A\%22user\%20story\%22}{Historias de usuario} del
-	proyecto}\label{fig:user_stories}
+	\includegraphics[scale=0.3]{img/user-story.png}
+	\caption{Ejemplo de historia de usuario del proyecto}\label{fig:user_story}
 \end{figure}
 
 Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de
 \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y
 serán ellos quienes nos ayuden con el diseño del producto general, protagonizando las historias de usuario. Ver
 \autoref{chap:personas}.\\
+
+\subsection{Issues}
+Las \textit{issues} son problemas que se han detectado en el proyecto y que deben ser resueltos. Los issues se cerrarán
+con un \textit{pull request} que incluya una solucione el problema y un test que compruebe que no volverá a pasar.\\
+
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.285]{img/issue.png}
+	\caption{Ejemplo de issue del proyecto}\label{fig:issue}
+\end{figure}
+
+\subsection{Tareas del desarrollador}
+Representan pequeñas tareas que facilitan la vida del desarrollador, pero que no representan una funcionalidad como tal.
+Por ejemplo, la configuración de la integración continua o tareas para mejorar la organización del código.\\
+
+\begin{figure}[H]
+	\centering	
+	\includegraphics[scale=0.285]{img/dev-task.png}
+	\caption{Ejemplo de tarea para el desarrollador del proyecto}\label{fig:dev-task}
+\end{figure}
 
 \section{Control de calidad}\label{sec:control_de_calidad}
 Para asegurar la calidad del proyecto se ha seguido desde el comienzo del proyecto el desarrollo guiado por pruebas o

@@ -15,7 +15,6 @@ md
 pdflatex
 seriéfilos
 Kanban
-PMV
 linters
 linter
 yaml
