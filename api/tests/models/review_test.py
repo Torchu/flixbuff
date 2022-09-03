@@ -17,8 +17,7 @@ class TestReview():
                 'season_name': 'Temporada 1'
             },
             'review': 'This is a review',
-            'rating': 5,
-            'date': date.fromisoformat('2020-01-01')
+            'rating': 5
         })
         assert isinstance(review, Review)
 
@@ -33,6 +32,5 @@ class TestReview():
                     'season_name': 'Temporada 1'
                 },
                 'review': 'This is a review',
-                'rating': 11,
-                'date': date.fromisoformat('2020-01-01')
+                'rating': 11
             })
