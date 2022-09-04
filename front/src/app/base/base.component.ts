@@ -20,11 +20,11 @@ export class BaseComponent {
   }
 
   /**
-   * Returns the user
-   * @returns {string} The user data
+   * Returns the username
+   * @returns {string} The username
    */
-  getUser(): string {
-    return this.authService.getUser();
+  getUserName(): string {
+    return this.authService.getUser().username;
   }
 
   log(): void {
