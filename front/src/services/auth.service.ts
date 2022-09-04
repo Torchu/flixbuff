@@ -69,4 +69,12 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
   }
+
+  /**
+   * Returns the user
+   * @returns {string} The user data
+   */
+  public getUser(): string {
+    return localStorage.getItem('user') || '';
+  }
 }

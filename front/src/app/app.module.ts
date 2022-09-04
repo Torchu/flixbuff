@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BaseComponent } from './base/base.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,6 +21,7 @@ import { NgModule } from '@angular/core';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,

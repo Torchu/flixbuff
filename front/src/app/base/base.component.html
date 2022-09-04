@@ -3,7 +3,13 @@
     <span class="app-title">Flixbuff</span>
   </a>
   <span class="spacer"></span>
-  <button *ngIf="!loggedIn" mat-button (click)="log()">
+  <div *ngIf="isLogged(); else logButton">
+    <span>Hola, {{ getUser() }}</span>
+  </div>
+</mat-toolbar>
+
+<ng-template #logButton>
+  <button mat-button (click)="log()">
     <span>Log In</span>
   </button>
-</mat-toolbar>
+</ng-template>

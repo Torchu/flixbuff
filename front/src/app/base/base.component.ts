@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.scss']
 })
-export class BaseComponent implements OnInit {
-  loggedIn = false;
+export class BaseComponent {
+  constructor(public dialog: MatDialog, private authService: AuthService) {}
 
-  constructor(public dialog: MatDialog) {}
+  /**
+   * Whether the user is logged in or not
+   * @returns {boolean} Whether the user is logged in or not
+   */
+  isLogged(): boolean {
+    return this.authService.loggedIn();
+  }
 
-  ngOnInit(): void {
-    // TODO: check if user is logged in looking at the session storage
-    console.log('Iniciando Base');
+  /**
+   * Returns the user
+   * @returns {string} The user data
+   */
+  getUser(): string {
+    return this.authService.getUser();
   }
 
   log(): void {
