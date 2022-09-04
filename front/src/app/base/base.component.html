@@ -3,10 +3,18 @@
     <span class="app-title">Flixbuff</span>
   </a>
   <span class="spacer"></span>
-  <div *ngIf="isLogged(); else logButton">
+  <button
+    *ngIf="isLogged(); else logButton"
+    mat-button
+    [matMenuTriggerFor]="userMenu"
+  >
     <span>{{ getUserName() }}</span>
-  </div>
+  </button>
 </mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logout()">Log Out</button>
+</mat-menu>
 
 <ng-template #logButton>
   <button mat-button (click)="log()">

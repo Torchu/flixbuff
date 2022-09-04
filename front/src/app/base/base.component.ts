@@ -27,11 +27,21 @@ export class BaseComponent {
     return this.authService.getUser().username;
   }
 
+  /**
+   * Opens the login dialog
+   */
   log(): void {
     this.dialog.open(LoginComponent, {
       width: '250px',
       height: '35%',
       panelClass: 'custom-dialog'
     });
+  }
+
+  /**
+   * Logs the user out
+   */
+  logout(): void {
+    this.authService.logout();
   }
 }
