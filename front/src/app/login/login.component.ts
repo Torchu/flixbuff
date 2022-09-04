@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { User } from 'src/models/user';
 import { UserService } from 'src/services/user.service';
 import { skip } from 'rxjs/operators';
-import { User } from 'src/models/user';
 
 @Component({
   selector: 'app-login',
