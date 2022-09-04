@@ -14,3 +14,4 @@ OPENAPI_CONFIG = {
     'OPENAPI_REDOC_PATH': 'redoc'
 }
 SECRET_KEY = os.environ.get('SECRET_KEY', '73f2f6b8ce414cdf900e5ab9b525380b')
+ENABLE_CORS = os.environ.get('ENABLE_CORS', True)

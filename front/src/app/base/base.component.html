@@ -1,5 +1,25 @@
 <mat-toolbar color="primary">
   <a mat-button href="">
-    <span>Flixbuff</span>
+    <span class="app-title">Flixbuff</span>
   </a>
+  <span class="spacer"></span>
+  <button
+    *ngIf="isLogged(); else logButton"
+    mat-button
+    [matMenuTriggerFor]="userMenu"
+  >
+    <span>{{ getUserName() }}</span>
+  </button>
 </mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logout()">Log Out</button>
+</mat-menu>
+
+<ng-template #logButton>
+  <button mat-button (click)="log()">
+    <span>Log In</span>
+  </button>
+</ng-template>
+
+<router-outlet></router-outlet>
