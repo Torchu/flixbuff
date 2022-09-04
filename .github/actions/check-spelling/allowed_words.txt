@@ -42,3 +42,8 @@ JWT
 loguearse
 logueado
 logueados
+Vue
+JSX
+TypeScript
+transpila
+nativamente

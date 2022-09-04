@@ -300,7 +300,8 @@ typings/
 .next
 
 #vscode file
-.vscode/*
+.vscode
+*/.vscode
 
 #DS_Store
 .DS_Store
@@ -312,7 +313,8 @@ typings/
 # emacs
 *~
 
-package-lock.json
-.DS_Store
 venv
 __pycache__
+*/.angular
+.pytest_cache
+.prettierrc

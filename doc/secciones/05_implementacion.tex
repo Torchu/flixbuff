@@ -93,3 +93,51 @@ para cargar las variables de entorno desde un fichero de configuración \textit{
     \includegraphics[scale=0.525]{img/dotenv.png}
 \caption{ Fichero de configuración con las variables de entorno del servidor }\label{fig:dotenv}
 \end{figure}
+
+\section{Cliente}
+El cliente o \textit{back-end} es la parte de la aplicación que se ejecuta en el dispositivo del usuario. En nuestro
+caso, la mayor parte de la lógica se encuentra en el lado del servidor y el cliente se encarga de mostrar la información
+y dar acceso a las peticiones del servidor de una forma amigable para el usuario.\\
+
+\subsection{Elección de la tecnología}
+Con el paso del tiempo, cada vez más frameworks y librerías se han ido desarrollando para la creación de aplicaciones
+cliente, por lo que hay una gran variedad de tecnologías a nuestra disposición.\\
+
+\subsubsection{Aplicación web vs aplicación móvil}
+Es cierto que las aplicaciones móviles están ganando cada vez más popularidad, ya que con la afluencia de dispositivos
+inteligentes como teléfonos, tablets, televisores e incluso frigoríficos, es más fácil acceder a la información desde
+cualquier parte.\\
+
+No por ello, debemos descartar las aplicaciones web. En este caso, una aplicación web es una solución sólida al
+problema, al ser más cómodo para los usuarios escribir sus reseñas con su teclado y ratón, y no con su pantalla
+táctil.\\
+
+\subsubsection{Frameworks}
+Los tres grandes framework para aplicaciones web son: \textit{Angular}\cite{angular}, \textit{React}\cite{react} y
+\textit{Vue}\cite{vue}.\\
+
+\noindent \textbf{Vue}\\ \\
+\indent \textit{Vue} es un framework muy ligero, que se basa en componentes, lo que lo hace muy fácil de aprender y de usar.
+Además, permite usar expansiones de terceros para añadir componentes o funcionalidades hechas por la comunidad. Sin
+embargo, utiliza \textit{JavaScript}\cite{javascript} como lenguaje de programación, por lo que no es la opción más
+deseable frente a los otros dos.\\
+
+\noindent \textbf{React}\\ \\
+\indent \textit{React} está basado en \textit{JavaScript} y utiliza \textit{JSX}\cite{jsx} para definir los componentes, aunque
+también se puede usar \textit{TypeScript}\cite{typescript}, un lenguaje tipado que se transpila a \textit{JavaScript},
+lo que nos permite la detección rápida de errores. Es un framework muy popular y con una gran comunidad detrás, lo que
+lo convierte en una buena opción.\\
+
+\noindent \textbf{Angular}\\ \\
+\indent Finalmente, el framework que he elegido es \textit{Angular}. Aunque esté perdiendo popularidad, sigue
+siendo una gran opción para el desarrollo de aplicaciones web. Trabaja nativamente con \textit{TypeScript}, por lo que
+fácilmente podremos disfrutar de las ventajas de un lenguaje tipado.\\
+
+\textit{Angular} es un framework diseñado y mantenido por \textit{Google} que nos ofrece un código bien estructurado
+basado en componentes y servicios, que nos permite desarrollar con una arquitectura limpia y mantenible. Además, nos
+permite usar \textit{Angular Material}\cite{angularmaterial}, un conjunto de componentes de \textit{Angular} que nos
+permite crear interfaces de usuario modernas de forma rápida y sencilla y también cuenta con \textit{Ionic}\cite{ionic},
+un framework para crear aplicaciones híbridas para móviles y web si en algún momento decidiésemos dar el salto a las
+aplicaciones móviles.\\
+
+
