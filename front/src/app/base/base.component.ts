@@ -32,8 +32,8 @@ export class BaseComponent {
    */
   log(): void {
     this.dialog.open(LoginComponent, {
-      width: '250px',
-      height: '35%',
+      width: '500px',
+      height: '50%',
       panelClass: 'custom-dialog'
     });
   }

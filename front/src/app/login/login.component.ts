@@ -3,6 +3,7 @@ import { AuthService } from 'src/services/auth.service';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { skip } from 'rxjs/operators';
 
 @Component({
@@ -12,6 +13,8 @@ import { skip } from 'rxjs/operators';
 })
 export class LoginComponent {
   public loginForm: FormGroup;
+  public userForm: FormGroup;
+  public activeTab = 0;
 
   constructor(
     fb: FormBuilder,
@@ -23,12 +26,17 @@ export class LoginComponent {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
     });
+    this.userForm = fb.group({
+      username: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required]
+    });
   }
 
   /**
    * Logs in the user
    */
-  public login(): void {
+  public logIn(): void {
     this.authService
       .login(this.loginForm.value)
       .pipe(skip(1)) // Initialization
@@ -42,9 +50,23 @@ export class LoginComponent {
   }
 
   /**
+   * Register the user
+   */
+  public signIn(): void {
+    console.log(this.userForm.value);
+  }
+
+  /**
    * Closes the dialog
    */
   public close(): void {
     this.dialogRef.close(false);
+  }
+
+  /**
+   * When the tab changes it
+   */
+  public tabChanged(event: MatTabChangeEvent): void {
+    this.activeTab = event.index;
   }
 }

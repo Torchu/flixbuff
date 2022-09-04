@@ -1,41 +1,89 @@
-<h2 mat-dialog-title>
-  <mat-toolbar color="primary" class="dialog-header">
-    <span>Log In</span>
-    <button mat-icon-button (click)="close()">
-      <mat-icon mat-list-icon>close</mat-icon>
-    </button>
-  </mat-toolbar>
-</h2>
 <div mat-dialog-content>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Email"
-        type="email"
-        formControlName="email"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Password"
-        formControlName="password"
-        type="password"
-      />
-    </mat-form-field>
-  </form>
+  <mat-tab-group
+    mat-align-tabs="center"
+    (selectedTabChange)="tabChanged($event)"
+  >
+    <mat-tab label="Log In">
+      <div class="form-wrapper">
+        <form [formGroup]="loginForm">
+          <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                type="password"
+              />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab label="Create account">
+      <div class="form-wrapper">
+        <form [formGroup]="userForm">
+          <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start center">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Username"
+                type="text"
+                formControlName="username"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                type="password"
+              />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 <mat-dialog-actions>
   <button
+    *ngIf="activeTab === 0"
     mat-raised-button
     color="primary"
     type="button"
-    (click)="login()"
+    (click)="logIn()"
     [disabled]="loginForm.invalid"
   >
     Log In
+  </button>
+  <button
+    *ngIf="activeTab === 1"
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="signIn()"
+    [disabled]="userForm.invalid"
+  >
+    Sign In
   </button>
   <button mat-raised-button type="button" (click)="close()">Cancel</button>
 </mat-dialog-actions>
