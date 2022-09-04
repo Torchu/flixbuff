@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>
+  <mat-toolbar color="primary" class="dialog-header">
+    <span>Log In</span>
+    <button mat-icon-button (click)="close()">
+      <mat-icon mat-list-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</h2>
+<div mat-dialog-content>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Email"
+        type="email"
+        formControlName="email"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password"
+        formControlName="password"
+        type="password"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="login()"
+    [disabled]="loginForm.invalid"
+  >
+    Log In
+  </button>
+  <button mat-raised-button type="button" (click)="close()">Cancel</button>
+</mat-dialog-actions>

@@ -3,7 +3,7 @@
     <span class="app-title">Flixbuff</span>
   </a>
   <span class="spacer"></span>
-  <button mat-button>
+  <button *ngIf="!loggedIn" mat-button (click)="log()">
     <span>Log In</span>
   </button>
 </mat-toolbar>
