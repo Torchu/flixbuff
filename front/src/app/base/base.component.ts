@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/services/auth.service';
+import { Component } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-base',
