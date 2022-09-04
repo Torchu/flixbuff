@@ -14,7 +14,7 @@ def authenticate_user(email: str, password: str) -> dict:
 
     # If the user is valid, logs the user
     if user is not None:
-        user_info = {'id': user.email}
+        user_info = {'id': user._id, 'email': user.email, 'username': user.username}
         result = {'login_ok': True, 'access_token': create_access_token(identity=user), 'user': user_info}
     else:
         result = {'login_ok': False}

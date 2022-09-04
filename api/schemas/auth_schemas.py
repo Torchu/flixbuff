@@ -15,7 +15,9 @@ class LoginResponseSchema(Schema):
     """Schema for the login response."""
     class UserInfoSchema(Schema):
         """Info of the user given as a response."""
-        id = fields.Str(metadata={'description': 'User email'})
+        id = fields.Str(metadata={'description': 'User ID'})
+        email = fields.Email(metadata={'description': 'User email'})
+        username = fields.Str(metadata={'description': 'Username'})
 
     login_ok = fields.Boolean(metadata={'description': 'If the login was successful'})
     access_token = fields.Str(metadata={'description': 'Access token for the user'})
