@@ -13,6 +13,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: 'tsconfig.eslint.json',
+    tsconfigRootDir: 'front',
     extraFileExtensions: '.html'
   },
   plugins: ['@typescript-eslint'],
