@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { UserService } from 'src/services/user.service';
 import { skip } from 'rxjs/operators';
+import { User } from 'src/models/user';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginComponent {
     fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
     private authService: AuthService,
+    private userService: UserService,
     private snackBar: MatSnackBar
   ) {
     this.loginForm = fb.group({
@@ -53,7 +56,18 @@ export class LoginComponent {
    * Register the user
    */
   public signIn(): void {
-    console.log(this.userForm.value);
+    this.userService.create(this.userForm.value).subscribe((user: User) =>
+      this.authService
+        .login({ email: user.email, password: this.userForm.value.password })
+        .pipe(skip(1)) // Initialization
+        .subscribe((token: string) => {
+          if (token !== '') {
+            this.dialogRef.close(true);
+          } else {
+            this.snackBar.open('Login failed', '', { duration: 3000 });
+          }
+        })
+    );
   }
 
   /**
