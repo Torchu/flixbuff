@@ -3,8 +3,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { CredentialsInterface } from 'src/interfaces/credentials.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { LoginResponseInterface } from 'src/interfaces/login-response.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +35,10 @@ export class AuthService {
   /**
    * Logs the user in
    * @param {CredentialsInterface} credentials Credentials of the user
+   * @returns {Observable<string>} The access token
    */
   public login(credentials: CredentialsInterface): Observable<string> {
-    this.http.post<LoginResponseInterface>(this.path, credentials).subscribe({
+    this.http.post<LoginResponseInterface>(`${this.path}/login`, credentials).subscribe({
       next: (response: LoginResponseInterface) => {
         if (response.login_ok) {
           localStorage.setItem('access_token', response.access_token);
@@ -59,7 +60,7 @@ export class AuthService {
    * @returns {boolean}
    */
   public loggedIn(): boolean {
-    return !!localStorage.getItem('userData');
+    return !!localStorage.getItem('user');
   }
 
   /**

@@ -28,18 +28,10 @@ export class BaseComponent {
   }
 
   log(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
+    this.dialog.open(LoginComponent, {
       width: '250px',
       height: '35%',
       panelClass: 'custom-dialog'
-    });
-
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result) {
-        // this.loggedIn = true;
-      } else {
-        console.log('The dialog was closed');
-      }
     });
   }
 }

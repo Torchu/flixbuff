@@ -1,6 +1,7 @@
-from config.flask_config import API_PORT, DEBUG_MODE, OPENAPI_CONFIG, SECRET_KEY
+from config.flask_config import API_PORT, DEBUG_MODE, ENABLE_CORS, OPENAPI_CONFIG, SECRET_KEY
 from config.mongodb_config import DB_NAME, DB_URI
 from flask import Flask
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_rest_api import Api
 from flask_pymongo import PyMongo
@@ -21,6 +22,10 @@ api = Api(app)
 
 # Sets up JSON encoder
 app.json_encoder = CustomJSONEncoder
+
+# Enable CORS for Local and Test environments
+if ENABLE_CORS:
+    CORS(app)
 
 # Register routes
 api.register_blueprint(auth_service.blp)
