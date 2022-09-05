@@ -75,6 +75,10 @@ module.exports = {
           {
             selector: 'enumMember',
             format: ['PascalCase']
+          },
+          {
+            selector: 'objectLiteralProperty',
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE']
           }
         ],
         '@angular-eslint/directive-selector': [

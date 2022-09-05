@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -12,7 +13,7 @@ describe('ShowDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ShowDetailsComponent],
-      imports: [HttpClientModule, MatSnackBarModule, RouterTestingModule]
+      imports: [HttpClientModule, MatSnackBarModule, RouterTestingModule, MatDialogModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ShowDetailsComponent);
