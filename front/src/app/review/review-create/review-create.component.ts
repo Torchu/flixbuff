@@ -22,11 +22,7 @@ export class ReviewCreateComponent {
   ) {
     this.reviewForm = fb.group({
       review: ['', Validators.required],
-      rating: ['', Validators.required],
-      seasonInfo: fb.group({
-        showId: data.show.id,
-        seasonNumber: data.season.seasonNumber
-      })
+      rating: ['', Validators.required]
     });
   }
 
