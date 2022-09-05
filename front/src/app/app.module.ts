@@ -19,9 +19,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { ShowListComponent } from './show/show-list/show-list.component';
+import { ShowDetailsComponent } from './show/show-details/show-details.component';
 
 @NgModule({
-  declarations: [AppComponent, BaseComponent, LoginComponent, ShowListComponent],
+  declarations: [AppComponent, BaseComponent, LoginComponent, ShowListComponent, ShowDetailsComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
