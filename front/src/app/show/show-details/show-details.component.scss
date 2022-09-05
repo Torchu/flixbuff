@@ -1,0 +1,32 @@
+.outer-wrapper {
+  padding: 16px;
+}
+
+mat-card {
+  padding-bottom: 0px;
+  img {
+    object-fit: cover;
+    height: fit-content;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: black;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: grey;
+}
+
+.secondary-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: dimgrey;
+}
