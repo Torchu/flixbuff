@@ -48,7 +48,7 @@ export class UserService {
    * @param {query} query The query to filter the users
    * @returns {Observable<UserList>} The list of users
    */
-  public list(query: string): Observable<UserList> {
+  public list(query = ''): Observable<UserList> {
     return this.http.get<UserList>(`${this.path}`, { params: { query: query } }).pipe(
       map((response) => plainToClass(UserList, response)),
       catchError((err: HttpErrorResponse) => {

@@ -1,1 +1,17 @@
-<p>user-list works!</p>
+<div class="outer-wrapper">
+  <mat-form-field
+    [formControl]="searchBar"
+    ngDefaultControl
+    class="search-bar"
+    appearance="outline"
+  >
+    <mat-label>Search for users</mat-label>
+    <input matInput />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <div>
+    <p *ngFor="let user of userList">
+      {{ user.username }}
+    </p>
+  </div>
+</div>

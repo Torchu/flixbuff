@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Show, ShowList } from '../../../models/show';
 import { debounceTime, switchMap } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Show } from '../../../models/show';
 import { ShowService } from 'src/services/show.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class ShowListComponent implements OnInit {
         debounceTime(500),
         switchMap((value: string) => this.showService.list(value))
       )
-      .subscribe((shows) => {
+      .subscribe((shows: ShowList) => {
         this.showList = shows.items;
       });
   }
