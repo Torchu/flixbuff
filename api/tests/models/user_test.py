@@ -61,3 +61,20 @@ class TestUser():
 
         user = User.validate_user('test@test.com', 'test2')
         assert user is None, 'A wrong password was validated'
+
+    def test_list(self):
+        """Test for the list method."""
+        user = User({'username': 'test', 'password': 'test', 'email': 'test@test.com'})
+        user.insert()
+
+        user = User({'username': 'Juan Luis', 'password': 'test', 'email': 'juan@luis.com'})
+        user.insert()
+
+        users, total = User.list()
+        assert total == 2, 'The total number of users is not correct'
+        assert len(users) == 2, 'The number of users is not correct'
+        assert users[0].password is None, 'The password should not be shown'
+
+        users, total = User.list('tes')
+        assert total == 1, 'Query not applying to total'
+        assert len(users) == 1, 'Query not applying to list'

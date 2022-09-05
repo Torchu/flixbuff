@@ -1,4 +1,5 @@
 """This module is used for the user class."""
+import re
 from typing import Tuple, Union
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import current_app
@@ -108,3 +109,24 @@ class User:
         """
         user, valid = cls.login_user(user_email=user_email, user_password=password)
         return user if valid else None
+
+    @classmethod
+    def list(cls, query: str = None) -> Tuple[list, int]:
+        """
+        Returns the list of users
+        :param query: Dictionary with the search criteria
+        :return: List of users and total of users
+        """
+        # Sets {'password': 0} as default
+        projection = {'password': 0}
+
+        # Adds the query to the search criteria
+        criteria = {'username': {'$regex': re.compile(query, flags=re.IGNORECASE)}} if query else {}
+
+        # Searches the users
+        cursor = current_app.mongo.db.users.find(criteria, projection)
+        users = [User(user) for user in cursor]
+        total = current_app.mongo.db.users.count_documents(criteria)
+
+        # Returns the list of users
+        return users, total
