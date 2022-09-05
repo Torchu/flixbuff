@@ -18,7 +18,7 @@
   <div>
     <h1 class="title">Seasons</h1>
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let season of show.seasons">
+      <mat-expansion-panel *ngFor="let season of show.seasons; let i = index">
         <mat-expansion-panel-header>
           <mat-panel-title> {{ season.name }} </mat-panel-title>
           <mat-panel-description> {{ season.airDate }} </mat-panel-description>
@@ -34,7 +34,7 @@
               <button
                 mat-flat-button
                 class="review-button"
-                (click)="openReviewDialog()"
+                (click)="openReviewDialog(i)"
               >
                 Write a review <mat-icon matSuffix>search</mat-icon>
               </button>

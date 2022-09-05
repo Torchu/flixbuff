@@ -19,12 +19,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
+import { ReviewCreateComponent } from './review/review-create/review-create.component';
 import { ShowDetailsComponent } from './show/show-details/show-details.component';
 import { ShowListComponent } from './show/show-list/show-list.component';
-import { ReviewCreateComponent } from './review/review-create/review-create.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
-  declarations: [AppComponent, BaseComponent, LoginComponent, ShowListComponent, ShowDetailsComponent, ReviewCreateComponent],
+  declarations: [
+    AppComponent,
+    BaseComponent,
+    LoginComponent,
+    ShowListComponent,
+    ShowDetailsComponent,
+    ReviewCreateComponent
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -43,7 +51,8 @@ import { ReviewCreateComponent } from './review/review-create/review-create.comp
     MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

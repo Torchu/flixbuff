@@ -26,11 +26,12 @@ export class ShowDetailsComponent implements OnInit {
   /**
    * Open a dialog to create a review
    */
-  openReviewDialog(): void {
+  openReviewDialog(seasonIndex: number): void {
     this.dialog.open(ReviewCreateComponent, {
       width: '500px',
       height: '50%',
-      panelClass: 'custom-dialog'
+      panelClass: 'custom-dialog',
+      data: { show: this.show, season: this.show.seasons[seasonIndex] }
     });
   }
 }

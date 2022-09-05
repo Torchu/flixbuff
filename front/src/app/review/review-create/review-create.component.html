@@ -1,6 +1,41 @@
+<h2 mat-dialog-title>
+  <mat-toolbar color="primary" class="dialog-header">
+    <span> {{ data.show.name }} - {{ data.season.name }} </span>
+    <button mat-icon-button (click)="close()">
+      <mat-icon mat-list-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</h2>
 <div mat-dialog-content>
-  <p>It's working!</p>
+  <form [formGroup]="reviewForm">
+    <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="start center">
+      <mat-form-field fxFlex="100%">
+        <textarea
+          rows="9"
+          matInput
+          placeholder="Write your thoughs about the season..."
+          formControlName="review"
+          required
+        ></textarea>
+      </mat-form-field>
+      <star-rating-control
+        staticColor="ok"
+        size="large"
+        [hoverEnabled]="true"
+        formControlName="rating"
+      ></star-rating-control>
+    </div>
+  </form>
 </div>
-<mat-dialog-actions>
+<mat-dialog-actions fxLayoutAlign="end center">
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="submit()"
+    [disabled]="reviewForm.invalid"
+  >
+    Submit
+  </button>
   <button mat-raised-button type="button" (click)="close()">Cancel</button>
 </mat-dialog-actions>
