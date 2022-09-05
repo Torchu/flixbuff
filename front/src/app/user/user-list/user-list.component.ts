@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserList } from 'src/models/user';
 import { debounceTime, switchMap } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class UserListComponent implements OnInit {
   searchBar: FormControl;
   userList: Array<User> = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.searchBar = new FormControl('');
   }
 
@@ -31,5 +32,13 @@ export class UserListComponent implements OnInit {
       .subscribe((users: UserList) => {
         this.userList = users.items;
       });
+  }
+
+  /**
+   * Open the details of the selected user
+   * @param {string} userId ID of the user to open
+   */
+  openUserDetails(userId: string): void {
+    this.router.navigate(['users', userId]);
   }
 }

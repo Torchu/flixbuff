@@ -17,7 +17,7 @@
       fxFlex.sm="33%"
       *ngFor="let user of userList"
     >
-      <mat-toolbar class="mat-elevation-z4">
+      <mat-toolbar class="mat-elevation-z4" (click)="openUserDetails(user.id)">
         <span>{{ user.username }}</span>
       </mat-toolbar>
     </div>
