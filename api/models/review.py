@@ -56,8 +56,8 @@ class Review:
         self.rating = data.get('rating')
 
     def __setattr__(self, key: str, value: Any) -> None:
-        if key == "rating" and value is not None and (value < 0 or value > 10):
-            raise ValueError("Rating must be between 0 and 10")
+        if key == "rating" and value is not None and (value < 0 or value > 5):
+            raise ValueError("Rating must be between 0 and 5")
         super().__setattr__(key, value)
 
     def to_json(self) -> dict:

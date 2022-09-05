@@ -32,7 +32,7 @@ class TestReview():
                     'season_name': 'Temporada 1'
                 },
                 'review': 'This is a review',
-                'rating': 11
+                'rating': 6
             })
 
     def test_insert(self):
