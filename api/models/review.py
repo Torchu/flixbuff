@@ -1,6 +1,5 @@
 """This module is used for the review class."""
-import json
-from typing import Any, Union
+from typing import Any, Union, Tuple
 from flask import current_app
 from datetime import datetime
 from models.show import Show
@@ -109,3 +108,15 @@ class Review:
         review_data = current_app.mongo.db.reviews.find_one(criteria)
         review_item = Review(review_data) if review_data else None
         return review_item
+
+    @classmethod
+    def list_from_user(cls, user_id: str) -> Tuple[list['Review'], int]:
+        """
+        Returns the list of reviews from the given user
+        :param user_id: User ID
+        :return: List of reviews
+        """
+        cursor = current_app.mongo.db.reviews.find({'reviewer_id': user_id})
+        reviews = [Review(review) for review in cursor]
+        total = current_app.mongo.db.reviews.count_documents({'reviewer_id': user_id})
+        return reviews, total

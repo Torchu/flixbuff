@@ -89,3 +89,16 @@ export class Review {
     this.rating = rating ? rating : 0;
   }
 }
+
+export class ReviewList {
+  @Type(() => Review)
+    items: Array<Review>;
+
+  @Expose()
+    total: number;
+
+  constructor(items: Array<Review>, total: number) {
+    this.items = items;
+    this.total = total;
+  }
+}

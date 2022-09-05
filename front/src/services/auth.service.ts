@@ -80,7 +80,6 @@ export class AuthService {
    * @returns {UserData} The user data
    */
   public getUser(): UserData {
-    console.log(localStorage.getItem('user'));
     return plainToInstance(UserData, JSON.parse(localStorage.getItem('user') || '{}') as unknown, {
       excludeExtraneousValues: true
     });
