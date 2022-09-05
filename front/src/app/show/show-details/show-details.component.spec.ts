@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ShowDetailsComponent } from './show-details.component';
 
@@ -8,9 +11,9 @@ describe('ShowDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowDetailsComponent ]
-    })
-    .compileComponents();
+      declarations: [ShowDetailsComponent],
+      imports: [HttpClientModule, MatSnackBarModule, RouterTestingModule]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShowDetailsComponent);
     component = fixture.componentInstance;
