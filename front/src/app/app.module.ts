@@ -24,6 +24,7 @@ import { ReviewCreateComponent } from './review/review-create/review-create.comp
 import { ShowDetailsComponent } from './show/show-details/show-details.component';
 import { ShowListComponent } from './show/show-list/show-list.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StarRatingModule } from 'angular-star-rating';
     LoginComponent,
     ShowListComponent,
     ShowDetailsComponent,
-    ReviewCreateComponent
+    ReviewCreateComponent,
+    UserListComponent
   ],
   imports: [
     AppRoutingModule,

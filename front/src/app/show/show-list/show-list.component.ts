@@ -34,6 +34,6 @@ export class ShowListComponent implements OnInit {
    * @param showId The show id
    */
   openDetails(showId: number): void {
-    this.router.navigate(['show', showId]);
+    this.router.navigate(['shows', showId]);
   }
 }
