@@ -9,9 +9,17 @@
     <input matInput />
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-  <div>
-    <p *ngFor="let user of userList">
-      {{ user.username }}
-    </p>
+
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let user of userList"
+    >
+      <mat-toolbar class="mat-elevation-z4">
+        <span>{{ user.username }}</span>
+      </mat-toolbar>
+    </div>
   </div>
 </div>
