@@ -25,6 +25,7 @@ export class ShowListComponent implements OnInit {
       )
       .subscribe((shows) => {
         this.showList = shows.items;
+        console.log(this.showList);
       });
   }
 }

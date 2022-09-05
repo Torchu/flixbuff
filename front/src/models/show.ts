@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 
 export class Episode {
   @Expose()
@@ -41,7 +41,7 @@ export class Season {
   @Expose({ name: 'poster_path' })
     posterPath: string;
 
-  @Expose()
+  @Type(() => Episode)
     episodes: Array<Episode>;
 
   constructor(
@@ -83,7 +83,7 @@ export class Show {
   @Expose({ name: 'poster_path' })
     posterPath: string;
 
-  @Expose()
+  @Type(() => Season)
     seasons: Array<Season>;
 
   constructor(
@@ -105,10 +105,19 @@ export class Show {
     this.posterPath = posterPath;
     this.seasons = seasons;
   }
+
+  /**
+   * Returns the image URL for the show's poster.
+   */
+  getPosterUrl(): string {
+    return this.posterPath != 'None'
+      ? `https://image.tmdb.org/t/p/original${this.posterPath}`
+      : 'https://via.placeholder.com/500x750';
+  }
 }
 
 export class ShowList {
-  @Expose()
+  @Type(() => Show)
     items: Array<Show>;
 
   @Expose()

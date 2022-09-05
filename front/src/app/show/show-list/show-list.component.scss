@@ -5,3 +5,18 @@
 .search-bar  ::ng-deep {
   display: inline !important;
 }
+
+.cards-wrapper {
+  padding: 16px;
+}
+
+mat-card-content {
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}

@@ -33,7 +33,7 @@ export class ShowService {
    */
   public list(query: string): Observable<ShowList> {
     return this.http.get<ShowList>(`${this.path}`, { params: { query: query } }).pipe(
-      map((response) => plainToClass(ShowList, response, { excludeExtraneousValues: true })),
+      map((response) => plainToClass(ShowList, response)),
       catchError((err: HttpErrorResponse) => {
         const errorMessage =
           err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
