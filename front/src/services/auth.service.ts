@@ -85,4 +85,12 @@ export class AuthService {
       excludeExtraneousValues: true
     });
   }
+
+  /**
+   * Returns the access token
+   * @returns {string} The access token
+   */
+  public getAccessToken(): string {
+    return localStorage.getItem('access_token') || '';
+  }
 }

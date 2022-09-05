@@ -6,13 +6,13 @@ export class SeasonInfo {
    * @type {number}
    */
   @Expose({ name: 'show_id' })
-    showId: string;
+    showId: number;
 
   /**
    * Name of the show
    */
   @Expose({ name: 'show_name' })
-  @Exclude({ toClassOnly: true })
+  @Exclude({ toPlainOnly: true })
     showName: string;
 
   /**
@@ -27,17 +27,17 @@ export class SeasonInfo {
    * @type {string}
    */
   @Expose({ name: 'season_name' })
-  @Exclude({ toClassOnly: true })
+  @Exclude({ toPlainOnly: true })
     seasonName: string;
 
   /**
    * Constructor
    */
-  constructor(showId: string, showName: string, seasonNumber: number, seasonName: string) {
-    this.showId = showId;
-    this.showName = showName;
-    this.seasonNumber = seasonNumber;
-    this.seasonName = seasonName;
+  constructor(showId?: number, showName?: string, seasonNumber?: number, seasonName?: string) {
+    this.showId = showId ? showId : 0;
+    this.showName = showName ? showName : '';
+    this.seasonNumber = seasonNumber ? seasonNumber : 0;
+    this.seasonName = seasonName ? seasonName : '';
   }
 }
 
@@ -47,7 +47,7 @@ export class Review {
    * @type {string}
    */
   @Expose({ name: '_id' })
-  @Exclude({ toClassOnly: true })
+  @Exclude({ toPlainOnly: true })
     id: string;
 
   /**
@@ -55,7 +55,7 @@ export class Review {
    * @type {string}
    */
   @Expose()
-  @Exclude({ toClassOnly: true })
+  @Exclude({ toPlainOnly: true })
     reviewer: string;
 
   /**
@@ -81,11 +81,11 @@ export class Review {
   /**
    * Constructor
    */
-  constructor(id: string, reviewer: string, seasonInfo: SeasonInfo, review: string, rating: number) {
-    this.id = id;
-    this.reviewer = reviewer;
-    this.seasonInfo = seasonInfo;
-    this.review = review;
-    this.rating = rating;
+  constructor(id?: string, reviewer?: string, seasonInfo?: SeasonInfo, review?: string, rating?: number) {
+    this.id = id ? id : '';
+    this.reviewer = reviewer ? reviewer : '';
+    this.seasonInfo = seasonInfo ? seasonInfo : new SeasonInfo();
+    this.review = review ? review : '';
+    this.rating = rating ? rating : 0;
   }
 }
