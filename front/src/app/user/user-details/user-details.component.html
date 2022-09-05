@@ -1,7 +1,11 @@
 <div class="outer-wrapper" *ngIf="user">
   <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
     <h1>{{ user.username }}'s reviews</h1>
-    <button mat-flat-button class="follow-button">
+    <button
+      *ngIf="!currentUser.isFollowing(user.id)"
+      mat-flat-button
+      class="follow-button"
+    >
       Follow <mat-icon>favorite</mat-icon>
     </button>
   </div>

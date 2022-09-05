@@ -103,8 +103,14 @@ export class UserService {
     return this.http.put<User>(`${this.path}/${userId}/follow`, {}).pipe(
       map((response) => plainToClass(User, response)),
       catchError((err: HttpErrorResponse) => {
-        const errorMessage =
-          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        let errorMessage: string;
+        if (err.error && err.error.message) {
+          errorMessage = 'Error: ' + err.error.message;
+        } else if (err.error && err.error.msg) {
+          errorMessage = 'Error: You must be logged in to perform this action';
+        } else {
+          errorMessage = 'Error: Something went wrong';
+        }
         this.snackBar.open(errorMessage, '', { duration: 3000 });
         return throwError(() => err);
       })
@@ -120,8 +126,14 @@ export class UserService {
     return this.http.put<User>(`${this.path}/${userId}/unfollow`, {}).pipe(
       map((response) => plainToClass(User, response)),
       catchError((err: HttpErrorResponse) => {
-        const errorMessage =
-          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        let errorMessage: string;
+        if (err.error && err.error.message) {
+          errorMessage = 'Error: ' + err.error.message;
+        } else if (err.error && err.error.msg) {
+          errorMessage = 'Error: You must be logged in to perform this action';
+        } else {
+          errorMessage = 'Error: Something went wrong';
+        }
         this.snackBar.open(errorMessage, '', { duration: 3000 });
         return throwError(() => err);
       })
