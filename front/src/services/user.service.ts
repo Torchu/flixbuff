@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { User, UserList } from 'src/models/user';
 import { catchError, map, throwError } from 'rxjs';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs/internal/Observable';
-import { User, UserList } from 'src/models/user';
 import { plainToClass } from 'class-transformer';
 
 @Injectable({
