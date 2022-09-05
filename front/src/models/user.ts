@@ -32,7 +32,6 @@ export class User {
    * @type {Array<string>}
    */
   @Expose()
-  @Exclude({ toClassOnly: true })
     following: Array<string>;
 
   /**

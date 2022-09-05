@@ -29,4 +29,14 @@ export class UserDetailsComponent implements OnInit {
       });
     });
   }
+
+  /**
+   * Follows the user
+   */
+  follow(): void {
+    this.userService.follow(this.user.id).subscribe((user: User) => {
+      this.currentUser = user;
+      this.authService.setUser(this.currentUser);
+    });
+  }
 }

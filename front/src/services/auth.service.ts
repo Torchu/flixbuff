@@ -93,4 +93,12 @@ export class AuthService {
   public getAccessToken(): string {
     return localStorage.getItem('access_token') || '';
   }
+
+  /**
+   * Sets the data for the current user
+   * @param {User} user The user data
+   */
+  public setUser(user: User): void {
+    localStorage.setItem('user', JSON.stringify(instanceToPlain(user)));
+  }
 }

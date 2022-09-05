@@ -5,6 +5,7 @@
       *ngIf="!currentUser.isFollowing(user.id)"
       mat-flat-button
       class="follow-button"
+      (click)="follow()"
     >
       Follow <mat-icon>favorite</mat-icon>
     </button>
