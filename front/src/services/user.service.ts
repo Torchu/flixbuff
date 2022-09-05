@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs/internal/Observable';
 import { plainToClass } from 'class-transformer';
+import { ReviewList } from 'src/models/review';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,23 @@ export class UserService {
   public list(query = ''): Observable<UserList> {
     return this.http.get<UserList>(`${this.path}`, { params: { query: query } }).pipe(
       map((response) => plainToClass(UserList, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
+
+  /**
+   * Gets the list of reviews of a user
+   * @param {string} userId The ID of the user
+   * @returns {Observable<ReviewList>} The list of reviews
+   */
+  public getReviews(userId: string): Observable<ReviewList> {
+    return this.http.get<ReviewList>(`${this.path}/${userId}/reviews`).pipe(
+      map((response) => plainToClass(ReviewList, response)),
       catchError((err: HttpErrorResponse) => {
         const errorMessage =
           err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
