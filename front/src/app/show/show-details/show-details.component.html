@@ -25,7 +25,21 @@
         </mat-expansion-panel-header>
         <div fxLayout="row" fxLayoutGap="16px">
           <img [src]="season.getPosterUrl()" fxFlex="10%" />
-          <p>{{ season.overview }}</p>
+          <div fxLayout="column" fxFlex="90%" fxLayoutAlign="space-between">
+            <div fxLayout="column">
+              <h2 class="subtitle">Overview</h2>
+              <p>{{ season.overview }}</p>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+              <button
+                mat-flat-button
+                class="review-button"
+                (click)="openReviewDialog()"
+              >
+                Write a review <mat-icon matSuffix>search</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
