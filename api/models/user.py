@@ -111,7 +111,7 @@ class User:
         return user if valid else None
 
     @classmethod
-    def list(cls, query: str = None) -> Tuple[list, int]:
+    def list(cls, query: str = None) -> Tuple[list['User'], int]:
         """
         Returns the list of users
         :param query: Dictionary with the search criteria

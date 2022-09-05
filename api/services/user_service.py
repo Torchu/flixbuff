@@ -2,8 +2,10 @@
 from crypt import methods
 from flask_rest_api import Blueprint, abort
 from models.user import User, DuplicateEmailError
+from models.review import Review
 from schemas.shared_schemas import QueryParametersSchema
 from schemas.user_schema import UserSchema, UserListSchema
+from schemas.review_schema import ReviewListSchema
 
 blp = Blueprint('User', 'user', url_prefix='/user', description='User services')
 
@@ -28,5 +30,16 @@ def list_shows(params: dict) -> dict:
     user_list, total = User.list(params.get('query'))
     return {
         "items": [user for user in user_list],
+        "total": total
+    }
+
+
+@blp.route('/<string:user_id>/reviews', methods=['GET'])
+@blp.response(ReviewListSchema, code=200)
+def list_reviews_from_user(user_id: str) -> dict:
+    """Returns the list of reviews from a user"""
+    review_list, total = Review.list_from_user(user_id)
+    return {
+        "items": [review for review in review_list],
         "total": total
     }

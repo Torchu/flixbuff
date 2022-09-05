@@ -1,5 +1,6 @@
 """Module for the review schema."""
 from marshmallow import Schema, fields
+from schemas.shared_schemas import generate_list_schema
 
 
 class SeasonInfoSchema(Schema):
@@ -17,3 +18,6 @@ class ReviewSchema(Schema):
     season_info = fields.Dict(required=True)
     review = fields.Str(required=True)
     rating = fields.Int(required=True)
+
+
+ReviewListSchema = generate_list_schema(ReviewSchema)

@@ -1,6 +1,5 @@
 """Test module for the Review model."""
 import pytest
-from datetime import date
 from models.review import Review
 
 
@@ -65,3 +64,25 @@ class TestReview():
 
         assert Review.find({'reviewer_id': '1'}) is not None, 'The review was not found'
         assert Review.find({'reviewer_id': '2'}) is None, 'Unexisting review was found'
+
+    def test_list_from_user(self):
+        """Test for the list_from_user method."""
+        review = Review({
+            'reviewer_id': '1',
+            'season_info': {
+                'show_name': 'Cosas rarunas',
+                'season_number': 1,
+                'season_name': 'Temporada 1'
+            },
+            'review': 'This is a review',
+            'rating': 5
+        })
+        review.insert()
+
+        review_list, total = Review.list_from_user('1')
+        assert len(review_list) is 1, 'The review was not found'
+        assert total is 1, 'The total is not correct'
+
+        review_list, total = Review.list_from_user('2')
+        assert len(review_list) is 0, 'An unexisting review was found'
+        assert total is 0, 'The total is not correct'
