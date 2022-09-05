@@ -39,4 +39,14 @@ export class UserDetailsComponent implements OnInit {
       this.authService.setUser(this.currentUser);
     });
   }
+
+  /**
+   * Unfollows the user
+   */
+  unfollow(): void {
+    this.userService.unfollow(this.user.id).subscribe((user: User) => {
+      this.currentUser = user;
+      this.authService.setUser(this.currentUser);
+    });
+  }
 }
