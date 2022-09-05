@@ -26,6 +26,7 @@ def app_context():
 
         # Drops the test database
         app.mongo.db.drop_collection("users")
+        app.mongo.db.drop_collection("reviews")
         yield
 
 

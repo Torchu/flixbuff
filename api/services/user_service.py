@@ -1,5 +1,5 @@
 """Module for the user service."""
-from crypt import methods
+from bson import ObjectId
 from flask_rest_api import Blueprint, abort
 from models.user import User, DuplicateEmailError
 from models.review import Review
@@ -43,3 +43,10 @@ def list_reviews_from_user(user_id: str) -> dict:
         "items": [review.to_json() for review in review_list],
         "total": total
     }
+
+
+@blp.route('/<string:user_id>', methods=['GET'])
+@blp.response(UserSchema, code=200)
+def get_user(user_id: str) -> dict:
+    """Returns the selected user"""
+    return User.find({'_id': ObjectId(user_id)})
