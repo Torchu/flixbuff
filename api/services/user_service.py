@@ -40,6 +40,6 @@ def list_reviews_from_user(user_id: str) -> dict:
     """Returns the list of reviews from a user"""
     review_list, total = Review.list_from_user(user_id)
     return {
-        "items": [review for review in review_list],
+        "items": [review.to_json() for review in review_list],
         "total": total
     }

@@ -116,6 +116,7 @@ class Review:
         :param user_id: User ID
         :return: List of reviews
         """
-        reviews = current_app.mongo.db.reviews.find({'reviewer_id': user_id})
+        cursor = current_app.mongo.db.reviews.find({'reviewer_id': user_id})
+        reviews = [Review(review) for review in cursor]
         total = current_app.mongo.db.reviews.count_documents({'reviewer_id': user_id})
-        return [Review(review) for review in reviews], total
+        return reviews, total
