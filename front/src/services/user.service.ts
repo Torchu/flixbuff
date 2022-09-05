@@ -85,9 +85,56 @@ export class UserService {
    */
   public get(userId: string): Observable<User> {
     return this.http.get<User>(`${this.path}/${userId}`).pipe(
+      map((response) => plainToClass(User, response)),
       catchError((err: HttpErrorResponse) => {
         const errorMessage =
           err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
+
+  /**
+   * Follows a user
+   * @param {string} userId The ID of the user
+   * @returns {Observable<User>} The user
+   */
+  public follow(userId: string): Observable<User> {
+    return this.http.put<User>(`${this.path}/follow/${userId}`, {}).pipe(
+      map((response) => plainToClass(User, response)),
+      catchError((err: HttpErrorResponse) => {
+        let errorMessage: string;
+        if (err.error && err.error.message) {
+          errorMessage = 'Error: ' + err.error.message;
+        } else if (err.error && err.error.msg) {
+          errorMessage = 'Error: You must be logged in to perform this action';
+        } else {
+          errorMessage = 'Error: Something went wrong';
+        }
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
+
+  /**
+   * Unfollows a user
+   * @param {string} userId The ID of the user
+   * @returns {Observable<User>} The user
+   */
+  public unfollow(userId: string): Observable<User> {
+    return this.http.put<User>(`${this.path}/unfollow/${userId}`, {}).pipe(
+      map((response) => plainToClass(User, response)),
+      catchError((err: HttpErrorResponse) => {
+        let errorMessage: string;
+        if (err.error && err.error.message) {
+          errorMessage = 'Error: ' + err.error.message;
+        } else if (err.error && err.error.msg) {
+          errorMessage = 'Error: You must be logged in to perform this action';
+        } else {
+          errorMessage = 'Error: Something went wrong';
+        }
         this.snackBar.open(errorMessage, '', { duration: 3000 });
         return throwError(() => err);
       })

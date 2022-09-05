@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Review, ReviewList } from 'src/models/review';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 import { User } from 'src/models/user';
 import { UserService } from 'src/services/user.service';
 
@@ -12,8 +13,11 @@ import { UserService } from 'src/services/user.service';
 export class UserDetailsComponent implements OnInit {
   reviewList: Array<Review>;
   user: User;
+  currentUser: User;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private authService: AuthService) {
+    this.currentUser = this.authService.getUser();
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -23,6 +27,26 @@ export class UserDetailsComponent implements OnInit {
       this.userService.get(params['id']).subscribe((user) => {
         this.user = user;
       });
+    });
+  }
+
+  /**
+   * Follows the user
+   */
+  follow(): void {
+    this.userService.follow(this.user.id).subscribe((user: User) => {
+      this.currentUser = user;
+      this.authService.setUser(this.currentUser);
+    });
+  }
+
+  /**
+   * Unfollows the user
+   */
+  unfollow(): void {
+    this.userService.unfollow(this.user.id).subscribe((user: User) => {
+      this.currentUser = user;
+      this.authService.setUser(this.currentUser);
     });
   }
 }

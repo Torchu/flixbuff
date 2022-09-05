@@ -9,6 +9,8 @@ class UserSchema(Schema):
     username = fields.Str(required=True, metadata={'description': 'Username'})
     email = fields.Email(required=True, metadata={'description': 'Email'})
     password = fields.Str(load_only=True, required=True, metadata={'description': 'Password'})
+    following = fields.List(fields.String(), dump_only=True, metadata={
+                            'description': 'List of IDs of the users the user is following'})
 
 
 UserListSchema = generate_list_schema(UserSchema)

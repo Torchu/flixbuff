@@ -1,6 +1,6 @@
 """Test module for the User class."""
 import pytest
-from models.user import User, DuplicateEmailError
+from models.user import User, DuplicateEmailError, UserNotFoundError
 
 
 class TestUser():
@@ -78,3 +78,33 @@ class TestUser():
         users, total = User.list('tes')
         assert total == 1, 'Query not applying to total'
         assert len(users) == 1, 'Query not applying to list'
+
+    def test_follow(self):
+        """Test for the follow method."""
+        user = User({'username': 'test', 'password': 'test', 'email': 'test@test.com'})
+        user = user.insert()
+
+        user2 = User({'username': 'Juan Luis', 'password': 'test', 'email': 'test2@test.com'})
+        user2 = user2.insert()
+
+        user = user.follow(str(user2._id))
+        assert user.following == [str(user2._id)], 'The user was not followed'
+
+        with pytest.raises(UserNotFoundError):
+            user.follow('000000000000000000000000')
+
+    def test_unfollow(self):
+        """Test for the unfollow method."""
+        user = User({'username': 'test', 'password': 'test', 'email': 'test@test.com'})
+        user = user.insert()
+
+        user2 = User({'username': 'Juan Luis', 'password': 'test', 'email': 'test2@test.com'})
+        user2 = user2.insert()
+
+        user = user.follow(str(user2._id))
+
+        user = user.unfollow(str(user2._id))
+        assert user.following == [], 'The user was not unfollowed'
+
+        with pytest.raises(UserNotFoundError):
+            user.unfollow('000000000000000000000000')

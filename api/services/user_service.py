@@ -1,7 +1,8 @@
 """Module for the user service."""
 from bson import ObjectId
 from flask_rest_api import Blueprint, abort
-from models.user import User, DuplicateEmailError
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from models.user import User, DuplicateEmailError, UserNotFoundError
 from models.review import Review
 from schemas.shared_schemas import QueryParametersSchema
 from schemas.user_schema import UserSchema, UserListSchema
@@ -50,3 +51,29 @@ def list_reviews_from_user(user_id: str) -> dict:
 def get_user(user_id: str) -> dict:
     """Returns the selected user"""
     return User.find({'_id': ObjectId(user_id)})
+
+
+@blp.route('/follow/<string:user_id>', methods=['PUT'])
+@blp.response(UserSchema, code=201)
+@jwt_required()
+def follow_user(user_id: str) -> dict:
+    """Follows a user"""
+    current_user = get_jwt_identity()
+    user = User.find({'_id': ObjectId(current_user.get('_id'))})
+    try:
+        return user.follow(user_id)
+    except UserNotFoundError as e:
+        abort(e.code, message=e.message)
+
+
+@blp.route('/unfollow/<string:user_id>', methods=['PUT'])
+@blp.response(UserSchema, code=201)
+@jwt_required()
+def follow_user(user_id: str) -> dict:
+    """Unfollows a user"""
+    current_user = get_jwt_identity()
+    user = User.find({'_id': ObjectId(current_user.get('_id'))})
+    try:
+        return user.unfollow(user_id)
+    except UserNotFoundError as e:
+        abort(e.code, message=e.message)

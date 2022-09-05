@@ -28,13 +28,30 @@ export class User {
   @Exclude({ toPlainOnly: true }) password: string;
 
   /**
+   * The list of users that the user is following
+   * @type {Array<string>}
+   */
+  @Expose()
+    following: Array<string>;
+
+  /**
    * Constructor
    */
-  constructor(id: string, username: string, email: string, password: string) {
+  constructor(id: string, username: string, email: string, password: string, following: Array<string> = []) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.password = password;
+    this.following = following;
+  }
+
+  /**
+   * Returns if the user is following another user
+   * @param {string} userId The ID of the user to check
+   * @returns {boolean} True if the user is following the user, false otherwise
+   */
+  public isFollowing(userId: string): boolean {
+    return this.following.includes(userId);
   }
 }
 

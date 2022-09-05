@@ -1,4 +1,3 @@
-import { LoginResponse, UserData } from 'src/models/login-response';
 import { Observable, map } from 'rxjs';
 import { instanceToPlain, plainToClass, plainToInstance } from 'class-transformer';
 import { ApiService } from './api.service';
@@ -6,6 +5,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { CredentialsInterface } from 'src/interfaces/credentials.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoginResponse } from 'src/models/login-response';
+import { User } from 'src/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -77,10 +78,10 @@ export class AuthService {
 
   /**
    * Returns the user
-   * @returns {UserData} The user data
+   * @returns {User} The user data
    */
-  public getUser(): UserData {
-    return plainToInstance(UserData, JSON.parse(localStorage.getItem('user') || '{}') as unknown, {
+  public getUser(): User {
+    return plainToInstance(User, JSON.parse(localStorage.getItem('user') || '{}') as unknown, {
       excludeExtraneousValues: true
     });
   }
@@ -91,5 +92,13 @@ export class AuthService {
    */
   public getAccessToken(): string {
     return localStorage.getItem('access_token') || '';
+  }
+
+  /**
+   * Sets the data for the current user
+   * @param {User} user The user data
+   */
+  public setUser(user: User): void {
+    localStorage.setItem('user', JSON.stringify(instanceToPlain(user)));
   }
 }
