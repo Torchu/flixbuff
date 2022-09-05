@@ -1,0 +1,16 @@
+<div class="outer-wrapper">
+  <mat-form-field
+    [formControl]="searchBar"
+    ngDefaultControl
+    class="search-bar"
+    appearance="outline"
+  >
+    <mat-label>Search for TV shows</mat-label>
+    <input matInput />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <div *ngFor="let show of showList">
+    <p>{{ show.name }}</p>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.outer-wrapper {
+  padding: 8px;
+}
+
+.search-bar  ::ng-deep {
+  display: inline !important;
+}

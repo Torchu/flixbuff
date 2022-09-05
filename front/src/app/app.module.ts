@@ -16,9 +16,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
+import { ShowListComponent } from './show/show-list/show-list.component';
 
 @NgModule({
-  declarations: [AppComponent, BaseComponent, LoginComponent],
+  declarations: [AppComponent, BaseComponent, LoginComponent, ShowListComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,

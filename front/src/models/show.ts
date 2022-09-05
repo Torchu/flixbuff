@@ -1,0 +1,121 @@
+import { Expose } from 'class-transformer';
+
+export class Episode {
+  @Expose()
+    number: number;
+
+  @Expose()
+    name: string;
+
+  @Expose()
+    overview: string;
+
+  @Expose({ name: 'air_date' })
+    airDate: Date;
+
+  @Expose({ name: 'thumbnail_path' })
+    thumbnailPath: string;
+
+  constructor(number: number, name: string, overview: string, airDate: Date, thumbnailPath: string) {
+    this.number = number;
+    this.name = name;
+    this.overview = overview;
+    this.airDate = airDate;
+    this.thumbnailPath = thumbnailPath;
+  }
+}
+
+export class Season {
+  @Expose({ name: 'season_number' })
+    seasonNumber: number;
+
+  @Expose()
+    name: string;
+
+  @Expose()
+    overview: string;
+
+  @Expose({ name: 'air_date' })
+    airDate: Date;
+
+  @Expose({ name: 'poster_path' })
+    posterPath: string;
+
+  @Expose()
+    episodes: Array<Episode>;
+
+  constructor(
+    seasonNumber: number,
+    name: string,
+    overview: string,
+    airDate: Date,
+    posterPath: string,
+    episodes: Array<Episode>
+  ) {
+    this.seasonNumber = seasonNumber;
+    this.name = name;
+    this.overview = overview;
+    this.airDate = airDate;
+    this.posterPath = posterPath;
+    this.episodes = episodes;
+  }
+}
+
+export class Show {
+  @Expose()
+    id: number;
+
+  @Expose()
+    name: string;
+
+  @Expose()
+    genres: Array<string>;
+
+  @Expose()
+    overview: string;
+
+  @Expose({ name: 'first_air_date' })
+    firstAirDate: Date;
+
+  @Expose({ name: 'finished_airing' })
+    finishedAiring: boolean;
+
+  @Expose({ name: 'poster_path' })
+    posterPath: string;
+
+  @Expose()
+    seasons: Array<Season>;
+
+  constructor(
+    id: number,
+    name: string,
+    genres: Array<string>,
+    overview: string,
+    firstAirDate: Date,
+    finishedAiring: boolean,
+    posterPath: string,
+    seasons: Array<Season>
+  ) {
+    this.id = id;
+    this.name = name;
+    this.genres = genres;
+    this.overview = overview;
+    this.firstAirDate = firstAirDate;
+    this.finishedAiring = finishedAiring;
+    this.posterPath = posterPath;
+    this.seasons = seasons;
+  }
+}
+
+export class ShowList {
+  @Expose()
+    items: Array<Show>;
+
+  @Expose()
+    total: number;
+
+  constructor(items: Array<Show>, total: number) {
+    this.items = items;
+    this.total = total;
+  }
+}
