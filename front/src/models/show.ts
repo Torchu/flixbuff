@@ -59,6 +59,15 @@ export class Season {
     this.posterPath = posterPath;
     this.episodes = episodes;
   }
+
+  /**
+   * Returns the image URL for the show's poster.
+   */
+  getPosterUrl(): string {
+    return this.posterPath != 'None'
+      ? `https://image.tmdb.org/t/p/original${this.posterPath}`
+      : 'https://via.placeholder.com/500x750';
+  }
 }
 
 export class Show {
@@ -113,6 +122,13 @@ export class Show {
     return this.posterPath != 'None'
       ? `https://image.tmdb.org/t/p/original${this.posterPath}`
       : 'https://via.placeholder.com/500x750';
+  }
+
+  /**
+   * Returns the genres as a comma-separated string.
+   */
+  getVerboseGenres(): string {
+    return this.genres.join(', ');
   }
 }
 
