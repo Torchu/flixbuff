@@ -1,0 +1,25 @@
+<div class="outer-wrapper">
+  <mat-form-field
+    [formControl]="searchBar"
+    ngDefaultControl
+    class="search-bar"
+    appearance="outline"
+  >
+    <mat-label>Search for users</mat-label>
+    <input matInput />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let user of userList"
+    >
+      <mat-toolbar class="mat-elevation-z4">
+        <span>{{ user.username }}</span>
+      </mat-toolbar>
+    </div>
+  </div>
+</div>

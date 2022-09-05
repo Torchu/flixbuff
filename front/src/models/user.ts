@@ -1,4 +1,4 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
 
 export class User {
   /**
@@ -35,5 +35,18 @@ export class User {
     this.username = username;
     this.email = email;
     this.password = password;
+  }
+}
+
+export class UserList {
+  @Type(() => User)
+    items: Array<User>;
+
+  @Expose()
+    total: number;
+
+  constructor(items: Array<User>, total: number) {
+    this.items = items;
+    this.total = total;
   }
 }
