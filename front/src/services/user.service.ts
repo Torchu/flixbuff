@@ -93,4 +93,38 @@ export class UserService {
       })
     );
   }
+
+  /**
+   * Follows a user
+   * @param {string} userId The ID of the user
+   * @returns {Observable<User>} The user
+   */
+  public follow(userId: string): Observable<User> {
+    return this.http.put<User>(`${this.path}/${userId}/follow`, {}).pipe(
+      map((response) => plainToClass(User, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
+
+  /**
+   * Unfollows a user
+   * @param {string} userId The ID of the user
+   * @returns {Observable<User>} The user
+   */
+  public unfollow(userId: string): Observable<User> {
+    return this.http.put<User>(`${this.path}/${userId}/unfollow`, {}).pipe(
+      map((response) => plainToClass(User, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
 }

@@ -28,13 +28,22 @@ export class User {
   @Exclude({ toPlainOnly: true }) password: string;
 
   /**
+   * The list of users that the user is following
+   * @type {Array<string>}
+   */
+  @Expose()
+  @Exclude({ toClassOnly: true })
+    following: Array<string>;
+
+  /**
    * Constructor
    */
-  constructor(id: string, username: string, email: string, password: string) {
+  constructor(id: string, username: string, email: string, password: string, following: Array<string>) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.password = password;
+    this.following = following;
   }
 }
 
