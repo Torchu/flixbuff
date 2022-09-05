@@ -3,6 +3,7 @@ import re
 from typing import Tuple, Union
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import current_app
+from bson import ObjectId
 
 
 class DuplicateEmailError(Exception):
@@ -11,6 +12,14 @@ class DuplicateEmailError(Exception):
     def __init__(self) -> None:
         self.code = 400
         self.message = 'Email already in use'
+
+
+class UserNotFoundError(Exception):
+    """Class to define a user not found error."""
+
+    def __init__(self) -> None:
+        self.code = 404
+        self.message = 'User no found'
 
 
 class User:
@@ -25,11 +34,13 @@ class User:
             - username: str
             - password: str
             - email: str
+            - following: list[str]
         """
         self._id = data.get('_id')
         self.username = data.get('username')
         self.password = data.get('password')
         self.email = data.get('email')
+        self.following = data.get('following', [])
 
     def insert(self) -> 'User':
         """
@@ -130,3 +141,33 @@ class User:
 
         # Returns the list of users
         return users, total
+
+    def follow(self, user_id: str) -> 'User':
+        """
+        Adds a user to the following list
+        :param user_id: User ID to follow
+        :return: The updated user
+        """
+        # Checks if the user exists
+        if User.find({'_id': ObjectId(user_id)}) is None:
+            raise UserNotFoundError
+
+        # Adds the user to the following list
+        current_app.mongo.db.users.update_one({'_id': self._id}, {'$addToSet': {'following': user_id}})
+
+        return User.find({'_id': self._id})
+
+    def unfollow(self, user_id: str) -> 'User':
+        """
+        Removes a user from the following list
+        :param user_id: User ID to unfollow
+        :return: The updated user
+        """
+        # Checks if the user exists
+        if User.find({'_id': ObjectId(user_id)}) is None:
+            raise UserNotFoundError
+
+        # Removes the user to the following list
+        current_app.mongo.db.users.update_one({'_id': self._id}, {'$pull': {'following': user_id}})
+
+        return User.find({'_id': self._id})
