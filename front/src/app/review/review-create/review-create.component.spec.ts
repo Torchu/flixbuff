@@ -34,7 +34,7 @@ describe('ReviewCreateComponent', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: { show: { name: 'test' }, season: { name: 'test' } } },
         { provide: MatDialogRef, useValue: {} },
         { provide: StarRatingConfigService, useValue: starRatingConfigService }
       ]
