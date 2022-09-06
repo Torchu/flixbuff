@@ -137,3 +137,14 @@ class Show:
             return Season(api_response)
         else:
             raise RequestException(api_response.status_code, api_response.status_message)
+
+    @classmethod
+    def get_popular_shows(cls) -> Tuple[list['Show'], int]:
+        """Returns a list of the most popular TV shows."""
+        uri = '/tv/popular'
+        api_response = requests.get(cls.__get_url(uri))
+        if api_response.status_code == 200:
+            api_response = json.loads(api_response.text)
+            return [Show(show) for show in api_response.get('results')], api_response.get('total_results')
+        else:
+            raise RequestException(api_response.status_code, api_response.status_message)

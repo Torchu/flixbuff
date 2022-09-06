@@ -41,3 +41,17 @@ def get_show(id: int, season_number: int) -> dict:
         return show.get_season(season_number)
     except RequestException as e:
         abort(e.code, message=e.message)
+
+
+@blp.route('/popular')
+@blp.response(ShowListSchema, code=200)
+def get_popular_shows() -> dict:
+    """Returns the list of popular shows"""
+    try:
+        show_list, total = Show.get_popular_shows()
+        return {
+            "items": [show for show in show_list],
+            "total": total
+        }
+    except RequestException as e:
+        abort(e.code, message=e.message)
