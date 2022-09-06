@@ -77,3 +77,17 @@ def follow_user(user_id: str) -> dict:
         return user.unfollow(user_id)
     except UserNotFoundError as e:
         abort(e.code, message=e.message)
+
+
+@blp.route('/friends/reviews', methods=['GET'])
+@blp.response(ReviewListSchema, code=200)
+@jwt_required()
+def list_following_reviews() -> dict:
+    """Returns the list of reviews from the users the current user is following"""
+    current_user = get_jwt_identity()
+    user = User.find({'_id': ObjectId(current_user.get('_id'))})
+    review_list, total = Review.list_from_user_list(user.following)
+    return {
+        "items": [review.to_json() for review in review_list],
+        "total": total
+    }

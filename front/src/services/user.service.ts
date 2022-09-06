@@ -140,4 +140,20 @@ export class UserService {
       })
     );
   }
+
+  /**
+   * Gets the list of reviews of the users that the user follows
+   * @returns {Observable<ReviewList>} The list of reviews
+   */
+  public getFriendsReviews(): Observable<ReviewList> {
+    return this.http.get<ReviewList>(`${this.path}/friends/reviews`).pipe(
+      map((response) => plainToClass(ReviewList, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
 }

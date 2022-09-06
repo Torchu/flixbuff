@@ -1,91 +1,144 @@
 <div class="outter-wrapper">
-  <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
-    <h1>Popular shows</h1>
-  </div>
-  <div class="cards-wrapper">
-    <div
-      fxLayout="row"
-      fxLayoutGap="16px grid"
-      fxLayoutAlign="space-around center"
-    >
-      <button
-        mat-icon-button
-        (click)="previous('popular')"
-        [disabled]="popularCurrentPage === 0"
-      >
-        <mat-icon>chevron_left</mat-icon>
-      </button>
+  <div *ngIf="isLogged()">
+    <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
+      <h1>New from friends</h1>
+    </div>
+    <div class="cards-wrapper">
       <div
-        fxFlex="20%"
-        fxFlex.xs="100%"
-        fxFlex.sm="33%"
-        *ngFor="let show of getPopularPaginated(popularCurrentPage)"
+        fxLayout="row"
+        fxLayoutGap="16px grid"
+        fxLayoutAlign="space-around center"
       >
-        <mat-card class="mat-elevation-z4" (click)="openDetails(show.id)">
-          <mat-card-header>
-            <mat-card-title>{{ show.name }}</mat-card-title>
-            <mat-card-subtitle>{{ show.firstAirDate }}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image [src]="show.getPosterUrl()" />
-          <mat-card-content>
-            <p>{{ show.overview }}</p>
-          </mat-card-content>
-        </mat-card>
+        <button
+          mat-icon-button
+          (click)="previous('friends')"
+          [disabled]="friendsCurrentPage === 0"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div
+          fxFlex="23%"
+          fxFlex.xs="100%"
+          fxFlex.sm="33%"
+          *ngFor="let review of getFriendsPaginated(friendsCurrentPage)"
+        >
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>{{ review.seasonInfo.showName }}</mat-card-title>
+              <mat-card-subtitle>{{
+                review.seasonInfo.seasonName
+              }}</mat-card-subtitle>
+              <star-rating
+                [rating]="review.rating"
+                staticColor="ok"
+              ></star-rating>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ review.review }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button
+          mat-icon-button
+          (click)="next('friends')"
+          [disabled]="friendsCurrentPage === friendsLastPage"
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       </div>
-      <button
-        mat-icon-button
-        (click)="next('popular')"
-        [disabled]="popularCurrentPage === 3"
-      >
-        <mat-icon>chevron_right</mat-icon>
-      </button>
     </div>
   </div>
-  <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
-    <h1>Latest reviews</h1>
-  </div>
-  <div class="cards-wrapper">
-    <div
-      fxLayout="row wrap"
-      fxLayoutGap="16px grid"
-      fxLayoutAlign="space-around center"
-    >
-      <button
-        mat-icon-button
-        (click)="previous('latest')"
-        [disabled]="latestCurrentPage === 0"
-      >
-        <mat-icon>chevron_left</mat-icon>
-      </button>
+  <div>
+    <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
+      <h1>Popular shows</h1>
+    </div>
+    <div class="cards-wrapper">
       <div
-        fxFlex="23%"
-        fxFlex.xs="100%"
-        fxFlex.sm="33%"
-        *ngFor="let review of getLatestPaginated(latestCurrentPage)"
+        fxLayout="row"
+        fxLayoutGap="16px grid"
+        fxLayoutAlign="space-around center"
       >
-        <mat-card class="mat-elevation-z4">
-          <mat-card-header>
-            <mat-card-title>{{ review.seasonInfo.showName }}</mat-card-title>
-            <mat-card-subtitle>{{
-              review.seasonInfo.seasonName
-            }}</mat-card-subtitle>
-            <star-rating
-              [rating]="review.rating"
-              staticColor="ok"
-            ></star-rating>
-          </mat-card-header>
-          <mat-card-content>
-            <p>{{ review.review }}</p>
-          </mat-card-content>
-        </mat-card>
+        <button
+          mat-icon-button
+          (click)="previous('popular')"
+          [disabled]="popularCurrentPage === 0"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div
+          fxFlex="20%"
+          fxFlex.xs="100%"
+          fxFlex.sm="33%"
+          *ngFor="let show of getPopularPaginated(popularCurrentPage)"
+        >
+          <mat-card class="mat-elevation-z4" (click)="openDetails(show.id)">
+            <mat-card-header>
+              <mat-card-title>{{ show.name }}</mat-card-title>
+              <mat-card-subtitle>{{ show.firstAirDate }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]="show.getPosterUrl()" />
+            <mat-card-content>
+              <p>{{ show.overview }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button
+          mat-icon-button
+          (click)="next('popular')"
+          [disabled]="popularCurrentPage === 3"
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
       </div>
-      <button
-        mat-icon-button
-        (click)="next('latest')"
-        [disabled]="latestCurrentPage === latestLastPage"
+    </div>
+  </div>
+  <div>
+    <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
+      <h1>Latest reviews</h1>
+    </div>
+    <div class="cards-wrapper">
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="16px grid"
+        fxLayoutAlign="space-around center"
       >
-        <mat-icon>chevron_right</mat-icon>
-      </button>
+        <button
+          mat-icon-button
+          (click)="previous('latest')"
+          [disabled]="latestCurrentPage === 0"
+        >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div
+          fxFlex="23%"
+          fxFlex.xs="100%"
+          fxFlex.sm="33%"
+          *ngFor="let review of getLatestPaginated(latestCurrentPage)"
+        >
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>{{ review.seasonInfo.showName }}</mat-card-title>
+              <mat-card-subtitle>{{
+                review.seasonInfo.seasonName
+              }}</mat-card-subtitle>
+              <star-rating
+                [rating]="review.rating"
+                staticColor="ok"
+              ></star-rating>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ review.review }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button
+          mat-icon-button
+          (click)="next('latest')"
+          [disabled]="latestCurrentPage === latestLastPage"
+        >
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>

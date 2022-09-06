@@ -1,4 +1,5 @@
 """This module is used for the review class."""
+from __future__ import annotations
 from typing import Any, Union, Tuple
 from flask import current_app
 import pymongo
@@ -131,4 +132,17 @@ class Review:
         cursor.sort('_id', pymongo.DESCENDING)
         reviews = [Review(review) for review in cursor]
         total = current_app.mongo.db.reviews.count_documents({})
+        return reviews, total
+
+    @classmethod
+    def list_from_user_list(cls, users: list[str]) -> Tuple[list['Review'], int]:
+        """
+        Returns the list of reviews from the given users
+        :param users: list of users IDs
+        :return: List of reviews
+        """
+        cursor = current_app.mongo.db.reviews.find({'reviewer_id': {'$in': users}})
+        cursor.sort('_id', pymongo.DESCENDING)
+        reviews = [Review(review) for review in cursor]
+        total = current_app.mongo.db.reviews.count_documents({'reviewer_id': {'$in': users}})
         return reviews, total
