@@ -1,4 +1,9 @@
 {
-    "compilerOptions": {"strict": true},
-    "include": [".eslintrc.js", "karma.conf.js", "**/src/**/*.ts", "**/src/**/*.html"]
+  "compilerOptions": { "strict": true },
+  "include": [
+    ".eslintrc.js",
+    "karma.conf.js",
+    "**/src/**/*.ts",
+    "**/src/**/*.html"
+  ]
 }
