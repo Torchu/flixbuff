@@ -120,3 +120,14 @@ class Review:
         reviews = [Review(review) for review in cursor]
         total = current_app.mongo.db.reviews.count_documents({'reviewer_id': user_id})
         return reviews, total
+
+    @classmethod
+    def list(cls) -> Tuple[list['Review'], int]:
+        """
+        Returns the list of reviews
+        :return: List of reviews
+        """
+        cursor = current_app.mongo.db.reviews.find()
+        reviews = [Review(review) for review in cursor]
+        total = current_app.mongo.db.reviews.count_documents({})
+        return reviews, total

@@ -86,3 +86,22 @@ class TestReview():
         review_list, total = Review.list_from_user('2')
         assert len(review_list) is 0, 'An unexisting review was found'
         assert total is 0, 'The total is not correct'
+
+    def test_list(self):
+        """Test for the list method."""
+        review = Review({
+            'reviewer_id': '1',
+            'season_info': {
+                'show_name': 'Cosas rarunas',
+                'season_number': 1,
+                'season_name': 'Temporada 1'
+            },
+            'review': 'This is a review',
+            'rating': 5
+        })
+        review.insert()
+        review.insert()
+
+        review_list, total = Review.list()
+        assert len(review_list) == 2, 'The number of reviews is not correct'
+        assert total == 2, 'The total is not correct'
