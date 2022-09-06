@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { Review, ReviewList } from 'src/models/review';
+import { instanceToPlain, plainToClass } from 'class-transformer';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Review } from 'src/models/review';
-import { instanceToPlain } from 'class-transformer';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,22 @@ export class ReviewService {
         } else {
           errorMessage = 'Error: Something went wrong';
         }
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
+
+  /**
+   * Lists the reviews
+   * @returns {Observable<ReviewList>} The list of reviews
+   */
+  public list(): Observable<ReviewList> {
+    return this.http.get<ReviewList>(`${this.path}`).pipe(
+      map((response) => plainToClass(ReviewList, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
         this.snackBar.open(errorMessage, '', { duration: 3000 });
         return throwError(() => err);
       })
