@@ -3,7 +3,6 @@ from typing import Any, Union, Tuple
 from flask import current_app
 import pymongo
 from models.show import Show
-from models.json_encoder import CustomJSONEncoder
 
 
 class SeasonNotFoundError(Exception):
