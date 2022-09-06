@@ -13,7 +13,9 @@ import { ShowService } from 'src/services/show.service';
 export class FeedComponent implements OnInit {
   popularShowList: Array<Show> = [];
   latestReviewList: Array<Review> = [];
-  currentPage = 0;
+  popularCurrentPage = 0;
+  latestCurrentPage = 0;
+  latestLastPage: number;
 
   constructor(private router: Router, private showService: ShowService, private reviewService: ReviewService) {}
 
@@ -23,6 +25,7 @@ export class FeedComponent implements OnInit {
     });
     this.reviewService.list().subscribe((reviews: ReviewList) => {
       this.latestReviewList = reviews.items;
+      this.latestLastPage = Math.ceil(this.latestReviewList.length / 4) - 1;
     });
   }
 
@@ -35,20 +38,53 @@ export class FeedComponent implements OnInit {
   }
 
   /**
-   * Gets the page of the list
+   * Gets the page of the shows list
    * @param page The page
    * @returns {Array<Show>} The page
    */
-  getShowsPaginated(page: number): Array<Show> {
+  getPopularPaginated(page: number): Array<Show> {
     const pageSize = 5;
     return this.popularShowList.slice(page * pageSize, (page + 1) * pageSize);
   }
 
-  previous(): void {
-    this.currentPage--;
+  /**
+   * Gets the page of the latest reviews list
+   * @param page The page
+   * @returns {Array<Review>} The page
+   */
+  getLatestPaginated(page: number): Array<Review> {
+    const pageSize = 4;
+    console.log(page);
+    const a = this.latestReviewList.slice(page * pageSize, (page + 1) * pageSize);
+    console.log(this.latestReviewList);
+    return a;
   }
 
-  next(): void {
-    this.currentPage++;
+  /**
+   * Changes to the previous page of the given list
+   * @param list A string representing the list
+   */
+  previous(list: string): void {
+    switch (list) {
+      case 'popular':
+        this.popularCurrentPage--;
+        break;
+      default:
+        this.latestCurrentPage--;
+    }
+  }
+
+  /**
+   * Changes to the next page of the given list
+   * @param list A string representing the list
+   */
+  next(list: string): void {
+    switch (list) {
+      case 'popular':
+        this.popularCurrentPage++;
+        break;
+      default:
+        this.latestCurrentPage++;
+    }
   }
 }
