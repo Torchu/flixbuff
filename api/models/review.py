@@ -1,7 +1,7 @@
 """This module is used for the review class."""
 from typing import Any, Union, Tuple
 from flask import current_app
-from datetime import datetime
+import pymongo
 from models.show import Show
 from models.json_encoder import CustomJSONEncoder
 
@@ -117,6 +117,7 @@ class Review:
         :return: List of reviews
         """
         cursor = current_app.mongo.db.reviews.find({'reviewer_id': user_id})
+        cursor.sort('_id', pymongo.DESCENDING)
         reviews = [Review(review) for review in cursor]
         total = current_app.mongo.db.reviews.count_documents({'reviewer_id': user_id})
         return reviews, total
@@ -128,6 +129,7 @@ class Review:
         :return: List of reviews
         """
         cursor = current_app.mongo.db.reviews.find()
+        cursor.sort('_id', pymongo.DESCENDING)
         reviews = [Review(review) for review in cursor]
         total = current_app.mongo.db.reviews.count_documents({})
         return reviews, total
