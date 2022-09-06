@@ -167,6 +167,20 @@ webargs = ">=1.5.2"
 werkzeug = ">=0.15"
 
 [[package]]
+name = "gunicorn"
+version = "20.1.0"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+eventlet = ["eventlet (>=0.24.1)"]
+gevent = ["gevent (>=1.4.0)"]
+setproctitle = ["setproctitle"]
+tornado = ["tornado (>=0.2)"]
+
+[[package]]
 name = "idna"
 version = "3.3"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -534,7 +548,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c658c7f1a44902e87ba3322da7ba7a0f8e05c766b5717af370d1c24b330141b6"
+content-hash = "13bb310984d9732c957066038503b9d12f0822d8490b580cffaff52c5517fe19"
 
 [metadata.files]
 apispec = [
@@ -588,6 +602,10 @@ flask-pymongo = [
 flask-rest-api = [
     {file = "flask-rest-api-0.17.1.tar.gz", hash = "sha256:9679c15d29848a1610e6c5269b8fdc4a59b1a898249395c21b18eb885148ab50"},
     {file = "flask_rest_api-0.17.1-py3-none-any.whl", hash = "sha256:2f7195556fc363944c3ac44563eb0ad2229b22f293027a33a88564a456548913"},
+]
+gunicorn = [
+    {file = "gunicorn-20.1.0-py3-none-any.whl", hash = "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e"},
+    {file = "gunicorn-20.1.0.tar.gz", hash = "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
