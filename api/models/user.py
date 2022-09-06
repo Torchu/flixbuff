@@ -1,4 +1,5 @@
 """This module is used for the user class."""
+from __future__ import annotations
 import re
 from typing import Tuple, Union
 from werkzeug.security import check_password_hash, generate_password_hash
