@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BaseComponent } from './base/base.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { FeedComponent } from './feed/feed.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtInterceptor } from '../interceptors/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -36,7 +37,8 @@ import { UserListComponent } from './user/user-list/user-list.component';
     ShowDetailsComponent,
     ReviewCreateComponent,
     UserListComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    FeedComponent
   ],
   imports: [
     AppRoutingModule,
