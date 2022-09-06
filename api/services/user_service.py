@@ -79,7 +79,7 @@ def follow_user(user_id: str) -> dict:
         abort(e.code, message=e.message)
 
 
-@blp.route('following-reviews', methods=['GET'])
+@blp.route('/following-reviews', methods=['GET'])
 @blp.response(ReviewListSchema, code=200)
 @jwt_required()
 def list_following_reviews() -> dict:
