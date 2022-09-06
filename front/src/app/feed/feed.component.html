@@ -1,1 +1,40 @@
-<p>feed works!</p>
+<div class="outter-wrapper">
+  <div class="title" fxLayout="row" fxLayoutAlign="space-between end">
+    <h1>Popular shows</h1>
+  </div>
+  <div class="cards-wrapper">
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px grid"
+      fxLayoutAlign="space-around center"
+    >
+      <button
+        mat-icon-button
+        (click)="previous()"
+        [disabled]="currentPage === 0"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <div
+        fxFlex="20%"
+        fxFlex.xs="100%"
+        fxFlex.sm="33%"
+        *ngFor="let show of getShowsPaginated(currentPage)"
+      >
+        <mat-card class="mat-elevation-z4" (click)="openDetails(show.id)">
+          <mat-card-header>
+            <mat-card-title>{{ show.name }}</mat-card-title>
+            <mat-card-subtitle>{{ show.firstAirDate }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="show.getPosterUrl()" />
+          <mat-card-content>
+            <p>{{ show.overview }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <button mat-icon-button (click)="next()" [disabled]="currentPage === 3">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

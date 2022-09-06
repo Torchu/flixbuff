@@ -59,4 +59,20 @@ export class ShowService {
       })
     );
   }
+
+  /**
+   * Gets the popular shows
+   * @returns {Observable<ShowList>} The list of shows
+   */
+  public getPopular(): Observable<ShowList> {
+    return this.http.get<ShowList>(`${this.path}/popular`).pipe(
+      map((response) => plainToClass(ShowList, response)),
+      catchError((err: HttpErrorResponse) => {
+        const errorMessage =
+          err.error && err.error.message ? 'Error: ' + err.error.message : 'Error: Something went wrong';
+        this.snackBar.open(errorMessage, '', { duration: 3000 });
+        return throwError(() => err);
+      })
+    );
+  }
 }

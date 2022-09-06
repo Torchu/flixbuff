@@ -1,0 +1,36 @@
+.title {
+  border-bottom: 1px solid #dedede;
+  h1 {
+    border-bottom: 3px solid #3f51b5;
+    display: inline;
+    margin: 0px;
+  }
+}
+
+.outter-wrapper {
+  padding: 8px;
+}
+
+.cards-wrapper {
+  padding: 16px;
+  mat-card {
+    cursor: pointer;
+  }
+
+  mat-card:hover {
+    outline: none;
+    background-color: #efefef;
+    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+  }
+}
+
+mat-card-content {
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
