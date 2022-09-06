@@ -1,7 +1,6 @@
 """This module is used for the user class."""
-from __future__ import annotations
 import re
-from typing import Tuple, Union
+from typing import Dict, List, Tuple, Union
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import current_app
 from bson import ObjectId
@@ -26,7 +25,7 @@ class UserNotFoundError(Exception):
 class User:
     """Class that represents an user of the appication."""
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: Dict) -> None:
         """
         Constructor of the User class.
         Uses a JSON dictionary to initialize the attributes of the class.
@@ -70,7 +69,7 @@ class User:
         return new_user
 
     @classmethod
-    def find(cls, criteria: dict, projection: dict = {}) -> Union['User', None]:
+    def find(cls, criteria: Dict, projection: Dict = {}) -> Union['User', None]:
         """
         Finds a user in the database.
         :param criteria: Dictionary with the search criteria
@@ -123,7 +122,7 @@ class User:
         return user if valid else None
 
     @classmethod
-    def list(cls, query: str = None) -> Tuple[list['User'], int]:
+    def list(cls, query: str = None) -> Tuple[List['User'], int]:
         """
         Returns the list of users
         :param query: Dictionary with the search criteria

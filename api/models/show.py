@@ -1,5 +1,5 @@
 """This module is used for the shows model and its connection to TheMovieDB API."""
-from typing import Tuple
+from typing import Dict, List, Tuple
 import requests
 import json
 from datetime import date
@@ -17,7 +17,7 @@ class RequestException(Exception):
 class Episode:
     """Class that represents a season episode"""
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: Dict) -> None:
         """
         Constructor of the Episode class.
         Uses a JSON dictionary to initialize the attributes of the class.
@@ -49,7 +49,7 @@ class Season:
             - episodes: list[Episode in JSON format]
     """
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: Dict) -> None:
         self.season_number = int(data.get('season_number'))
         self.name = str(data.get('name'))
         self.overview = str(data.get('overview'))
@@ -89,7 +89,7 @@ class Show:
         return f"{SHOWS_DB_API}{uri}?api_key={SHOWS_DB_API_KEY}&language={SHOWS_DB_LANGUAGE}"
 
     @classmethod
-    def list_shows(cls, query: str = None) -> Tuple[list['Show'], int]:
+    def list_shows(cls, query: str = None) -> Tuple[List['Show'], int]:
         """
         Returns a list of TV shows filtered by the query.
         The shows only have the following attributes:
@@ -139,7 +139,7 @@ class Show:
             raise RequestException(api_response.status_code, api_response.status_message)
 
     @classmethod
-    def get_popular_shows(cls) -> Tuple[list['Show'], int]:
+    def get_popular_shows(cls) -> Tuple[List['Show'], int]:
         """Returns a list of the most popular TV shows."""
         uri = '/tv/popular'
         api_response = requests.get(cls.__get_url(uri))

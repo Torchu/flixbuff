@@ -1,6 +1,5 @@
 """This module is used for the review class."""
-from __future__ import annotations
-from typing import Any, Union, Tuple
+from typing import Any, Dict, List, Union, Tuple
 from flask import current_app
 import pymongo
 from models.show import Show
@@ -17,7 +16,7 @@ class SeasonNotFoundError(Exception):
 class SeasonInfo:
     """Class that represents the season info in the review class."""
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: Dict) -> None:
         """
         Constructor of the SeasonInfo class.
         Uses a JSON dictionary to initialize the attributes of the class.
@@ -36,7 +35,7 @@ class SeasonInfo:
 class Review:
     """Class that represents a review."""
 
-    def __init__(self, data: dict) -> None:
+    def __init__(self, data: Dict) -> None:
         """
         Constructor of the Review class.
         Uses a JSON dictionary to initialize the attributes of the class.
@@ -59,7 +58,7 @@ class Review:
             raise ValueError("Rating must be between 0 and 5")
         super().__setattr__(key, value)
 
-    def to_json(self) -> dict:
+    def to_json(self) -> Dict:
         """Returns the review object as a JSON."""
         return {
             "_id": str(self._id),
@@ -99,7 +98,7 @@ class Review:
         return Review.find({'_id': review_id})
 
     @classmethod
-    def find(cls, criteria: dict) -> Union['Review', None]:
+    def find(cls, criteria: Dict) -> Union['Review', None]:
         """
         Finds a review in the database.
         :param criteria: Dictionary with the search criteria
@@ -110,7 +109,7 @@ class Review:
         return review_item
 
     @classmethod
-    def list_from_user(cls, user_id: str) -> Tuple[list['Review'], int]:
+    def list_from_user(cls, user_id: str) -> Tuple[List['Review'], int]:
         """
         Returns the list of reviews from the given user
         :param user_id: User ID
@@ -123,7 +122,7 @@ class Review:
         return reviews, total
 
     @classmethod
-    def list(cls) -> Tuple[list['Review'], int]:
+    def list(cls) -> Tuple[List['Review'], int]:
         """
         Returns the list of reviews
         :return: List of reviews
@@ -135,7 +134,7 @@ class Review:
         return reviews, total
 
     @classmethod
-    def list_from_user_list(cls, users: list[str]) -> Tuple[list['Review'], int]:
+    def list_from_user_list(cls, users: List[str]) -> Tuple[List['Review'], int]:
         """
         Returns the list of reviews from the given users
         :param users: list of users IDs
