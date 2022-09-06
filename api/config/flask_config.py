@@ -5,6 +5,7 @@ load_dotenv()
 
 DEBUG_MODE = os.environ.get('DEBUG_MODE', True)
 API_PORT = os.environ.get('API_PORT', 5000)
+API_HOST = os.environ.get('API_HOST', 'localhost')
 OPENAPI_CONFIG = {
     'API_VERSION': '0.1.0',
     'OPENAPI_VERSION': '3.0.2',

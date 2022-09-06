@@ -1,4 +1,4 @@
-from config.flask_config import API_PORT, DEBUG_MODE, ENABLE_CORS, OPENAPI_CONFIG, SECRET_KEY
+from config.flask_config import API_PORT, API_HOST, DEBUG_MODE, ENABLE_CORS, OPENAPI_CONFIG, SECRET_KEY
 from config.mongodb_config import DB_NAME, DB_URI
 from flask import Flask
 from flask_cors import CORS
@@ -35,4 +35,4 @@ api.register_blueprint(review_service.blp)
 
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG_MODE, port=API_PORT)
+    app.run(debug=DEBUG_MODE, host=API_HOST, port=API_PORT)
