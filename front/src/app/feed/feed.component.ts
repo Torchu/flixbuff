@@ -54,10 +54,7 @@ export class FeedComponent implements OnInit {
    */
   getLatestPaginated(page: number): Array<Review> {
     const pageSize = 4;
-    console.log(page);
-    const a = this.latestReviewList.slice(page * pageSize, (page + 1) * pageSize);
-    console.log(this.latestReviewList);
-    return a;
+    return this.latestReviewList.slice(page * pageSize, (page + 1) * pageSize);
   }
 
   /**
