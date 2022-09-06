@@ -145,8 +145,8 @@ export class UserService {
    * Gets the list of reviews of the users that the user follows
    * @returns {Observable<ReviewList>} The list of reviews
    */
-  public getFollowingReviews(): Observable<ReviewList> {
-    return this.http.get<ReviewList>(`${this.path}/following-reviews`).pipe(
+  public getFriendsReviews(): Observable<ReviewList> {
+    return this.http.get<ReviewList>(`${this.path}/friends/reviews`).pipe(
       map((response) => plainToClass(ReviewList, response)),
       catchError((err: HttpErrorResponse) => {
         const errorMessage =

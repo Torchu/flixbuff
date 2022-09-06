@@ -1,4 +1,5 @@
 """This module is used for the review class."""
+from __future__ import annotations
 from typing import Any, Union, Tuple
 from flask import current_app
 import pymongo
