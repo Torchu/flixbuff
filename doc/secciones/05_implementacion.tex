@@ -289,3 +289,23 @@ al usuario del que están viendo los detalles.\\
 \end{figure}
 
 \section{Despliegue}\label{sec:despliegue}
+Para el despliegue de la aplicación había infinidad de opciones: montar un servidor en una máquina de Ubuntu,
+\textit{AWS}\cite{aws}, \textit{Azure}\cite{azure}, etc.\\
+
+Después de barajar las posibilidades hemos elegido \textit{Heroku}, una plataforma en la nube que nos permite montar un
+servidor con nuestra aplicación, de forma muy sencilla e intuitiva, directamente desde nuestro repositorio en
+\textit{GitHub}, permitiéndonos despliegues manuales o automáticos de cualquier rama del repositorio. Además, aparte de
+sus tiers de pago, cuenta con una tier gratuita en la que podremos alojar nuestra aplicación sin problemas.\\
+
+Hemos creado dos aplicaciones en la plataforma: una para servir la aplicación web y otra para la API.\\
+
+Para desplegar el servidor, hemos necesitado instalar \textit{gunicorn}\cite{gunicorn}, que nos permite transformar
+nuestra aplicación de \textit{flask} en un servidor HTTP. Además, hemos dado instrucciones a \textit{Heroku} a través de
+un fichero \textit{Procfile} en el que se detalla cómo ejecutar el servidor con \textit{gunicorn}.
+
+Por otra parte, para el despliegue del cliente, hemos creado un fichero \textit{server.js} que se ocupa de escuchar las
+peticiones del puerto 8080 y devolverles los ficheros correspondientes.\\
+
+Al estar las aplicaciones dentro de subdirectorios en el repositorio, hemos utilizado un \textit{buildpack} para
+\href{https://github.com/timanovsky/subdir-heroku-buildpack.git}{subdirectorios}, que nos permite establecer qué
+subdirectorio de nuestro repositorio utilizar para el servidor, en lugar del repositorio completo.\\
