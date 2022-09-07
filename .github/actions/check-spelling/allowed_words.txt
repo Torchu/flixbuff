@@ -61,3 +61,6 @@ serverless
 clústeres
 ECF
 MacBook
+seriéfilas
+UI
+UX
