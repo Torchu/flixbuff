@@ -1,6 +1,6 @@
 \chapter{Metodología}\label{chap:metodología}
 Para empezar a desarrollar la solución al problema, primero hay que establecer la metodología de su desarrollo y
-control de calidad.\\
+control de calidad.
 
 \section{Principios para el desarrollo}
 Para el desarrollo del proyecto, tenía claro que quería utilizar una metodología basada en los principios del
@@ -24,7 +24,8 @@ sacando el máximo partido a la metodología scrum.\\
 Por tanto, para el desarrollo del proyecto, se optado por seguir la metodología Kanban. Que permite un seguimiento
 visual del proyecto en el que se puede ver en todo momento qué tareas se deben hacer, cuáles están en desarrollo y
 cuáles se han terminado ya. Apoyándonos en una tabla Kanban los usuarios pueden ver en todo momento el estado del
-proyecto y las nuevas funcionalidades en las que se está trabajando. \\
+proyecto y las nuevas funcionalidades en las que se está trabajando.
+
 \begin{figure}[H]
 	\centering	
 	\includegraphics[scale=0.25]{img/kanban.png}
@@ -39,17 +40,18 @@ aumentando la adaptabilidad del proyecto a cambios en los requerimientos de los 
 
 Para alojar el código y registrar las tareas a realizar se ha optado por GitHub, ya que con una cuenta de estudiante
 nos da acceso a la creación de tableros Kanban, como el mostrado anteriormente, para la organización de las tareas y a
-la integración continua, de la que hablaremos más adelante, a través de las GitHub Actions.
+la integración continua, de la que hablaremos más adelante, a través de las GitHub Actions.\\
 
 De esta forma, los \textit{stakeholders}, o personas interesadas en el desarrollo del proyecto, podrán ver en todo
-momento en qué fase del desarrollo se encuentra el mismo, y en qué estado está cada una de sus funcionalidades.\\
+momento en qué fase del desarrollo se encuentra el mismo, y en qué estado está cada una de sus funcionalidades.
 
 \subsection{Épicas}
 Las épicas son grandes grupos de funcionalidad, que sirven para desglosar y atacar el problema. No son una solución al
 mismo, pero el conjunto de todas ellas sí que contribuye a la solución.\\
 
 En \textit{GitHub} se reflejan como \href{https://github.com/Torchu/flixbuff/milestones}{\textit{milestones}} del
-proyecto. En este caso, son la metodología e infraestructura básica, el sistema de reseñas y el sistema de seguidores.\\
+proyecto. En este caso, son la metodología e infraestructura básica, el sistema de reseñas y el sistema de seguidores.
+
 \begin{figure}[H]
 	\centering	
 	\includegraphics[scale=0.3]{img/milestones.png}
@@ -58,7 +60,7 @@ proyecto. En este caso, son la metodología e infraestructura básica, el sistem
 
 \subsection{Historias de usuario}
 Las épicas a su vez están formadas por historias de usuario. Una historia de usuario es una funcionalidad que el usuario
-espera en la solución del problema. Es decir, un requerimiento del usuario.\\
+espera en la solución del problema. Es decir, un requerimiento del usuario.
 
 \begin{figure}[H]
 	\centering	
@@ -69,11 +71,11 @@ espera en la solución del problema. Es decir, un requerimiento del usuario.\\
 Como en este proyecto no tenemos unos usuarios que nos pidan los requisitos, se ha realizado un análisis de
 \textit{Personas}\cite{personas}. Estas personas representan los perfiles de distintos usuarios de la aplicación y
 serán ellos quienes nos ayuden con el diseño del producto general, protagonizando las historias de usuario. Ver
-\autoref{chap:personas}.\\
+\autoref{chap:personas}.
 
 \subsection{Issues}
 Las \textit{issues} son problemas que se han detectado en el proyecto y que deben ser resueltos. Los issues se cerrarán
-con un \textit{pull request} que incluya una solucione el problema y un test que compruebe que no volverá a pasar.\\
+con un \textit{pull request} que incluya una solucione el problema y un test que compruebe que no volverá a pasar.
 
 \begin{figure}[H]
 	\centering	
@@ -83,7 +85,7 @@ con un \textit{pull request} que incluya una solucione el problema y un test que
 
 \subsection{Tareas del desarrollador}
 Representan pequeñas tareas que facilitan la vida del desarrollador, pero que no representan una funcionalidad como tal.
-Por ejemplo, la configuración de la integración continua o tareas para mejorar la organización del código.\\
+Por ejemplo, la configuración de la integración continua o tareas para mejorar la organización del código.
 
 \begin{figure}[H]
 	\centering	
@@ -99,7 +101,8 @@ Basándonos en esta metodología de desarrollo, trasladaremos los requisitos a u
 código, que se crearán antes del desarrollo de las funcionalidades. De esta forma, se convierten tanto en una
 documentación fiable, que comprueba que el código desarrollado cumple los requisitos, como en una herramienta de
 seguridad, que nos asegura que el código permanezca siempre correcto cada vez que se produzca algún cambio en el
-mismo.\\
+mismo.
+
 \begin{figure}[H]
 	\centering	
 	\includegraphics[scale=0.325]{img/pytest.png}
@@ -113,17 +116,16 @@ cambios futuros, tal y como establece el desarrollo ágil.\\
 
 Finalmente, se ha incluido un \textit{script} que comprueba la ortografía de toda la documentación del proyecto.
 Sirviendo como un \textit{linter} para la documentación, como se recoge en la siguiente
-\href{https://github.com/Torchu/flixbuff/issues/4}{historia de usuario}.\\
+\href{https://github.com/Torchu/flixbuff/issues/4}{historia de usuario}.
 
 \subsection{Integración continua}
-
 La integración continua es una metodología de trabajo que se basa en realizar integraciones frecuentes del código y
 asegurarnos que superen los distintos controles de calidad, necesaria para respetar el noveno principio del manifiesto.
 ágil:
+
 \begin{quote}
     Continuous attention to technical excellence and good design enhances agility.
 \end{quote}
-
 
 Estos controles de calidad se comprueban mediante las \textit{pipelines}, o acciones que se ejecutan al subir código
 al repositorio de GitHub. En nuestro caso incluiremos todo lo mencionado en el apartado

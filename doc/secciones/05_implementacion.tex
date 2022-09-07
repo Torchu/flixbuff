@@ -1,8 +1,7 @@
 \chapter{Implementación}\label{chap:implementación}
-
 Para la implementación de la solución utilizaremos una arquitectura cliente-servidor\cite{client-server}, la cual nos
 permite tener los datos centralizados en una aplicación servidor. La aplicación cliente realizará peticiones al
-servidor, para que este le provea de los datos que necesite en cada momento.\\
+servidor, para que este le provea de los datos que necesite en cada momento.
 
 \section{Servidor}
 En el lado del servidor o \textit{back-end} se encuentra la mayor parte de la lógica de la aplicación, dedicándose el
@@ -43,7 +42,7 @@ será obligatorio.\\
 
 Para asegurarnos que el usuario está logueado, utilizamos un \textit{decorador} de la librería
 \textit{Flask-JWT-Extended}\cite{jwt} que comprueba que el token enviado en las cabeceras de la petición es válido. Si
-no lo es, se devuelve un error 401, o de desautorización.\\
+no lo es, se devuelve un error 401, o de desautorización.
 
 \subsubsection{Series}
 El servidor provee de una lista de series o de los detalles de una serie en particular o alguna de sus temporadas a
@@ -52,7 +51,7 @@ obtienen a través de una API externa.\\
 
 La API utilizada es \href{https://www.themoviedb.org}{\textit{TheMovieDB}}, una API abierta que provee de datos sobre
 series y películas. En este caso, haremos uso de las series. Gracias al diseño de nuestra aplicación, podríamos cambiar
-de API en cualquier momento, sin que suponga mucho tiempo de desarrollo.
+de API en cualquier momento, sin que suponga mucho tiempo de desarrollo.\\
 
 Además, también provee de una lista de series ordenadas por popularidad, según los rankings de \textit{TheMovieDB}.
 
@@ -62,7 +61,7 @@ Cualquiera podrá listar o crear un usuario, siempre y cuando el email introduci
 A través de su ID, se podrán acceder a los datos de dicho usuario u obtener las reseñas que ha realizado.\\
 
 Además, los usuarios identificados podrán seguir o dejar de seguir a otros usuarios y obtener la lista de reseñas hechas
-por cualquier de los usuarios que están siguiendo.\\
+por cualquier de los usuarios que están siguiendo.
 
 \subsubsection{Reseñas}
 Los usuarios identificados podrán crear reseñas de las series. Usando el token \textit{JWT} del que hablamos en la
@@ -70,7 +69,7 @@ sección anterior, podemos obtener el identificador del usuario que está realiz
 la reseña.\\ 
 
 Además, cualquier usuario - identificado o no - podrá obtener la lista de reseñas hechas en la aplicación, ordenadas de
-más a menos recientes.\\
+más a menos recientes.
 
 \subsection{Test}
 Como ya hablamos en la \hyperref[chap:metodología]{metodología}, necesitamos que el código cumpla con unos requisitos
@@ -78,6 +77,7 @@ mínimos de calidad a través de \textit{tests}.\\
 
 Para el servidor, se han implementado tests unitarios con la librería \textit{pytest}\cite{pytest}, que comprueban que
 los métodos de los modelos de la aplicación funcionan correctamente.
+
 \begin{figure}[H]
 \centering	
     \includegraphics[scale=0.25]{img/pytest.png}
@@ -95,10 +95,10 @@ Además, guarda los datos en formato \textit{JSON}\cite{json}, lo que nos permit
 fácilmente interpretable por cualquier lenguaje de programación moderno.
 
 \subsection{Configuración}
-
 Las variables de configuración se encuentran en los ficheros del directorio \textit{config} y se definen mediante las
 variables de entorno, incluyendo opciones por defecto en la mayoría. En el entorno de desarrollo, uso \textit{dotenv}
-para cargar las variables de entorno desde un fichero de configuración \textit{.env}.\\
+para cargar las variables de entorno desde un fichero de configuración \textit{.env}.
+
 \begin{figure}[H]
 \centering	
     \includegraphics[scale=0.525]{img/dotenv.png}
@@ -106,16 +106,16 @@ para cargar las variables de entorno desde un fichero de configuración \textit{
 \end{figure}
 
 Para el entorno de producción, las variables se cargan en \textit{Heroku}\cite{heroku} de forma sencilla, como veremos
-en el \hyperref[sec:despliegue]{despliegue}.\\
+en el \hyperref[sec:despliegue]{despliegue}.
 
 \section{Cliente}
 El cliente o \textit{back-end} es la parte de la aplicación que se ejecuta en el dispositivo del usuario. En nuestro
 caso, la mayor parte de la lógica se encuentra en el lado del servidor y el cliente se encarga de mostrar la información
-y dar acceso a las peticiones del servidor de una forma amigable para el usuario.\\
+y dar acceso a las peticiones del servidor de una forma amigable para el usuario.
 
 \subsection{Elección de la tecnología}
 Con el paso del tiempo, cada vez más frameworks y librerías se han ido desarrollando para la creación de aplicaciones
-cliente, por lo que hay una gran variedad de tecnologías a nuestra disposición.\\
+cliente, por lo que hay una gran variedad de tecnologías a nuestra disposición.
 
 \subsubsection{Aplicación web vs aplicación móvil}
 Es cierto que las aplicaciones móviles están ganando cada vez más popularidad, ya que con la afluencia de dispositivos
@@ -124,7 +124,7 @@ cualquier parte.\\
 
 No por ello, debemos descartar las aplicaciones web. En este caso, una aplicación web es una solución sólida al
 problema, al ser más cómodo para los usuarios escribir sus reseñas con su teclado y ratón, y no con su pantalla
-táctil.\\
+táctil.
 
 \subsubsection{Frameworks}
 Los tres grandes framework para aplicaciones web son: \textit{Angular}\cite{angular}, \textit{React}\cite{react} y
@@ -152,7 +152,7 @@ basado en componentes y servicios, que nos permite desarrollar con una arquitect
 permite usar \textit{Angular Material}\cite{angularmaterial}, un conjunto de componentes de \textit{Angular} que nos
 permite crear interfaces de usuario modernas de forma rápida y sencilla y también cuenta con \textit{Ionic}\cite{ionic},
 un framework para crear aplicaciones híbridas para móviles y web si en algún momento decidiésemos dar el salto a las
-aplicaciones móviles.\\
+aplicaciones móviles.
 
 \subsection{Diseño}
 En esta sección se detallarán los aspectos de las diferentes vistas de la aplicación. Se ha apostado por un diseño
@@ -168,7 +168,7 @@ alguna de las otras dos vistas, le transportará a la lista de series y de usuar
 
 En la parte derecha de la barra de navegación, nos encontraremos la pestaña de \textit{Log In}, que desplegará la
 \hyperref[sec:login-signin]{ventana de registro y logueo}. En caso de ya estar logueado, la pestaña mostrará tu nombre de
-usuario y haciendo click, desplegará un menú cuya única opción es el deslogueo.\\
+usuario y haciendo click, desplegará un menú cuya única opción es el deslogueo.
 
 \begin{figure}[H]
     \centering	
@@ -192,7 +192,7 @@ que quieras llevar a cabo, acceso o registro, respectivamente.\\
 
 En la parte baja de la ventana encontramos dos botones, el primero refleja la acción que se intenta llevar a cabo - 
 acceso o registro - y no funcionará hasta que los datos del formulario correspondiente sean correctos. El segundo botón
-sirve para cancelar la operación y cerrar la ventana.\\
+sirve para cancelar la operación y cerrar la ventana.
 
 \begin{figure}[H]
     \centering	
@@ -209,7 +209,7 @@ siguen. Las reseñas se muestran en un carrusel de tarjetas y unos botones a los
 
 Estas tarjetas tienen por título el título de la serie y el nombre de la temporada y el nombre del revisor como
 subtítulo, acompañados por el texto de la reseña y su puntuación representada por estrellas. Además de el poster de la
-temporada en la parte izquierda.\\
+temporada en la parte izquierda.
 
 \begin{figure}[H]
     \centering	
@@ -219,7 +219,7 @@ temporada en la parte izquierda.\\
 
 La segunda sección muestra las series más populares del momento, en forma de carrusel de tarjetas, al igual que con las
 reseñas. En este caso, las tarjetas incluyen el título de la serie y su fecha, el póster de la obra y un pequeño resumen
-de la misma. Hacer click en una serie te llevará a la vista de detalles de la misma.\\
+de la misma. Hacer click en una serie te llevará a la vista de detalles de la misma.
 
 \begin{figure}[H]
     \centering	
@@ -229,7 +229,7 @@ de la misma. Hacer click en una serie te llevará a la vista de detalles de la m
 
 La tercera sección muestra lo mismo que la primera, pero en este caso muestra la reseñas más recientes de todos los
 usuarios de la aplicación. Al hacer click en alguna de ellas, te llevará al perfil del usuario que la escribió, para que
-puedas seguirle y ver sus otras reseñas.\\
+puedas seguirle y ver sus otras reseñas.
 
 \subsubsection{Lista de series}
 En la lista de series podemos encontrar una barra de búsqueda en la parte superior de la vista. Al escribir algo en la
@@ -242,7 +242,7 @@ tarjetas de series como las de la sección anterior.\\
     \caption{ Lista de series con el nombre \textit{Batman} }\label{fig:show-list}
 \end{figure}
 
-Al igual que en la sección anterior, hacer click en una de las tarjetas te llevará a la vista de detalles de la serie.\\
+Al igual que en la sección anterior, hacer click en una de las tarjetas te llevará a la vista de detalles de la serie.
 
 \subsubsection{Detalles de una serie}
 La vista de detalles de la serie nos muestra dos partes. \\
@@ -251,7 +251,7 @@ La primera parte es una cabecera con información de la serie, en la que, al igu
 título, fecha de estreno, un pequeño resumen y una imagen de la misma.\\
 
 La segunda parte está formada por la lista de sus temporadas, representadas en unas tarjetas expansibles, que al hacer
-click sobre ellas, revelan más información sobre la misma. \\
+click sobre ellas, revelan más información sobre la misma.
 
 \begin{figure}[H]
     \centering	
@@ -269,7 +269,7 @@ click sobre ellas, revelan más información sobre la misma. \\
 Al igual que la lista de series, la lista de usuarios también se basa en una barra de búsqueda y unas tarjetas de
 usuario. En este caso las tarjetas de usuario incluyen su nombre de perfil, el total de reseñas realizadas por el
 usuario y el total de usuarios que le siguen. Haciendo click sobre ellas, navegas a la vista de detalles de ese
-usuario.\\
+usuario.
 
 \begin{figure}[H]
     \centering	
@@ -282,7 +282,7 @@ La vista de detalles del usuario, muestra una rejilla de tarjetas, en las que se
 ordenadas de más a menos recientes.\\
 
 En la esquina superior derecha, se muestra un botón de \textit{follow} a los usuarios logueados, para que puedan seguir
-al usuario del que están viendo los detalles.\\
+al usuario del que están viendo los detalles.
 
 \begin{figure}[H]
     \centering	
@@ -298,7 +298,7 @@ Después de barajar las posibilidades hemos elegido \textit{Heroku}, una platafo
 servidor con nuestra aplicación, de forma muy sencilla e intuitiva, directamente desde nuestro repositorio en
 \textit{GitHub}, permitiéndonos despliegues manuales o automáticos de cualquier rama del repositorio.\\
 
-Para nuestra base de datos, hemos utilizado \textit{MongoAtlas}, de la que hablamos en secciones anteriores.\\
+Para nuestra base de datos, hemos utilizado \textit{MongoAtlas}, de la que hablamos en secciones anteriores.
 
 \subsection{Implementación del despliegue}
 Hemos creado dos aplicaciones en la plataforma: una para servir la aplicación web y otra para la API.\\
@@ -313,7 +313,7 @@ peticiones del puerto 8080 y devolverles los ficheros correspondientes. El resul
 
 Al estar las aplicaciones dentro de subdirectorios en el repositorio, hemos utilizado un \textit{buildpack} para
 \href{https://github.com/timanovsky/subdir-heroku-buildpack.git}{subdirectorios}, que nos permite establecer qué
-subdirectorio de nuestro repositorio utilizar para el servidor, en lugar del repositorio completo.\\
+subdirectorio de nuestro repositorio utilizar para el servidor, en lugar del repositorio completo.
 
 \subsection{Costes del despliegue}\label{sec:costes-despliegue}
 \subsubsection{Heroku}
@@ -321,7 +321,7 @@ subdirectorio de nuestro repositorio utilizar para el servidor, en lugar del rep
 gratuita, hasta una \textit{tier} de altas prestaciones.\\
 
 Dentro de cada \textit{tier} nos ofrece distintos \textit{dynos}, contenedores ligeros y aislados de Linux, en los que
-se ejecuta tu aplicación. Cada uno de los distintos tipos de \textit{dyno}, tiene un precio distinto.\\
+se ejecuta tu aplicación. Cada uno de los distintos tipos de \textit{dyno}, tiene un precio distinto.
 
 \begin{figure}[H]
     \centering	
@@ -333,7 +333,7 @@ En esta etapa del desarrollo del proyecto, elegiremos el \textit{tier} gratuito,
 desarrollo.\\
 
 Una de las ventajas de \textit{Heroku} es que nos permite fácilmente cambiar de \textit{tier} en el momento que
-queramos, permitiéndonos escalar nuestra aplicación fácilmente.\\
+queramos, permitiéndonos escalar nuestra aplicación fácilmente.
 
 \subsubsection{MongoAtlas}
 Al igual que \textit{Heroku}, \textit{MongoAtlas} también nos ofrece diferentes planes y \textit{tiers}.\\
@@ -346,7 +346,7 @@ Cada uno de los planes cuenta con diferentes \textit{tiers} de clústeres, cada 
 prestaciones.\\
 
 En nuestro caso, al igual que con el servidor de \textit{Heroku}, hemos optado por la opción gratuita, sabiendo que
-podremos escalarla fácilmente desde la configuración de \textit{MongoAtlas}.\\
+podremos escalarla fácilmente desde la configuración de \textit{MongoAtlas}.
 
 \begin{figure}[H]
     \centering	
