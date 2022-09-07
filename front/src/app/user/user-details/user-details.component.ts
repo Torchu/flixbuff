@@ -49,4 +49,12 @@ export class UserDetailsComponent implements OnInit {
       this.authService.setUser(this.currentUser);
     });
   }
+
+  /**
+   * Whether the user is logged in or not
+   * @returns {boolean} Whether the user is logged in or not
+   */
+  isLogged(): boolean {
+    return this.authService.loggedIn();
+  }
 }

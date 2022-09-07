@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { ReviewCreateComponent } from './review/review-create/review-create.component';
 import { ShowDetailsComponent } from './show/show-details/show-details.component';
@@ -58,6 +59,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
     MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     StarRatingModule.forRoot()
   ],
