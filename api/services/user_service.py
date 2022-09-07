@@ -26,7 +26,7 @@ def create_user(user_data: dict) -> dict:
 @blp.route('', methods=['GET'])
 @blp.arguments(QueryParametersSchema, location='query')
 @blp.response(UserListSchema, code=200)
-def list_shows(params: dict) -> dict:
+def list_users(params: dict) -> dict:
     """Returns the list of users"""
     user_list, total = User.list(params.get('query'))
     return {
@@ -82,7 +82,7 @@ def follow_user(user_id: str) -> dict:
 @blp.route('/friends/reviews', methods=['GET'])
 @blp.response(ReviewListSchema, code=200)
 @jwt_required()
-def list_following_reviews() -> dict:
+def list_friends_reviews() -> dict:
     """Returns the list of reviews from the users the current user is following"""
     current_user = get_jwt_identity()
     user = User.find({'_id': ObjectId(current_user.get('_id'))})
