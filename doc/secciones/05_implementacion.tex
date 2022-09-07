@@ -36,6 +36,15 @@ El framework utilizado para el servidor es \textit{Flask}\cite{flask}, un framew
 \subsection{Operaciones}
 Recopilación y breve descripción de las peticiones que atiende el servidor.
 
+\subsubsection{Autenticación}
+Los usuarios podrán loguearse con su cuenta, lo que generará un token de acceso que deberá ser enviado en las cabeceras
+del resto de peticiones, para identificar qué usuario está realizando la petición, lo que en algunas de las operaciones
+será obligatorio.\\
+
+Para asegurarnos que el usuario está logueado, utilizamos un \textit{decorador} de la librería
+\textit{Flask-JWT-Extended}\cite{jwt} que comprueba que el token enviado en las cabeceras de la petición es válido. Si
+no lo es, se devuelve un error 401, o de desautorización.\\
+
 \subsubsection{Series}
 El servidor provee de una lista de series o de los detalles de una serie en particular o alguna de sus temporadas a
 través de su identificador. Sin embargo, la base de datos no incluye la información de estas series, si no que se
@@ -45,21 +54,23 @@ La API utilizada es \href{https://www.themoviedb.org}{\textit{TheMovieDB}}, una 
 series y películas. En este caso, haremos uso de las series. Gracias al diseño de nuestra aplicación, podríamos cambiar
 de API en cualquier momento, sin que suponga mucho tiempo de desarrollo.
 
+Además, también provee de una lista de series ordenadas por popularidad, según los rankings de \textit{TheMovieDB}.
+
 \subsubsection{Usuarios}
-Cualquiera podrá crear un usuario, siempre y cuando el email introducido no esté en uso.\\
+Cualquiera podrá listar o crear un usuario, siempre y cuando el email introducido no esté en uso.\\
 
-Los usuarios podrán loguearse con su cuenta, lo que generará un token de acceso que deberá ser enviado en las cabeceras
-del resto de peticiones, para identificar qué usuario está realizando la petición. Las operaciones sobre las series no
-requieren de autenticación, pero sí las operaciones sobre las reseñas.\\
+A través de su ID, se podrán acceder a los datos de dicho usuario u obtener las reseñas que ha realizado.\\
 
-Para asegurarnos que el usuario está logueado, utilizamos un \textit{decorador} de la librería
-\textit{Flask-JWT-Extended}\cite{jwt} que comprueba que el token enviado en las cabeceras de la petición es válido. Si
-no lo es, se devuelve un error 401, o de desautorización.\\
+Además, los usuarios identificados podrán seguir o dejar de seguir a otros usuarios y obtener la lista de reseñas hechas
+por cualquier de los usuarios que están siguiendo.\\
 
 \subsubsection{Reseñas}
-Los usuarios logueados podrán crear reseñas de las series. Usando el token \textit{JWT} del que hablamos en la sección
-anterior, podemos obtener el identificador del usuario que está realizando la petición y añadirlo a los datos de la
-reseña.\\ 
+Los usuarios identificados podrán crear reseñas de las series. Usando el token \textit{JWT} del que hablamos en la
+sección anterior, podemos obtener el identificador del usuario que está realizando la petición y añadirlo a los datos de
+la reseña.\\ 
+
+Además, cualquier usuario - identificado o no - podrá obtener la lista de reseñas hechas en la aplicación, ordenadas de
+más a menos recientes.\\
 
 \subsection{Test}
 Como ya hablamos en la \hyperref[chap:metodología]{metodología}, necesitamos que el código cumpla con unos requisitos
@@ -87,12 +98,15 @@ fácilmente interpretable por cualquier lenguaje de programación moderno.
 
 Las variables de configuración se encuentran en los ficheros del directorio \textit{config} y se definen mediante las
 variables de entorno, incluyendo opciones por defecto en la mayoría. En el entorno de desarrollo, uso \textit{dotenv}
-para cargar las variables de entorno desde un fichero de configuración \textit{.env}.
+para cargar las variables de entorno desde un fichero de configuración \textit{.env}.\\
 \begin{figure}[H]
 \centering	
     \includegraphics[scale=0.525]{img/dotenv.png}
 \caption{ Fichero de configuración con las variables de entorno del servidor }\label{fig:dotenv}
 \end{figure}
+
+Para el entorno de producción, las variables se cargan en \textit{Heroku}\cite{heroku} de forma sencilla, como veremos
+en el \hyperref[sec:despliegue]{despliegue}.\\
 
 \section{Cliente}
 El cliente o \textit{back-end} es la parte de la aplicación que se ejecuta en el dispositivo del usuario. En nuestro
@@ -140,4 +154,4 @@ permite crear interfaces de usuario modernas de forma rápida y sencilla y tambi
 un framework para crear aplicaciones híbridas para móviles y web si en algún momento decidiésemos dar el salto a las
 aplicaciones móviles.\\
 
-
+\section{Despliegue}\label{sec:despliegue}
