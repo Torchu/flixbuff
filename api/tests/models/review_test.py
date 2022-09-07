@@ -84,11 +84,15 @@ class TestReview():
     def test_list_from_user(self):
         """Test for the list_from_user method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
@@ -106,11 +110,15 @@ class TestReview():
     def test_list(self):
         """Test for the list method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
