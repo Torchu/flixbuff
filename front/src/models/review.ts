@@ -31,13 +31,31 @@ export class SeasonInfo {
     seasonName: string;
 
   /**
+   * Poster of the season
+   * @type {string}
+   */
+  @Expose({ name: 'season_poster' })
+  @Exclude({ toPlainOnly: true })
+    seasonPoster: string;
+
+  /**
    * Constructor
    */
-  constructor(showId?: number, showName?: string, seasonNumber?: number, seasonName?: string) {
+  constructor(showId?: number, showName?: string, seasonNumber?: number, seasonName?: string, seasonPoster?: string) {
     this.showId = showId ? showId : 0;
     this.showName = showName ? showName : '';
     this.seasonNumber = seasonNumber ? seasonNumber : 0;
     this.seasonName = seasonName ? seasonName : '';
+    this.seasonPoster = seasonPoster ? seasonPoster : '';
+  }
+
+  /**
+   * Returns the image URL for the season's poster.
+   */
+  getPosterUrl(): string {
+    return this.seasonPoster != 'None'
+      ? `https://image.tmdb.org/t/p/original${this.seasonPoster}`
+      : 'https://via.placeholder.com/500x750';
   }
 }
 

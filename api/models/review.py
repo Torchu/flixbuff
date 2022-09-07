@@ -25,11 +25,13 @@ class SeasonInfo:
             - show_name: str
             - season_number: int
             - season_name: str
+            - season_poster: str
         """
         self.show_id = data.get('show_id')
         self.show_name = data.get('show_name')
         self.season_number = data.get('season_number')
         self.season_name = data.get('season_name')
+        self.season_poster = data.get('season_poster')
 
 
 class Review:
@@ -76,6 +78,7 @@ class Review:
                       self.season_info.season_number), None)
         if season is not None:
             self.season_info.season_name = season.name
+            self.season_info.season_poster = season.poster_path
         else:
             raise SeasonNotFoundError
 

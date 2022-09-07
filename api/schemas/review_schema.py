@@ -9,6 +9,7 @@ class SeasonInfoSchema(Schema):
     show_name = fields.Str(dump_only=True, metadata={'description': 'Show name'})
     season_number = fields.Int(required=True, metadata={'description': 'Season number'})
     season_name = fields.Str(dump_only=True, metadata={'description': 'Season name'})
+    season_poster = fields.Str(dump_only=True, metadata={'description': 'Season poster'})
 
 
 class ReviewSchema(Schema):
