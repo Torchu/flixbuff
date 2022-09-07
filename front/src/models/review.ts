@@ -54,9 +54,9 @@ export class Review {
    * The id of the reviewer user
    * @type {string}
    */
-  @Expose()
+  @Expose({ name: 'reviewer_id' })
   @Exclude({ toPlainOnly: true })
-    reviewer: string;
+    reviewerId: string;
 
   /**
    * Info about the season
@@ -81,9 +81,9 @@ export class Review {
   /**
    * Constructor
    */
-  constructor(id?: string, reviewer?: string, seasonInfo?: SeasonInfo, review?: string, rating?: number) {
+  constructor(id?: string, reviewerId?: string, seasonInfo?: SeasonInfo, review?: string, rating?: number) {
     this.id = id ? id : '';
-    this.reviewer = reviewer ? reviewer : '';
+    this.reviewerId = reviewerId ? reviewerId : '';
     this.seasonInfo = seasonInfo ? seasonInfo : new SeasonInfo();
     this.review = review ? review : '';
     this.rating = rating ? rating : 0;
