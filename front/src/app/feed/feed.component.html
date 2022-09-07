@@ -115,7 +115,10 @@
           fxFlex.sm="33%"
           *ngFor="let review of getLatestPaginated(latestCurrentPage)"
         >
-          <mat-card class="mat-elevation-z4">
+          <mat-card
+            class="mat-elevation-z4"
+            (click)="goToProfile(review.reviewer)"
+          >
             <mat-card-header>
               <mat-card-title>{{ review.seasonInfo.showName }}</mat-card-title>
               <mat-card-subtitle>{{

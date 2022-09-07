@@ -154,4 +154,138 @@ permite crear interfaces de usuario modernas de forma rápida y sencilla y tambi
 un framework para crear aplicaciones híbridas para móviles y web si en algún momento decidiésemos dar el salto a las
 aplicaciones móviles.\\
 
+\subsection{Diseño}
+En esta sección se detallarán los aspectos de las diferentes vistas de la aplicación. Se ha apostado por un diseño
+elegante y minimalista, usando los componentes del ya mencionado \textit{Angular Material}.
+
+\subsubsection{Barra de navegación}
+En la parte de arriba de cualquiera de las vistas de la aplicación, se encuentra la barra de navegación.\\
+
+La barra de navegación muestra el título de la aplicación y otras dos pestañas: \textit{Shows} y \textit{Users}.\\
+
+Hacer click en el título redirigirá al usuario a la feed principal de la aplicación, mientras que hacer click en
+alguna de las otras dos vistas, le transportará a la lista de series y de usuarios, respectivamente.\\
+
+En la parte derecha de la barra de navegación, nos encontraremos la pestaña de \textit{Log In}, que desplegará la
+\hyperref[sec:login-signin]{ventana de registro y logueo}. En caso de ya estar logueado, la pestaña mostrará tu nombre de
+usuario y haciendo click, desplegará un menú cuya única opción es el deslogueo.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/navbar.png}
+    \caption{ Barra de navegación previa al login }\label{fig:navbar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/logged-navbar.png}
+    \caption{ Barra de navegación posterior al login }\label{fig:logged-navbar}
+\end{figure}
+
+\subsubsection{Ventana de login/registro}\label{sec:login-signin}
+Tras el click en la pestaña de \textit{log in} se despliega esta ventana que se superpone al resto de la aplicación.\\
+
+La ventana está dividida en tres secciones: las pestañas, el formulario y los botones. \\
+
+Las dos pestañas son \textit{Log In} y \textit{Create Account} y modifican el resto de la ventana acorde a la operación
+que quieras llevar a cabo, acceso o registro, respectivamente.\\
+
+En la parte baja de la ventana encontramos dos botones, el primero refleja la acción que se intenta llevar a cabo - 
+acceso o registro - y no funcionará hasta que los datos del formulario correspondiente sean correctos. El segundo botón
+sirve para cancelar la operación y cerrar la ventana.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/login.png}
+        \includegraphics[scale=0.25]{img/signin.png}
+    \caption{ Ventana de acceso y registro }\label{fig:login}
+\end{figure}
+
+\subsubsection{Feed principal}
+El feed principal de la aplicación está compuesto por tres secciones.\\
+
+La primera sección, solo visible a usuarios logueados, muestra las reseñas más recientes de los usuarios a los que
+siguen. Las reseñas se muestran en un carrusel de tarjetas y unos botones a los lados que permiten cambiar de página.\\
+
+Estas tarjetas incluyen el título de la serie y su temporada, la puntuación otorgada por el revisor en forma de
+estrellas y el texto de la reseña.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.5]{img/review-card.png}
+    \caption{ Tarjeta de reseña }\label{fig:review-card}
+\end{figure}
+
+La segunda sección muestra las series más populares del momento, en forma de carrusel de tarjetas, al igual que con las
+reseñas. En este caso, las tarjetas incluyen el título de la serie y su fecha, el póster de la obra y un pequeño resumen
+de la misma. Hacer click en una serie te llevará a la vista de detalles de la misma.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.5]{img/show-card.png}
+    \caption{ Tarjeta de serie }\label{fig:show-card}
+\end{figure}
+
+La tercera sección muestra lo mismo que la primera, pero en este caso muestra la reseñas más recientes de todos los
+usuarios de la aplicación. Al hacer click en alguna de ellas, te llevará al perfil del usuario que la escribió, para que
+puedas seguirle y ver sus otras reseñas.\\
+
+\subsubsection{Lista de series}
+En la lista de series podemos encontrar una barra de búsqueda en la parte superior de la vista. Al escribir algo en la
+barra, automáticamente se buscarán las series que contengan esa cadena en el nombre y se mostrarán en una rejilla de
+tarjetas de series como las de la sección anterior.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/show-list.png}
+    \caption{ Lista de series con el nombre \textit{Batman} }\label{fig:show-list}
+\end{figure}
+
+Al igual que en la sección anterior, hacer click en una de las tarjetas te llevará a la vista de detalles de la serie.\\
+
+\subsubsection{Detalles de una serie}
+La vista de detalles de la serie nos muestra dos partes. \\
+
+La primera parte es una cabecera con información de la serie, en la que, al igual que en la tarjeta, se podrán ver su
+título, fecha de estreno, un pequeño resumen y una imagen de la misma.\\
+
+La segunda parte está formada por la lista de sus temporadas, representadas en unas tarjetas expansibles, que al hacer
+click sobre ellas, revelan más información sobre la misma. \\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/show-details.png}
+    \caption{ Detalles de la serie \textbf{Batman} }\label{fig:show-details}
+\end{figure}
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/expanded-season.png}
+    \caption{ Lista de tarjetas de las temporadas de una serie }\label{fig:expanded-season}
+\end{figure}
+
+\subsubsection{Lista de usuarios}
+Al igual que la lista de series, la lista de usuarios también se basa en una barra de búsqueda y unas tarjetas de
+usuario. En este caso las tarjetas de usuario incluyen simplemente su nombre de perfil y haciendo click sobre ellas,
+navegas a la vista de detalles de ese usuario.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/user-list.png}
+    \caption{ Lista de usuarios de la aplicación }\label{fig:user-list}
+\end{figure}
+
+\subsubsection{Detalles de un usuario}
+La vista de detalles del usuario, muestra una rejilla de tarjetas, en las que se representan todas sus reseñas,
+ordenadas de más a menos recientes.\\
+
+En la esquina superior derecha, se muestra un botón de \textit{follow} a los usuarios logueados, para que puedan seguir
+al usuario del que están viendo los detalles.\\
+
+\begin{figure}[H]
+    \centering	
+        \includegraphics[scale=0.25]{img/user-details.png}
+    \caption{ Detalles del usuario victorc }\label{fig:user-details}
+\end{figure}
+
 \section{Despliegue}\label{sec:despliegue}
