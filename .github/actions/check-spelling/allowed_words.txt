@@ -51,3 +51,7 @@ signin
 logueo
 deslogueo
 victorc
+gunicorn
+Procfile
+js
+buildpack
