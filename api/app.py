@@ -1,5 +1,6 @@
 from config.flask_config import API_PORT, API_HOST, DEBUG_MODE, ENABLE_CORS, OPENAPI_CONFIG, SECRET_KEY
 from config.mongodb_config import DB_NAME, DB_URI
+from datetime import timedelta
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -14,6 +15,7 @@ app = Flask(__name__)
 app.config.update(OPENAPI_CONFIG)
 app.config["MONGO_URI"] = f"{DB_URI}/{DB_NAME}"
 app.config["JWT_SECRET_KEY"] = SECRET_KEY
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 # Sets up the extensions
 app.mongo = PyMongo(app)
