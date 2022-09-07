@@ -17,8 +17,21 @@
       fxFlex.sm="33%"
       *ngFor="let user of userList"
     >
-      <mat-toolbar class="mat-elevation-z4" (click)="openUserDetails(user.id)">
-        <span>{{ user.username }}</span>
+      <mat-toolbar
+        class="mat-elevation-z4"
+        (click)="openUserDetails(user.id)"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <span class="title">{{ user.username }}</span>
+        <span
+          ><mat-icon [ngStyle]="{ color: 'gold' }">star</mat-icon
+          >{{ user.totalReviews }} reviews</span
+        >
+        <span
+          ><mat-icon [ngStyle]="{ color: 'red' }">favorite</mat-icon
+          >{{ user.totalFollowers }} followers</span
+        >
       </mat-toolbar>
     </div>
   </div>

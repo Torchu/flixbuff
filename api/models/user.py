@@ -171,3 +171,10 @@ class User:
         current_app.mongo.db.users.update_one({'_id': self._id}, {'$pull': {'following': user_id}})
 
         return User.find({'_id': self._id})
+
+    def complete_info(self) -> Dict:
+        """Returns a dict with the data of the user and its total reviews and followers."""
+        user_data = self.__dict__
+        user_data['total_reviews'] = 0
+        user_data['total_followers'] = 0
+        return user_data
