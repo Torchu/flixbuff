@@ -30,7 +30,7 @@ def list_users(params: dict) -> dict:
     """Returns the list of users"""
     user_list, total = User.list(params.get('query'))
     return {
-        "items": [user for user in user_list],
+        "items": [user.complete_info() for user in user_list],
         "total": total
     }
 

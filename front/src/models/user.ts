@@ -35,14 +35,40 @@ export class User {
     following: Array<string>;
 
   /**
+   * The number of reviews of the user
+   * @type {number}
+   */
+  @Expose({ name: 'total_reviews' })
+  @Exclude({ toClassOnly: true })
+    totalReviews: number;
+
+  /**
+   * The number of followers of the user
+   * @type {number}
+   */
+  @Expose({ name: 'total_followers' })
+  @Exclude({ toClassOnly: true })
+    totalFollowers: number;
+
+  /**
    * Constructor
    */
-  constructor(id: string, username: string, email: string, password: string, following: Array<string> = []) {
+  constructor(
+    id: string,
+    username: string,
+    email: string,
+    password: string,
+    following: Array<string> = [],
+    totalReviews: number,
+    totalFollowers: number
+  ) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.password = password;
     this.following = following;
+    this.totalReviews = totalReviews;
+    this.totalFollowers = totalFollowers;
   }
 
   /**
