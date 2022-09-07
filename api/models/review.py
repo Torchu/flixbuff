@@ -13,6 +13,21 @@ class SeasonNotFoundError(Exception):
         self.message = 'Season not found'
 
 
+class ReviewerInfo:
+    """Class that represents the reviewer info in the review class."""
+
+    def __init__(self, data: Dict) -> None:
+        """
+        Constructor of the ReviewerInfo class.
+        Uses a JSON dictionary to initialize the attributes of the class.
+        JSON dictionary must have the following keys:
+            - reviewer_id: str
+            - reviewer_username: str
+        """
+        self.reviewer_id = data.get('reviewer_id')
+        self.reviewer_username = data.get('reviewer_username')
+
+
 class SeasonInfo:
     """Class that represents the season info in the review class."""
 
@@ -25,11 +40,13 @@ class SeasonInfo:
             - show_name: str
             - season_number: int
             - season_name: str
+            - season_poster: str
         """
         self.show_id = data.get('show_id')
         self.show_name = data.get('show_name')
         self.season_number = data.get('season_number')
         self.season_name = data.get('season_name')
+        self.season_poster = data.get('season_poster')
 
 
 class Review:
@@ -41,14 +58,14 @@ class Review:
         Uses a JSON dictionary to initialize the attributes of the class.
         JSON dictionary must have the following keys:
             - _id: str
-            - reviewer_id: str
+            - reviewer_info: dict {reviewer_id: str, reviewer_username: str}
             - season_info: dict {show_name: str, season_number: int, season_name: str}
             - review: str
             - rating: int
 
         """
         self._id = data.get('_id')
-        self.reviewer_id = data.get('reviewer_id')
+        self.reviewer_info = ReviewerInfo(data.get('reviewer_info', {}))
         self.season_info = SeasonInfo(data.get('season_info', {}))
         self.review = data.get('review')
         self.rating = data.get('rating')
@@ -62,7 +79,7 @@ class Review:
         """Returns the review object as a JSON."""
         return {
             "_id": str(self._id),
-            "reviewer_id": self.reviewer_id,
+            "reviewer_info": self.reviewer_info.__dict__,
             "season_info": self.season_info.__dict__,
             "review": self.review,
             "rating": self.rating
@@ -76,8 +93,18 @@ class Review:
                       self.season_info.season_number), None)
         if season is not None:
             self.season_info.season_name = season.name
+            self.season_info.season_poster = season.poster_path
         else:
             raise SeasonNotFoundError
+
+    def add_reviewer(self, user_id: str, user_username: str) -> None:
+        """
+        Adds the reviewer info given the reviewer user.
+        :param user_id: ID of the reviewer
+        :param user_username: Username of the reviewer
+        """
+        self.reviewer_info.reviewer_id = user_id
+        self.reviewer_info.reviewer_username = user_username
 
     def insert(self) -> 'Review':
         """
@@ -115,10 +142,10 @@ class Review:
         :param user_id: User ID
         :return: List of reviews
         """
-        cursor = current_app.mongo.db.reviews.find({'reviewer_id': user_id})
+        cursor = current_app.mongo.db.reviews.find({'reviewer_info.reviewer_id': user_id})
         cursor.sort('_id', pymongo.DESCENDING)
         reviews = [Review(review) for review in cursor]
-        total = current_app.mongo.db.reviews.count_documents({'reviewer_id': user_id})
+        total = current_app.mongo.db.reviews.count_documents({'reviewer_info.reviewer_id': user_id})
         return reviews, total
 
     @classmethod
@@ -140,8 +167,8 @@ class Review:
         :param users: list of users IDs
         :return: List of reviews
         """
-        cursor = current_app.mongo.db.reviews.find({'reviewer_id': {'$in': users}})
+        cursor = current_app.mongo.db.reviews.find({'reviewer_info.reviewer_id': {'$in': users}})
         cursor.sort('_id', pymongo.DESCENDING)
         reviews = [Review(review) for review in cursor]
-        total = current_app.mongo.db.reviews.count_documents({'reviewer_id': {'$in': users}})
+        total = current_app.mongo.db.reviews.count_documents({'reviewer_info.reviewer_id': {'$in': users}})
         return reviews, total

@@ -1,5 +1,28 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 
+export class ReviewerInfo {
+  /**
+   * ID of the reviewer
+   * @type{string}
+   */
+  @Expose({ name: 'reviewer_id' })
+  @Exclude({ toPlainOnly: true })
+    reviewerId: string;
+
+  /**
+   * Username of the reviewer
+   * @type{string}
+   */
+  @Expose({ name: 'reviewer_username' })
+  @Exclude({ toPlainOnly: true })
+    reviewerUsername: string;
+
+  constructor(reviewerId?: string, reviewerUsername?: string) {
+    this.reviewerId = reviewerId ? reviewerId : '';
+    this.reviewerUsername = reviewerUsername ? reviewerUsername : '';
+  }
+}
+
 export class SeasonInfo {
   /**
    * ID of the show
@@ -31,13 +54,31 @@ export class SeasonInfo {
     seasonName: string;
 
   /**
+   * Poster of the season
+   * @type {string}
+   */
+  @Expose({ name: 'season_poster' })
+  @Exclude({ toPlainOnly: true })
+    seasonPoster: string;
+
+  /**
    * Constructor
    */
-  constructor(showId?: number, showName?: string, seasonNumber?: number, seasonName?: string) {
+  constructor(showId?: number, showName?: string, seasonNumber?: number, seasonName?: string, seasonPoster?: string) {
     this.showId = showId ? showId : 0;
     this.showName = showName ? showName : '';
     this.seasonNumber = seasonNumber ? seasonNumber : 0;
     this.seasonName = seasonName ? seasonName : '';
+    this.seasonPoster = seasonPoster ? seasonPoster : '';
+  }
+
+  /**
+   * Returns the image URL for the season's poster.
+   */
+  getPosterUrl(): string {
+    return this.seasonPoster != 'None'
+      ? `https://image.tmdb.org/t/p/original${this.seasonPoster}`
+      : 'https://via.placeholder.com/500x750';
   }
 }
 
@@ -54,9 +95,10 @@ export class Review {
    * The id of the reviewer user
    * @type {string}
    */
-  @Expose({ name: 'reviewer_id' })
+  @Expose({ name: 'reviewer_info' })
   @Exclude({ toPlainOnly: true })
-    reviewerId: string;
+  @Type(() => ReviewerInfo)
+    reviewerInfo: ReviewerInfo;
 
   /**
    * Info about the season
@@ -81,9 +123,9 @@ export class Review {
   /**
    * Constructor
    */
-  constructor(id?: string, reviewerId?: string, seasonInfo?: SeasonInfo, review?: string, rating?: number) {
+  constructor(id?: string, reviewerInfo?: ReviewerInfo, seasonInfo?: SeasonInfo, review?: string, rating?: number) {
     this.id = id ? id : '';
-    this.reviewerId = reviewerId ? reviewerId : '';
+    this.reviewerInfo = reviewerInfo ? reviewerInfo : new ReviewerInfo();
     this.seasonInfo = seasonInfo ? seasonInfo : new SeasonInfo();
     this.review = review ? review : '';
     this.rating = rating ? rating : 0;

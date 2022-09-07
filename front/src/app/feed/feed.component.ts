@@ -36,12 +36,12 @@ export class FeedComponent implements OnInit {
     });
     this.reviewService.list().subscribe((reviews: ReviewList) => {
       this.latestReviewList = reviews.items;
-      this.latestLastPage = Math.ceil(this.latestReviewList.length / 4) - 1;
+      this.latestLastPage = Math.max(Math.ceil(this.latestReviewList.length / 4) - 1, 0);
     });
     if (this.isLogged()) {
       this.userService.getFriendsReviews().subscribe((reviews: ReviewList) => {
         this.friendsReviewList = reviews.items;
-        this.friendsLastPage = Math.ceil(this.friendsReviewList.length / 4) - 1;
+        this.friendsLastPage = Math.max(Math.ceil(this.friendsReviewList.length / 4) - 1, 0);
       });
     }
   }

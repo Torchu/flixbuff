@@ -9,11 +9,15 @@ class TestReview():
     def test_initialize(self):
         """Tests the initialization of the Review model."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
@@ -24,11 +28,15 @@ class TestReview():
         """Test that and exception is raised when the rating is not between 0 and 10."""
         with pytest.raises(ValueError):
             Review({
-                'reviewer_id': '1',
+                'reviewer_info': {
+                    'reviewer_id': '1',
+                    'reviewer_username': 'test'
+                },
                 'season_info': {
                     'show_name': 'Cosas rarunas',
                     'season_number': 1,
-                    'season_name': 'Temporada 1'
+                    'season_name': 'Temporada 1',
+                    'season_poster': '/path/to/poster.jpg'
                 },
                 'review': 'This is a review',
                 'rating': 6
@@ -37,11 +45,15 @@ class TestReview():
     def test_insert(self):
         """Test for the insert method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
@@ -51,28 +63,36 @@ class TestReview():
     def test_find(self):
         """Test for the find method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
         })
         review.insert()
 
-        assert Review.find({'reviewer_id': '1'}) is not None, 'The review was not found'
-        assert Review.find({'reviewer_id': '2'}) is None, 'Unexisting review was found'
+        assert Review.find({'reviewer_info.reviewer_id': '1'}) is not None, 'The review was not found'
+        assert Review.find({'reviewer_info.reviewer_id': '2'}) is None, 'Unexisting review was found'
 
     def test_list_from_user(self):
         """Test for the list_from_user method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
@@ -90,11 +110,15 @@ class TestReview():
     def test_list(self):
         """Test for the list method."""
         review = Review({
-            'reviewer_id': '1',
+            'reviewer_info': {
+                'reviewer_id': '1',
+                'reviewer_username': 'test'
+            },
             'season_info': {
                 'show_name': 'Cosas rarunas',
                 'season_number': 1,
-                'season_name': 'Temporada 1'
+                'season_name': 'Temporada 1',
+                'season_poster': '/path/to/poster.jpg'
             },
             'review': 'This is a review',
             'rating': 5
