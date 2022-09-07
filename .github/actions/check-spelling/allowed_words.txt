@@ -47,3 +47,7 @@ JSX
 TypeScript
 transpila
 nativamente
+signin
+logueo
+deslogueo
+victorc
