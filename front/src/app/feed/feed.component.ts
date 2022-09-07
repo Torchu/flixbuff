@@ -125,4 +125,12 @@ export class FeedComponent implements OnInit {
         this.latestCurrentPage++;
     }
   }
+
+  /**
+   * Navigates to the profile of the user selected
+   * @param userId ID of the user
+   */
+  goToProfile(userId: string): void {
+    this.router.navigate(['users', userId]);
+  }
 }
