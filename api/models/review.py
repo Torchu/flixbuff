@@ -48,7 +48,7 @@ class Review:
 
         """
         self._id = data.get('_id')
-        self.reviewer = data.get('reviewer_id')
+        self.reviewer_id = data.get('reviewer_id')
         self.season_info = SeasonInfo(data.get('season_info', {}))
         self.review = data.get('review')
         self.rating = data.get('rating')
@@ -62,7 +62,7 @@ class Review:
         """Returns the review object as a JSON."""
         return {
             "_id": str(self._id),
-            "reviewer_id": self.reviewer,
+            "reviewer_id": self.reviewer_id,
             "season_info": self.season_info.__dict__,
             "review": self.review,
             "rating": self.rating
