@@ -55,3 +55,9 @@ gunicorn
 Procfile
 js
 buildpack
+dynos
+dyno
+serverless
+clústeres
+ECF
+MacBook
