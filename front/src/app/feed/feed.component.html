@@ -117,7 +117,7 @@
         >
           <mat-card
             class="mat-elevation-z4"
-            (click)="goToProfile(review.reviewerId)"
+            (click)="goToProfile(review.reviewerInfo.reviewerId)"
             fxLayout="row"
             fxLayoutGap="8px"
           >
@@ -128,7 +128,8 @@
                   review.seasonInfo.showName
                 }}</mat-card-title>
                 <mat-card-subtitle>
-                  {{ review.seasonInfo.seasonName }} - {{ review.reviewerId }}
+                  {{ review.seasonInfo.seasonName }} -
+                  {{ review.reviewerInfo.reviewerUsername }}
                 </mat-card-subtitle>
                 <star-rating
                   [rating]="review.rating"
